@@ -1,4 +1,4 @@
-package com.example.firstdayjava.ui.views;
+package com.example.firstdayjava.ui.views.UserView;
 
 import android.app.AlertDialog;
 import android.os.CountDownTimer;

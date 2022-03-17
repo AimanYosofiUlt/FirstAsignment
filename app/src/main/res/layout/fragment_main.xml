@@ -6,7 +6,6 @@
     android:padding="16dp"
     android:layout_height="match_parent">
 
-
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"

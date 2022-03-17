@@ -15,8 +15,8 @@ import android.widget.ArrayAdapter;
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentMainBinding;
 import com.example.firstdayjava.pojo.dbs.models.Users;
-import com.example.firstdayjava.ui.views.UserAdapter;
-import com.example.firstdayjava.ui.views.UserViewListener;
+import com.example.firstdayjava.ui.views.UserView.UserAdapter;
+import com.example.firstdayjava.ui.views.UserView.UserViewListener;
 import com.example.firstdayjava.viewmodels.MainFragmentViewModel;
 
 public class MainFragment extends Fragment implements UserViewListener {

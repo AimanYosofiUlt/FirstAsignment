@@ -13,6 +13,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -103,6 +104,12 @@ dependencies {
         implementation 'io.michaelrocks:libphonenumber-android:8.12.44'
         implementation 'com.github.joielechong:CountryCodePicker:2.4.1'
 
+        implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
         implementation 'com.hbb20:ccp:2.5.0'
+
+        implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
+
     }
 }

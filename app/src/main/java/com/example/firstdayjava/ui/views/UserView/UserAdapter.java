@@ -1,4 +1,4 @@
-package com.example.firstdayjava.ui.views;
+package com.example.firstdayjava.ui.views.UserView;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

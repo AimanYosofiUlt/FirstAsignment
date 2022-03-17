@@ -1,4 +1,4 @@
-package com.example.firstdayjava.ui.views;
+package com.example.firstdayjava.ui.views.UserView;
 
 import com.example.firstdayjava.pojo.dbs.models.Users;
 
