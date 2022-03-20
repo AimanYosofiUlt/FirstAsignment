@@ -6,10 +6,17 @@
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable-anydpi-v24/ic_cardes.xml" value="0.2115" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2045" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/add_tocart_icon.xml" value="0.1935" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_bottomsheet.xml" value="0.1975" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_button.xml" value="0.2045" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_button2.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_button3.xml" value="0.2115" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_button_opt2.xml" value="0.2045" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_button_opt3.xml" value="0.2115" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_circle.xml" value="0.2115" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_circle4.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_filter_ed.xml" value="0.1975" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_input.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_order_end.xml" value="0.1975" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_product_bottom.xml" value="0.103" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_product_top.xml" value="0.103" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/back_textview.xml" value="0.2045" />
@@ -17,7 +24,9 @@
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/click_bottom_button.xml" value="0.1975" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/click_userview.xml" value="0.199" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/click_userview_deletemode.xml" value="0.199" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/fragment_change_password.xml" value="0.2115" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/ic_baseline_assignment_24.xml" value="0.1935" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/ic_button_opt3.xml" value="0.2115" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/ic_circle.xml" value="0.2045" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/ic_circle2.xml" value="0.1975" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2045" />
@@ -26,29 +35,40 @@
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/activity_map.xml" value="0.14" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/activity_splash_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/back_product_bottom.xml" value="0.1" />
-        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/bottomsheet_filter.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/bottomsheet_filter.xml" value="0.33" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/bottomsheet_sort.xml" value="0.22" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/bottomsheetbar_filter.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/dialog_userinfo.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_add_new_adress.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_category.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_change_password.xml" value="0.14" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_edit.xml" value="0.19121140142517815" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_edit2.xml" value="0.13854166666666667" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_forget_password.xml" value="0.22" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_main.xml" value="0.13854166666666667" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_main2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_main_rragment.xml" value="0.13854166666666667" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_map.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_product_show.xml" value="0.33" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_prudoct_list.xml" value="0.2" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_prudoct_show.xml" value="0.17" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_splash_screen.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_train.xml" value="0.12807881773399016" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/fragment_verficatoin.xml" value="0.18" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_adress.xml" value="0.5" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_ads.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_cart.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_category.xml" value="0.22" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_categoryfortab.xml" value="0.67" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_favoraite.xml" value="0.33" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_orders.xml" value="0.33" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_product.xml" value="0.33" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_productfortab.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_type.xml" value="0.33" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_user.xml" value="0.33" />
+        <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/view_verfication.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/layout/window_info.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/FirstDayJava/app/src/main/res/menu/product_list_menu.xml" value="0.20416666666666666" />
       </map>

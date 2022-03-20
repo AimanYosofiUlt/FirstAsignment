@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/prudoctListFragment"
-        android:name="com.example.firstdayjava.ui.fragments.ProductsListFragment"
+        android:name="com.example.firstdayjava.ui.fragments.ProductsPageFragment"
         android:label="fragment_prudoct_list"
-        tools:layout="@layout/fragment_prudoct_list" />
+        tools:layout="@layout/fragment_prudoct_page" />
 </navigation>

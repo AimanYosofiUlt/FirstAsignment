@@ -5,34 +5,32 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentPrudoctListBinding;
+import com.example.firstdayjava.databinding.FragmentPrudoctPageBinding;
 import com.example.firstdayjava.ui.viewpagers.prudoctlist.ProductListViewPagerAdapter;
 import com.example.firstdayjava.ui.views.BottomSeets.ProductFilterBottomSheet;
-import com.example.firstdayjava.ui.views.CategoryView.CategoryViewHolder;
+import com.example.firstdayjava.ui.views.BottomSeets.ProductSortBottomSheet;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.util.Random;
-
-public class ProductsListFragment extends Fragment {
-    FragmentPrudoctListBinding bd;
+public class ProductsPageFragment extends Fragment {
+    FragmentPrudoctPageBinding bd;
     ProductListViewPagerAdapter pagerAdapter;
 
     ProductFilterBottomSheet filterBottomSheet;
+    ProductSortBottomSheet sortBottomSheet;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        bd = FragmentPrudoctListBinding.inflate(inflater, container, false);
+        bd = FragmentPrudoctPageBinding.inflate(inflater, container, false);
         return bd.getRoot();
     }
 
@@ -50,6 +48,7 @@ public class ProductsListFragment extends Fragment {
     private void init() {
         initPagerView();
         filterBottomSheet = new ProductFilterBottomSheet();
+        sortBottomSheet = new ProductSortBottomSheet();
 
         initEvent();
     }
@@ -58,7 +57,14 @@ public class ProductsListFragment extends Fragment {
         bd.showFilterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filterBottomSheet.show(getParentFragmentManager(),"HI");
+                filterBottomSheet.show(getParentFragmentManager(),"Filter");
+            }
+        });
+
+        bd.showSortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortBottomSheet.show(getParentFragmentManager(),"Sort");
             }
         });
     }
@@ -68,11 +74,11 @@ public class ProductsListFragment extends Fragment {
         bd.viewPager.setAdapter(pagerAdapter);
         bd.viewPager.setUserInputEnabled(false);
 
-        pagerAdapter.addFragment(new PShowFragment());
-        pagerAdapter.addFragment(new PShowFragment());
-        pagerAdapter.addFragment(new PShowFragment());
-        pagerAdapter.addFragment(new PShowFragment());
-        pagerAdapter.addFragment(new PShowFragment());
+        pagerAdapter.addFragment(new ProductListFragment());
+        pagerAdapter.addFragment(new ProductListFragment());
+        pagerAdapter.addFragment(new ProductListFragment());
+        pagerAdapter.addFragment(new ProductListFragment());
+        pagerAdapter.addFragment(new ProductListFragment());
 
 
         TabLayoutMediator layoutMediator = new TabLayoutMediator(bd.categoryTabL, bd.viewPager, new TabLayoutMediator.TabConfigurationStrategy() {

@@ -1,24 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="textview">
         <item name="android:background">@drawable/back_textview</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">10dp</item>
-        <item name="hintTextColor">@color/black</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="filter_textview">
+        <item name="android:background">@drawable/back_filter_ed</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="order_title_textview">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#808080</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_margin">12sp</item>
+    </style>
+
+    <style name="adress_title_textview">
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginBottom">12sp</item>
+    </style>
+
+    <style name="order_textview">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#0055B9</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="button">
         <item name="android:background">@drawable/back_button</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="button2">
+        <item name="android:background">@drawable/back_button2</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="button3">
+        <item name="android:background">@drawable/back_button3</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="buttonOpt2">
         <item name="android:background">@drawable/back_button_opt2</item>
         <item name="android:textColor">@color/primeryColor</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="buttonOpt3">
+        <item name="android:background">@drawable/back_button_opt3</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:gravity">center</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
@@ -27,4 +85,24 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="adress_input_style">
+        <item name="android:background">@drawable/back_input</item>
+        <item name="android:paddingTop">25dp</item>
+        <item name="android:paddingBottom">25dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">16dp</item>
+    </style>
+
+    <style name="adress_input_ed_style">
+        <item name="android:background">@drawable/back_input</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
 </resources>

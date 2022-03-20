@@ -13,15 +13,14 @@ import android.widget.Toast;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentPrudoctListBinding;
-import com.example.firstdayjava.databinding.FragmentPrudoctShowBinding;
 import com.example.firstdayjava.ui.views.ProductView.ProductViewAdapter;
 import com.example.firstdayjava.ui.views.TypeCardView.TypeCardViewAdapter;
 
 import java.util.Objects;
 import java.util.Random;
 
-public class PShowFragment extends Fragment {
-    FragmentPrudoctShowBinding bd;
+public class ProductListFragment extends Fragment {
+    FragmentPrudoctListBinding bd;
 
     TypeCardViewAdapter typeAdapter;
     ProductViewAdapter productAdapter;
@@ -30,7 +29,7 @@ public class PShowFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        bd = FragmentPrudoctShowBinding.inflate(inflater, container, false);
+        bd = FragmentPrudoctListBinding.inflate(inflater, container, false);
 
         init();
 

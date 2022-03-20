@@ -112,5 +112,8 @@ dependencies {
         implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
 
         implementation 'com.yahoo.mobile.client.android.util.rangeseekbar:rangeseekbar-library:0.1.0'
+
+        implementation 'com.github.aabhasr1:OtpView:v1.1.2'
+
     }
 }
