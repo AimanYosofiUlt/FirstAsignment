@@ -3,79 +3,67 @@ package com.example.firstdayjava.ui.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentMainBinding;
-import com.example.firstdayjava.pojo.dbs.models.Users;
-import com.example.firstdayjava.ui.views.UserView.UserAdapter;
-import com.example.firstdayjava.ui.views.UserView.UserViewListener;
-import com.example.firstdayjava.viewmodels.MainFragmentViewModel;
+import com.example.firstdayjava.ui.viewpagers.mainviewpager.MainViewPagerAdapter;
 
-public class MainFragment extends Fragment implements UserViewListener {
-
+public class MainFragment extends Fragment {
     FragmentMainBinding bd;
-    MainFragmentViewModel viewModel;
-
-    UserAdapter adapter;
-    ArrayAdapter<String> phoneAdapter;
-
-
-
+    MainViewPagerAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         bd = FragmentMainBinding.inflate(inflater, container, false);
-        initViewModel();
+
+        init();
         return bd.getRoot();
     }
 
-    private void initViewModel() {
-        viewModel = new ViewModelProvider(this).get(MainFragmentViewModel.class);
+    private void init() {
+        initBottomNav();
 
-        initModelView();
+        adapter = new MainViewPagerAdapter(this);
+        bd.mainVP.setAdapter(adapter);
+        bd.mainVP.setUserInputEnabled(false);
 
-        viewModel.users.observe(requireActivity(), users -> {
-            adapter.setList(users);
-            adapter.notifyDataSetChanged();
+        adapter.addFragment(new CategoryFragment());
+    }
+
+    private void initBottomNav() {
+        bd.meowBNav.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
+        bd.meowBNav.add(new MeowBottomNavigation.Model(2, R.drawable.ic_orders));
+        bd.meowBNav.add(new MeowBottomNavigation.Model(3, R.drawable.ic_shop));
+        bd.meowBNav.add(new MeowBottomNavigation.Model(4, R.drawable.ic_menu));
+
+
+        bd.meowBNav.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                bd.meowBNav.show(item.getId(), true);
+            }
         });
-        ;
-    }
 
-    private void initModelView() {
-        adapter = new UserAdapter(this);
-        bd.userListRV.setAdapter(adapter);
-        GridLayoutManager  manager = new GridLayoutManager(requireActivity(),2);
-        bd.userListRV.setLayoutManager(manager);
-
-
-        initEvent();
-    }
-
-    private void initEvent() {
-
-        bd.button.setOnClickListener(view -> {
-            NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_mainRragment_to_editFragment);
-
+        bd.meowBNav.setOnShowListener(new MeowBottomNavigation.ShowListener() {
+            @Override
+            public void onShowItem(MeowBottomNavigation.Model item) {
+                // your codes
+            }
         });
+
+        bd.meowBNav.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                // your codes
+            }
+        });
+
+        bd.meowBNav.show(1, false);
     }
 
-
-    @Override
-    public void onDeleteReq(Users user) {
-        viewModel.deleteUser(user);
-    }
-
-    @Override
-    public void onUpdateReq(Users user) {
-        viewModel.updateUser(user);
-    }
 }

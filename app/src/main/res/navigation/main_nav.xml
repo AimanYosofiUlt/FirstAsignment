@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/loginFragment">
-
+    app:startDestination="@id/prudoctListFragment">
 
     <fragment
         android:id="@+id/editFragment"
@@ -13,7 +12,7 @@
         tools:layout="@layout/fragment_edit">
         <action
             android:id="@+id/action_editFragment_to_mainRragment"
-            app:destination="@id/mainFragment"
+            app:destination="@id/listFragment"
 
             app:popUpTo="@+id/loginFragment"
             app:popUpToInclusive="true" />
@@ -26,10 +25,10 @@
             app:destination="@id/mapFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.firstdayjava.ui.fragments.MainFragment"
+        android:id="@+id/listFragment"
+        android:name="com.example.firstdayjava.ui.fragments.ListFragment"
         android:label="fragment_main_rragment"
-        tools:layout="@layout/fragment_main">
+        tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_mainRragment_to_editFragment"
             app:destination="@id/editFragment" />
@@ -41,14 +40,31 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/listFragment" />
         <action
             android:id="@+id/action_loginFragment_to_editFragment"
             app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment2"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.firstdayjava.ui.fragments.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.firstdayjava.ui.fragments.MainFragment"
+        android:label="fragment_main2"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_prudoctListFragment"
+            app:destination="@id/prudoctListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/prudoctListFragment"
+        android:name="com.example.firstdayjava.ui.fragments.ProductsListFragment"
+        android:label="fragment_prudoct_list"
+        tools:layout="@layout/fragment_prudoct_list" />
 </navigation>

@@ -13,7 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
-    List list = new ArrayList<>();
+    List<Category> list = new ArrayList<>();
+
+    public List<Category> getList() {
+        return list;
+    }
+
+    public void setList(List<Category> list) {
+        this.list = list;
+    }
 
     CategoryViewListener listener;
 
@@ -24,14 +32,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new CategoryViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.view_user,parent,false),
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.view_category,parent,false),
                 listener
         );
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-//        holder.bind(list.get(position));
+        holder.bind(list.get(position));
     }
 
     @Override

@@ -22,4 +22,7 @@
     <string name="or">or</string>
     <string name="already_a_member">Already a member?</string>
     <string name="sign_in">Sign in!</string>
+    <string name="browse_by_category">Browse by category</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="sort">Sort</string>
 </resources>

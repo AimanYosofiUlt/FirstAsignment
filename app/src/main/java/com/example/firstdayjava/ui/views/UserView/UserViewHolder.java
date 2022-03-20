@@ -73,7 +73,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder implements UserInfoD
         });
     }
 
-    public void bind(Users user) {
+    public void bind(Users users) {
         this.user = user;
         bd.userNameTV.setText(user.getFirstName() + " " + user.getLastName());
         bd.phoneTV.setText(user.getPhone());

@@ -1,61 +1,48 @@
 package com.example.firstdayjava;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.pm.PackageManager;
-import android.location.Location;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.example.firstdayjava.R;
-import com.example.firstdayjava.databinding.ActivityMapBinding;
-import com.example.firstdayjava.databinding.WindowInfoBinding;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApi;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.FusedLocationProviderApi;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
+import com.example.firstdayjava.databinding.FragmentMainBinding;
+import com.example.firstdayjava.ui.viewpagers.adsviewpager.AdsPagerAdapter;
+import com.example.firstdayjava.ui.views.CategoryView.Category;
+import com.example.firstdayjava.ui.views.CategoryView.CategoryAdapter;
 
 import java.util.Objects;
 
 
 public class TrainActivity extends AppCompatActivity {
 
-    CountryCodePicker ccp;
-    AppCompatEditText edtPhoneNumber;
+    FragmentMainBinding bd;
+    CategoryAdapter adapter;
 
-    MeowBottomNavigation bottomNavigation;
+    AdsPagerAdapter pagerAdapter;
+    private Handler sliderHandler = new Handler();
+
+    private int[] drawables = {R.drawable.image, R.drawable.image2, R.drawable.image3};
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_main2);
+        bd = FragmentMainBinding.inflate(getLayoutInflater());
+        setContentView(bd.getRoot());
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
@@ -67,37 +54,41 @@ public class TrainActivity extends AppCompatActivity {
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
 
-        bottomNavigation = findViewById(R.id.meowBottomNavigation);
-        bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_cardes));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_shop));
-        bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_menu));
+
+    }
+
+    private void initBottomNav() {
+        bd.meowBNav.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
+        bd.meowBNav.add(new MeowBottomNavigation.Model(2, R.drawable.ic_cardes));
+        bd.meowBNav.add(new MeowBottomNavigation.Model(3, R.drawable.ic_shop));
+        bd.meowBNav.add(new MeowBottomNavigation.Model(4, R.drawable.ic_menu));
 
 
-
-        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+        bd.meowBNav.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
-                bottomNavigation.show(item.getId(),true);
+                bd.meowBNav.show(item.getId(), true);
             }
         });
 
-        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
+        bd.meowBNav.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
                 // your codes
             }
         });
 
-        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+        bd.meowBNav.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
                 // your codes
             }
         });
 
-        bottomNavigation.show(1,false);
-
-
+        bd.meowBNav.show(1, false);
     }
+
+
+
+
 }
