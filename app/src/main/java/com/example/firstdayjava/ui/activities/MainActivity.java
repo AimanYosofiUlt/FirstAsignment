@@ -33,13 +33,12 @@ public class MainActivity extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.backColor));
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-    //        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
 
         if (getIntent().getStringExtra(LANGUAGE) != null) {
-   //         changeLang(getIntent().getStringExtra(LANGUAGE));
+            changeLang(getIntent().getStringExtra(LANGUAGE));
         }
 
     }
