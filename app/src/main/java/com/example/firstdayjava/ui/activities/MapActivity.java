@@ -168,6 +168,7 @@ public class MapActivity extends AppCompatActivity implements
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+                // Test vcs
 
             }
         });
@@ -216,8 +217,8 @@ public class MapActivity extends AppCompatActivity implements
     }
 
     private void addMarker(LatLng latLng) {
-        if (marker != null)
-            marker.remove();
+        /*if (marker != null)
+            marker.remove();*/
         BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.man);
 
         marker = map.addMarker(new MarkerOptions()
