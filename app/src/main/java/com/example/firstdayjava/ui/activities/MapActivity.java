@@ -177,7 +177,7 @@ public class MapActivity extends AppCompatActivity implements
             public void onClick(View view) {
                 Intent intent = new Intent();
                 String locationStr = marker.getPosition().latitude + "," + marker.getPosition().longitude;
-                intent.putExtra(EditFragment.LOCATION_STR, locationStr);
+       //         intent.putExtra(EditFragment.LOCATION_STR, locationStr);
                 intent.putExtra(EditFragment.LOCATION_STR_GEOTITLE, bd.locTitle.getText().toString());
                 MapActivity.this.setResult(RESULT_OK, intent);
                 finish();

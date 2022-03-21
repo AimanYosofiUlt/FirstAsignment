@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
+   //     Objects.requireNonNull(getSupportActionBar()).hide();
 
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
