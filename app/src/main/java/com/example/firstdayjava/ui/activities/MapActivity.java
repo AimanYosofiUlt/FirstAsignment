@@ -139,7 +139,7 @@ public class MapActivity extends AppCompatActivity implements
         findViewById(R.id.myLocBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                chackAndGetUserLocation();
+             //   chackAndGetUserLocation();
             }
         });
 
