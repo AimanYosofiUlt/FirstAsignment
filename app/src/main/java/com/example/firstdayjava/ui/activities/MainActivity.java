@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.backColor));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    //        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
 
         if (getIntent().getStringExtra(LANGUAGE) != null) {
-            changeLang(getIntent().getStringExtra(LANGUAGE));
+   //         changeLang(getIntent().getStringExtra(LANGUAGE));
         }
 
     }
