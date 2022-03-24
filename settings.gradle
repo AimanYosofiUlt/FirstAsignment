@@ -15,8 +15,8 @@ dependencyResolutionManagement {
         }
 
         maven { url 'https://jitpack.io' }
-        jcenter()
 
+        jcenter()
     }
 }
 rootProject.name = "FirstDayJava"

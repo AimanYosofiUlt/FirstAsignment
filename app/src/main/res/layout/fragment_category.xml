@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/fragment_main2_scene">
+    app:layoutDescription="@xml/fragment_category_scene">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -35,7 +35,7 @@
         android:drawableLeft="@drawable/ic_search"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Search "
+        android:text="@string/search"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

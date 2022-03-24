@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstdayjava.R;
-import com.example.firstdayjava.pojo.dbs.models.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +24,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
     CategoryViewListener listener;
 
-    public CategoryAdapter(CategoryViewListener listener){
+    public CategoryAdapter(CategoryViewListener listener) {
         this.listener = listener;
     }
+
     @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new CategoryViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.view_category,parent,false),
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.view_category, parent, false),
                 listener
         );
     }

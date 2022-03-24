@@ -25,7 +25,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.ActivityMapBinding;
-import com.example.firstdayjava.ui.fragments.EditFragment;
+import com.example.firstdayjava.ui.fragments.signup.SignUpFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -139,7 +139,7 @@ public class MapActivity extends AppCompatActivity implements
         findViewById(R.id.myLocBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             //   chackAndGetUserLocation();
+                //   chackAndGetUserLocation();
             }
         });
 
@@ -177,8 +177,8 @@ public class MapActivity extends AppCompatActivity implements
             public void onClick(View view) {
                 Intent intent = new Intent();
                 String locationStr = marker.getPosition().latitude + "," + marker.getPosition().longitude;
-                intent.putExtra(EditFragment.LOCATION_STR, locationStr);
-                intent.putExtra(EditFragment.LOCATION_STR_GEOTITLE, bd.locTitle.getText().toString());
+                intent.putExtra(SignUpFragment.LOCATION_STR, locationStr);
+                intent.putExtra(SignUpFragment.LOCATION_STR_GEOTITLE, bd.locTitle.getText().toString());
                 MapActivity.this.setResult(RESULT_OK, intent);
                 finish();
             }
@@ -208,6 +208,7 @@ public class MapActivity extends AppCompatActivity implements
                         new LatLng(30, 34)  // NE bounds
                 )
         );
+
 
 
 //        map.setInfoWindowAdapter(this);
@@ -269,7 +270,8 @@ public class MapActivity extends AppCompatActivity implements
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         Location location = task.getResult();
-                        gotToLocation(location);
+                        if (location != null)
+                            gotToLocation(location);
                     }
 
                     private void gotToLocation(Location location) {

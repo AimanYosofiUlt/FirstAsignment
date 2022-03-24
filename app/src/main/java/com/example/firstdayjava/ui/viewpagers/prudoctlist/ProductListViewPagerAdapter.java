@@ -7,8 +7,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.firstdayjava.ui.fragments.CategoryFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 

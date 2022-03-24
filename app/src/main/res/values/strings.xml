@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">FirstDayJava</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome_back">Welcome Back!</string>
     <string name="log_back_into_your_account">Log back into your account</string>
     <string name="forget_password">Forget Password?</string>
@@ -30,35 +29,28 @@
     <string name="mininmum_le">Mininmum (LE)</string>
     <string name="reset">Reset</string>
     <string name="filter">Filter</string>
-    <string name="order_details">Order Details</string>
-    <string name="status">Status</string>
     <string name="apply">Apply</string>
     <string name="price_lower_to_higher">Price: Lower to Higher</string>
     <string name="most_recent">Most recent</string>
     <string name="price_higher_to_lower">Price: Higher to Lower</string>
     <string name="sort_by">Sort by</string>
     <string name="sorting_option">Sorting option</string>
-    <string name="street">Street*</string>
-    <string name="building_optional">Building (Optional)</string>
-    <string name="floor_optional">Floor (Optional)</string>
-    <string name="apartment_optional">Apartment (Optional)</string>
-    <string name="nearst_landmark_optional">Nearst Landmark (Optional)</string>
-    <string name="address_details">Address Details</string>
-    <string name="location_type">Location Type*</string>
-    <string name="contact_details">Contact Details</string>
-    <string name="landline_number_optional">Landline number (Optional)</string>
-    <string name="save_address">Save Address</string>
-    <string name="current_password">Current Password</string>
-    <string name="new_password">New Password</string>
-    <string name="description">Description</string>
-    <string name="show_more">Show more</string>
-    <string name="add_to_cart">Add to cart</string>
-    <string name="other_products">Other Products</string>
-    <string name="forget_passowrd_msg">We just need your registered mobile number to send you reset password code.</string>
-    <string name="verification">Verification</string>
-    <string name="verfication_msg">Enter the Verification Code we just sent you on your registered mobile number.</string>
-    <string name="didn_t_receive_the_code">Didn\'t receive the code?</string>
-    <string name="resend">Resend.</string>
-    <string name="reset_password">Reset Password</string>
-    <string name="verify">Verify</string>
+    <string name="done">Done</string>
+
+    <string name="api_error_602">First Name is Mandatory!</string>
+    <string name="api_error_603">Phone is Mandatory!</string>
+    <string name="api_error_604">Email is Mandatory!</string>
+    <string name="api_error_605">Password is Mandatory!</string>
+    <string name="api_error_606">Phone No Already Exist!</string>
+    <string name="api_error_607">EmailID Already Exist!</string>
+    <string name="api_error_genral">Something go wrong, The Api don\'t send anything</string>
+    <string name="server_error_genral">Something go wrong, check internet connection</string>
+    <string name="field">Field</string>
+    <string name="loading">Get Requset</string>
+    <string name="invalid_phone">Invalid Phone No!</string>
+    <string name="invalid_password">Invalid Password!</string>
+    <string name="confirm_password_error">The Confirm is not like the password</string>
+    <string name="search">Search</string>
+    <string name="save">Save</string>
+
 </resources>

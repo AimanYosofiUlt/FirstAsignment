@@ -3,17 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/prudoctListFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/editFragment"
-        android:name="com.example.firstdayjava.ui.fragments.EditFragment"
+        android:name="com.example.firstdayjava.ui.fragments.signup.SignUpFragment"
         android:label="fragment_edit2"
         tools:layout="@layout/fragment_edit">
         <action
-            android:id="@+id/action_editFragment_to_mainRragment"
+            android:id="@+id/action_editFragment_to_listRragment"
             app:destination="@id/listFragment"
-
             app:popUpTo="@+id/loginFragment"
             app:popUpToInclusive="true" />
         <argument
@@ -35,18 +34,20 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.firstdayjava.ui.fragments.LoginFragment"
+        android:name="com.example.firstdayjava.ui.fragments.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
+            android:id="@+id/action_loginFragment_to_listFragment"
             app:destination="@id/listFragment" />
         <action
             android:id="@+id/action_loginFragment_to_editFragment"
             app:destination="@id/editFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_mainFragment2"
-            app:destination="@id/mainFragment" />
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -55,7 +56,7 @@
         tools:layout="@layout/fragment_map" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.firstdayjava.ui.fragments.MainFragment"
+        android:name="com.example.firstdayjava.ui.fragments.main.MainFragment"
         android:label="fragment_main2"
         tools:layout="@layout/fragment_main" >
         <action

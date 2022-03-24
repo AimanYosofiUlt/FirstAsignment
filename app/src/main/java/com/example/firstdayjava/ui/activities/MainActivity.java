@@ -11,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.firstdayjava.R;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -18,17 +19,32 @@ import com.google.android.gms.maps.SupportMapFragment;
 import java.util.Locale;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+import dagger.hilt.android.scopes.ActivityScoped;
+
+@AndroidEntryPoint
+public class MainActivity extends AppCompatActivity {
     public static final String LANGUAGE = "language";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
+        initActionBar();
+        initConfiguration();
+    }
+
+    private void initConfiguration() {
+        if (getIntent().getStringExtra(LANGUAGE) != null) {
+            changeLang(getIntent().getStringExtra(LANGUAGE));
+        }
+    }
+
+    private void initActionBar() {
+        Objects.requireNonNull(getSupportActionBar()).hide();
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -36,16 +52,6 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
-
-        if (getIntent().getStringExtra(LANGUAGE) != null) {
-            changeLang(getIntent().getStringExtra(LANGUAGE));
-        }
-
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
     }
 
     void changeLang(String langCode) {

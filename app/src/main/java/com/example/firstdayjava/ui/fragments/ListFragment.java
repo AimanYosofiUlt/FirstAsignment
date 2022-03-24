@@ -14,11 +14,10 @@ import android.widget.ArrayAdapter;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentListBinding;
-import com.example.firstdayjava.databinding.FragmentMainBinding;
 import com.example.firstdayjava.pojo.dbs.models.Users;
 import com.example.firstdayjava.ui.views.UserView.UserAdapter;
 import com.example.firstdayjava.ui.views.UserView.UserViewListener;
-import com.example.firstdayjava.viewmodels.MainFragmentViewModel;
+import com.example.firstdayjava.ui.fragments.main.MainFragmentViewModel;
 
 public class ListFragment extends Fragment implements UserViewListener {
 
@@ -47,7 +46,6 @@ public class ListFragment extends Fragment implements UserViewListener {
             adapter.setList(users);
             adapter.notifyDataSetChanged();
         });
-        ;
     }
 
     private void initModelView() {

@@ -11,10 +11,10 @@
         android:paddingBottom="24dp">
 
         <ImageView
-            android:layoutDirection="ltr"
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layoutDirection="ltr"
             android:src="@drawable/ic_circle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -23,10 +23,10 @@
         <com.example.firstdayjava.ui.views.BouncyImage
             android:id="@+id/backBtn"
             android:layout_width="28dp"
-            android:layoutDirection="ltr"
             android:layout_height="28dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
+            android:layoutDirection="ltr"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,8 @@
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -89,12 +90,12 @@
             android:id="@+id/phoneED"
             style="@style/textview"
             android:layout_width="0dp"
-            android:inputType="phone"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="@string/mobile_number"
+            android:inputType="phone"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/phoneCCP"
@@ -107,6 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/location"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -120,10 +122,11 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/birth_date"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
+            app:layout_constraintTop_toBottomOf="@+id/getLocationBtn" />
 
         <EditText
             android:id="@+id/passwordED"
@@ -134,6 +137,7 @@
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:text="1"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -148,6 +152,7 @@
             android:ems="10"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
+            android:text="1"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -168,7 +173,7 @@
             app:layout_constraintGuide_percent="0.9" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/saveBtn"
+            android:id="@+id/signUpBtn"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -204,18 +209,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/get_date"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/bdayED" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button3"
+            android:id="@+id/getLocationBtn"
             style="@style/buttonOpt2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/get"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="0.425"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -241,7 +248,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/saveBtn">
+            app:layout_constraintTop_toBottomOf="@+id/signUpBtn">
 
             <TextView
                 android:id="@+id/textView3"
@@ -252,7 +259,7 @@
                 android:textSize="14dp" />
 
             <com.example.firstdayjava.ui.views.LinkTextView
-                android:id="@+id/signUpBtn"
+                android:id="@+id/signInBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
@@ -262,6 +269,21 @@
                 android:textColor="#39A238" />
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
