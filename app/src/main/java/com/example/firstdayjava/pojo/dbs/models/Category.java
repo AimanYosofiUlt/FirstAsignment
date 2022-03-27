@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Category {
-    String imagedef;
+    int imagedef;
     String imageName;
     String imageUrl;
     @SerializedName("categoryName")
@@ -14,14 +14,16 @@ public class Category {
     String fName;
     @SerializedName("categoryCode")
     String code;
-    String inactive;
+    int inactive;
+
+    @SerializedName("subCategories")
     List<SubCategory> subCategories;
 
     public Category() {
 
     }
 
-    public Category(String imagedef, String imageName, String imageUrl, String name, String fName, String code, String inactive, List<SubCategory> subCategories) {
+    public Category(int imagedef, String imageName, String imageUrl, String name, String fName, String code, int inactive, List<SubCategory> subCategories) {
         this.imagedef = imagedef;
         this.imageName = imageName;
         this.imageUrl = imageUrl;
@@ -32,67 +34,67 @@ public class Category {
         this.subCategories = subCategories;
     }
 
-    public void setImagedef(String imagedef) {
-        this.imagedef = imagedef;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setInactive(String inactive) {
-        this.inactive = inactive;
-    }
-
-    public void setSubCategories(List<SubCategory> subCategories) {
-        this.subCategories = subCategories;
-    }
-
-    public String getImagedef() {
+    public int getImagedef() {
         return imagedef;
+    }
+
+    public void setImagedef(int imagedef) {
+        this.imagedef = imagedef;
     }
 
     public String getImageName() {
         return imageName;
     }
 
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getfName() {
         return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
     public String getCode() {
         return code;
     }
 
-    public String getInactive() {
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public int getInactive() {
         return inactive;
+    }
+
+    public void setInactive(int inactive) {
+        this.inactive = inactive;
     }
 
     public List<SubCategory> getSubCategories() {
         return subCategories;
+    }
+
+    public void setSubCategories(List<SubCategory> subCategories) {
+        this.subCategories = subCategories;
     }
 }

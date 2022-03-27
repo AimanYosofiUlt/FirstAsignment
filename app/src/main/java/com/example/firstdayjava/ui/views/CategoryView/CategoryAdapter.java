@@ -7,20 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstdayjava.R;
+import com.example.firstdayjava.pojo.dbs.models.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
-    List<Category> list = new ArrayList<>();
-
-    public List<Category> getList() {
-        return list;
-    }
+ private    List<Category> list = new ArrayList<>();
 
     public void setList(List<Category> list) {
         this.list = list;
-    }
+        notifyDataSetChanged();    }
 
     CategoryViewListener listener;
 

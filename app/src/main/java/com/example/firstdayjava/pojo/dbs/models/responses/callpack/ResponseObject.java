@@ -3,7 +3,7 @@ package com.example.firstdayjava.pojo.dbs.models.responses.callpack;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponseObject {
-    @SerializedName(value = "Result", alternate = "_Result")
+    @SerializedName(value = "Result")
     Result result;
 
     public ResponseObject(Result result) {

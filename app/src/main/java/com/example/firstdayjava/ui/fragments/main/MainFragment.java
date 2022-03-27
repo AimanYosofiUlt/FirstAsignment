@@ -15,6 +15,9 @@ import com.example.firstdayjava.databinding.FragmentMainBinding;
 import com.example.firstdayjava.ui.fragments.category.CategoryFragment;
 import com.example.firstdayjava.ui.viewpagers.mainviewpager.MainViewPagerAdapter;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainFragment extends Fragment {
     FragmentMainBinding bd;
     MainViewPagerAdapter adapter;
@@ -23,13 +26,18 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         bd = FragmentMainBinding.inflate(inflater, container, false);
 
+
+        initBottomNav();
         init();
+        initEvent();
         return bd.getRoot();
     }
 
-    private void init() {
-        initBottomNav();
+    private void initEvent() {
 
+    }
+
+    private void init() {
         adapter = new MainViewPagerAdapter(this);
         bd.mainVP.setAdapter(adapter);
         bd.mainVP.setUserInputEnabled(false);

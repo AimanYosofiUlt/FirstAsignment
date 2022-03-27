@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.ViewCategoryBinding;
 import com.example.firstdayjava.databinding.ViewUserBinding;
+import com.example.firstdayjava.pojo.dbs.models.Category;
 import com.example.firstdayjava.pojo.dbs.models.Users;
 import com.example.firstdayjava.ui.dialogs.UserInfoDialog.UserInfoDialog;
 import com.example.firstdayjava.ui.dialogs.UserInfoDialog.UserInfoDialogListener;
@@ -52,8 +53,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Category category) {
-        bd.categoryNameTV.setText(category.name);
-        bd.categoryNameTV.setText(category.name);
+        bd.categoryNameTV.setText(category.getName());
 //        bd.constraintLayout.setFilterTouchesWhenObscured();
     }
 

@@ -7,10 +7,11 @@ public class SubCategory {
     String imageName;
     @SerializedName("subcategoryName")
     String name;
-    @SerializedName("subcategoryName")
+    @SerializedName("subcategoryFName")
     String fName;
-    @SerializedName("subcategoryName")
+    @SerializedName("subCategoryCode")
     String code;
+
     String inactive;
     String imageUrl;
 
@@ -25,6 +26,14 @@ public class SubCategory {
         this.code = code;
         this.inactive = inactive;
         this.imageUrl = imageUrl;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getImagedef() {
@@ -57,14 +66,6 @@ public class SubCategory {
 
     public void setfName(String fName) {
         this.fName = fName;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getInactive() {

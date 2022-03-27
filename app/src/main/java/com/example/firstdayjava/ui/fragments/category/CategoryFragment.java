@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,11 +17,20 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.firstdayjava.databinding.FragmentCategoryBinding;
+import com.example.firstdayjava.pojo.dbs.models.Category;
 import com.example.firstdayjava.ui.viewpagers.adsviewpager.AdsPagerAdapter;
 import com.example.firstdayjava.ui.views.CategoryView.CategoryAdapter;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class CategoryFragment extends Fragment {
     FragmentCategoryBinding bd;
+    @Inject
     CategoryFragmentViewModel viewModel;
 
     CategoryAdapter adapter;
@@ -32,18 +42,26 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         bd = FragmentCategoryBinding.inflate(inflater, container, false);
+
         initViewModel();
+        initModelView();
+        initEvent();
         return bd.getRoot();
     }
 
     private void initViewModel() {
-        viewModel = new ViewModelProvider(requireActivity()).get(CategoryFragmentViewModel.class);
-        initModelView();
+        viewModel.categoriesMutableLiveData.observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
+            @Override
+            public void onChanged(List<Category> categories) {
+                adapter.setList(categories);
+            }
+        });
     }
 
     private void initModelView() {
+        viewModel.getCategory();
+
         initViewPager();
-        initEvent();
     }
 
     private void initViewPager() {
@@ -88,7 +106,7 @@ public class CategoryFragment extends Fragment {
 
 
     int d = 1;
-    private Runnable sliderRunnable = new Runnable() {
+    private final Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
             if (bd.adsVP.getCurrentItem() == pagerAdapter.getList().size() - 1) {
@@ -97,7 +115,7 @@ public class CategoryFragment extends Fragment {
                 d = 1;
             }
 
-            bd.adsVP.setCurrentItem(bd.adsVP.getCurrentItem() + 1 * d);
+            bd.adsVP.setCurrentItem(bd.adsVP.getCurrentItem() + d);
         }
     };
 

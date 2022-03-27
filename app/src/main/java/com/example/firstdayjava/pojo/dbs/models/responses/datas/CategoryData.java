@@ -11,4 +11,20 @@ public class CategoryData {
 
     @SerializedName("Slider")
     List<AdsSlider> adsSlider;
+
+    public List<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(List<Category> category) {
+        this.category = category;
+    }
+
+    public List<AdsSlider> getAdsSlider() {
+        return adsSlider;
+    }
+
+    public void setAdsSlider(List<AdsSlider> adsSlider) {
+        this.adsSlider = adsSlider;
+    }
 }

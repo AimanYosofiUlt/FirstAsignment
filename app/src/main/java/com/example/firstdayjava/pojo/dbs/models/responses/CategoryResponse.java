@@ -9,7 +9,20 @@ public class CategoryResponse extends ResponseObject {
     @SerializedName("Data")
     CategoryData data;
 
+    public CategoryResponse(Result result, CategoryData data) {
+        super(result);
+        this.data = data;
+    }
+
     public CategoryResponse(Result result) {
         super(result);
+    }
+
+    public CategoryData getData() {
+        return data;
+    }
+
+    public void setData(CategoryData data) {
+        this.data = data;
     }
 }

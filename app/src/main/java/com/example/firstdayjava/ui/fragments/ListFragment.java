@@ -19,6 +19,9 @@ import com.example.firstdayjava.ui.views.UserView.UserAdapter;
 import com.example.firstdayjava.ui.views.UserView.UserViewListener;
 import com.example.firstdayjava.ui.fragments.main.MainFragmentViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ListFragment extends Fragment implements UserViewListener {
 
     FragmentListBinding bd;
@@ -41,10 +44,10 @@ public class ListFragment extends Fragment implements UserViewListener {
 
         initModelView();
 
-        viewModel.users.observe(requireActivity(), users -> {
-            adapter.setList(users);
-            adapter.notifyDataSetChanged();
-        });
+//        viewModel.users.observe(requireActivity(), users -> {
+//            adapter.setList(users);
+//            adapter.notifyDataSetChanged();
+//        });
     }
 
     private void initModelView() {
@@ -68,11 +71,11 @@ public class ListFragment extends Fragment implements UserViewListener {
 
     @Override
     public void onDeleteReq(Users user) {
-        viewModel.deleteUser(user);
+//        viewModel.deleteUser(user);
     }
 
     @Override
     public void onUpdateReq(Users user) {
-        viewModel.updateUser(user);
+//        viewModel.updateUser(user);
     }
 }

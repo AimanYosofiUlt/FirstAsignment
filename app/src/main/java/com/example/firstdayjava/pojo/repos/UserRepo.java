@@ -24,7 +24,7 @@ public class UserRepo {
     UltimateApi api;
 
     @Inject
-    public UserRepo( AppDao appDao) {
+    public UserRepo(AppDao appDao) {
         this.appDao = appDao;
         users = appDao.getUsers();
     }

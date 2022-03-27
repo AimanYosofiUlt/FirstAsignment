@@ -1,27 +1,18 @@
 package com.example.firstdayjava;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.firstdayjava.databinding.FragmentMainBinding;
 import com.example.firstdayjava.ui.viewpagers.adsviewpager.AdsPagerAdapter;
-import com.example.firstdayjava.ui.views.CategoryView.Category;
 import com.example.firstdayjava.ui.views.CategoryView.CategoryAdapter;
 
 import java.util.Objects;
