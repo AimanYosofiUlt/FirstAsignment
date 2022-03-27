@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.firstdayjava.pojo.dbs.models.Users;
 
 @Database(entities = {Users.class}, version = 4, exportSchema = false)
-@TypeConverters({AppConvertor.class})
+@TypeConverters({AppDBConvertor.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract AppDao appDao();

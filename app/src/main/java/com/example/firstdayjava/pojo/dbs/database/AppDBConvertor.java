@@ -2,7 +2,7 @@ package com.example.firstdayjava.pojo.dbs.database;
 
 import androidx.room.TypeConverter;
 
-public class AppConvertor {
+public class AppDBConvertor {
     @TypeConverter
     public String fromStringToByte(byte[] array) {
         return "";

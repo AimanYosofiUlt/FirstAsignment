@@ -12,11 +12,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.firstdayjava.R;
-import com.example.firstdayjava.databinding.FragmentPrudoctListBinding;
 import com.example.firstdayjava.databinding.FragmentPrudoctPageBinding;
 import com.example.firstdayjava.ui.viewpagers.prudoctlist.ProductListViewPagerAdapter;
-import com.example.firstdayjava.ui.views.BottomSeets.ProductFilterBottomSheet;
-import com.example.firstdayjava.ui.views.BottomSeets.ProductSortBottomSheet;
+import com.example.firstdayjava.ui.views.BottomSheets.ProductFilterBottomSheet;
+import com.example.firstdayjava.ui.views.BottomSheets.ProductSortBottomSheet;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 

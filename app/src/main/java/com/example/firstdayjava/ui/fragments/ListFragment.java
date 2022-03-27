@@ -28,7 +28,6 @@ public class ListFragment extends Fragment implements UserViewListener {
     ArrayAdapter<String> phoneAdapter;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class ListFragment extends Fragment implements UserViewListener {
     private void initModelView() {
         adapter = new UserAdapter(this);
         bd.userListRV.setAdapter(adapter);
-        GridLayoutManager  manager = new GridLayoutManager(requireActivity(),2);
+        GridLayoutManager manager = new GridLayoutManager(requireActivity(), 2);
         bd.userListRV.setLayoutManager(manager);
 
 
@@ -63,7 +62,6 @@ public class ListFragment extends Fragment implements UserViewListener {
         bd.button.setOnClickListener(view -> {
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_mainRragment_to_editFragment);
-
         });
     }
 
