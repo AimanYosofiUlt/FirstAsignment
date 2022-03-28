@@ -1,20 +1,20 @@
 package com.example.firstdayjava.ui.fragments;
 
 public class ResponseState {
-    Boolean isLoginDone;
+    Boolean isSuccssful;
     String message;
 
-    public ResponseState(Boolean isLoginDone) {
-        this.isLoginDone = isLoginDone;
+    public ResponseState(Boolean isSuccssful) {
+        this.isSuccssful = isSuccssful;
     }
 
-    public ResponseState(Boolean isLoginDone, String message) {
-        this.isLoginDone = isLoginDone;
+    public ResponseState(Boolean isSuccssful, String message) {
+        this.isSuccssful = isSuccssful;
         this.message = message;
     }
 
-    public Boolean isLoginDone() {
-        return isLoginDone;
+    public Boolean isSuccssful() {
+        return isSuccssful;
     }
 
     public String getMessage() {

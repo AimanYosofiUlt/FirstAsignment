@@ -1,4 +1,4 @@
-package com.example.firstdayjava.pojo.dbs.models.responses.datas;
+package com.example.firstdayjava.pojo.remote.models.category;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ public class AdsSlider {
     int sliderCode;
     int hasActions;
     String actionUrl;
-    int categoryCode;
+    String categoryCode;
     String categoryName;
     String categoryFName;
     int inactive;
@@ -19,7 +19,7 @@ public class AdsSlider {
     public AdsSlider() {
     }
 
-    public AdsSlider(int sliderCode, int hasActions, String actionUrl, int categoryCode, String categoryName, String categoryFName, int inactive, int imagedef, String imageName, String imageID, String imageUrl, List<String> images) {
+    public AdsSlider(int sliderCode, int hasActions, String actionUrl, String categoryCode, String categoryName, String categoryFName, int inactive, int imagedef, String imageName, String imageID, String imageUrl, List<String> images) {
         this.sliderCode = sliderCode;
         this.hasActions = hasActions;
         this.actionUrl = actionUrl;
@@ -58,11 +58,11 @@ public class AdsSlider {
         this.actionUrl = actionUrl;
     }
 
-    public int getCategoryCode() {
+    public String getCategoryCode() {
         return categoryCode;
     }
 
-    public void setCategoryCode(int categoryCode) {
+    public void setCategoryCode(String categoryCode) {
         this.categoryCode = categoryCode;
     }
 

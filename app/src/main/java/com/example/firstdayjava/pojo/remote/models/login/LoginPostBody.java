@@ -1,8 +1,9 @@
-package com.example.firstdayjava.pojo.dbs.models.responses.datas;
+package com.example.firstdayjava.pojo.remote.models.login;
 
+import com.example.firstdayjava.pojo.remote.models.category.MainPagePostBody;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginPostBody extends PostBody{
+public class LoginPostBody extends MainPagePostBody {
 
     @SerializedName("user_phone")
     private String phone;

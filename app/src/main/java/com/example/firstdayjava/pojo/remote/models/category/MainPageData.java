@@ -1,26 +1,25 @@
-package com.example.firstdayjava.pojo.dbs.models.responses.datas;
+package com.example.firstdayjava.pojo.remote.models.category;
 
-import com.example.firstdayjava.pojo.dbs.models.Category;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class CategoryData {
+public class MainPageData {
     @SerializedName("Categories")
-    List<Category> category;
+    List<CategoryData> category;
 
     @SerializedName("Slider")
     List<AdsSlider> adsSlider;
 
-    public List<Category> getCategory() {
+    public List<CategoryData> getCategories() {
         return category;
     }
 
-    public void setCategory(List<Category> category) {
+    public void setCategory(List<CategoryData> category) {
         this.category = category;
     }
 
-    public List<AdsSlider> getAdsSlider() {
+    public List<AdsSlider> getAdsSliders() {
         return adsSlider;
     }
 

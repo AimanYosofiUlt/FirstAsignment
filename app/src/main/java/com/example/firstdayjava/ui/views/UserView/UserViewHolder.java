@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.ViewUserBinding;
-import com.example.firstdayjava.pojo.dbs.models.Users;
+import com.example.firstdayjava.pojo.local.entities.User;
 import com.example.firstdayjava.ui.dialogs.UserInfoDialog.UserInfoDialog;
 import com.example.firstdayjava.ui.dialogs.UserInfoDialog.UserInfoDialogListener;
 
 public class UserViewHolder extends RecyclerView.ViewHolder implements UserInfoDialogListener {
     ViewUserBinding bd;
-    Users user;
+    User user;
     boolean isInDeleteMode = false;
 
     UserViewListener listener;
@@ -73,7 +73,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder implements UserInfoD
         });
     }
 
-    public void bind(Users user) {
+    public void bind(User user) {
         this.user = user;
         bd.userNameTV.setText(user.getFirstName() + " " + user.getLastName());
         bd.phoneTV.setText(user.getPhone());
@@ -96,7 +96,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder implements UserInfoD
     }
 
     @Override
-    public void onUpdateReq(Users user) {
+    public void onUpdateReq(User user) {
         listener.onUpdateReq(user);
     }
 }

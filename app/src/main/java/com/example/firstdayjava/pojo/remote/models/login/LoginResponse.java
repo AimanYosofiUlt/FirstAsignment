@@ -1,8 +1,8 @@
-package com.example.firstdayjava.pojo.dbs.models.responses;
+package com.example.firstdayjava.pojo.remote.models.login;
 
-import com.example.firstdayjava.pojo.dbs.models.responses.datas.LoginData;
-import com.example.firstdayjava.pojo.dbs.models.responses.callpack.ResponseObject;
-import com.example.firstdayjava.pojo.dbs.models.responses.callpack.Result;
+import com.example.firstdayjava.pojo.remote.models.login.LoginData;
+import com.example.firstdayjava.pojo.remote.callpack.ResponseObject;
+import com.example.firstdayjava.pojo.remote.callpack.Result;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginResponse extends ResponseObject {

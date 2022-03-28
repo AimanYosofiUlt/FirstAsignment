@@ -2,14 +2,14 @@ package com.example.firstdayjava.pojo.repos;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.firstdayjava.pojo.dbs.database.AppDao;
-import com.example.firstdayjava.pojo.dbs.models.Users;
-import com.example.firstdayjava.pojo.dbs.models.responses.LoginResponse;
-import com.example.firstdayjava.pojo.dbs.models.responses.SignUpResponse;
-import com.example.firstdayjava.pojo.dbs.models.responses.callpack.ResponsesCallBack;
-import com.example.firstdayjava.pojo.dbs.models.responses.callpack.Result;
-import com.example.firstdayjava.pojo.dbs.models.responses.datas.LoginData;
-import com.example.firstdayjava.pojo.dbs.models.responses.datas.LoginPostBody;
+import com.example.firstdayjava.pojo.local.database.AppDao;
+import com.example.firstdayjava.pojo.local.entities.User;
+import com.example.firstdayjava.pojo.remote.models.login.LoginResponse;
+import com.example.firstdayjava.pojo.local.models.responses.SignUpResponse;
+import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
+import com.example.firstdayjava.pojo.remote.callpack.Result;
+import com.example.firstdayjava.pojo.remote.models.login.LoginData;
+import com.example.firstdayjava.pojo.remote.models.login.LoginPostBody;
 import com.example.firstdayjava.pojo.remote.api.UltimateApi;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import javax.inject.Inject;
 
 public class UserRepo {
     AppDao appDao;
-    public LiveData<List<Users>> users;
+    public LiveData<List<User>> users;
 
     @Inject
     UltimateApi api;
@@ -29,15 +29,15 @@ public class UserRepo {
         users = appDao.getUsers();
     }
 
-    public void addUser(Users user) {
+    public void addUser(User user) {
         appDao.insertUser(user);
     }
 
-    public void deleteUser(Users user) {
+    public void deleteUser(User user) {
         appDao.deleteUser(user);
     }
 
-    public void updateUser(Users user) {
+    public void updateUser(User user) {
         appDao.updateUser(user);
     }
 
@@ -58,7 +58,7 @@ public class UserRepo {
     }
 
     void addUserFromLogin(LoginData data, String password) {
-        Users user = new Users();
+        User user = new User();
         user.setFirstName(data.getFirstName());
         user.setLastName(data.getLastName());
         user.setPhone(data.getPhone());
@@ -68,7 +68,7 @@ public class UserRepo {
         appDao.insertUserFromLogin(user);
     }
 
-    public void signUp(Users user, ResponsesCallBack<SignUpResponse> callBack) {
+    public void signUp(User user, ResponsesCallBack<SignUpResponse> callBack) {
         api.signup(user).enqueue(new ResponsesCallBack<SignUpResponse>() {
             @Override
             public void onSuccess(SignUpResponse response) {

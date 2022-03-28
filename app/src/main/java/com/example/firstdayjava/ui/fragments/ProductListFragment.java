@@ -46,15 +46,7 @@ public class ProductListFragment extends Fragment {
         productAdapter = new ProductViewAdapter();
         bd.prudoctRV.setAdapter(productAdapter);
         bd.prudoctRV.setLayoutManager(new GridLayoutManager(requireContext(), 2));
-
-        productAdapter.addProduct("Computer");
-        productAdapter.addProduct("Laptop");
-        productAdapter.addProduct("Phones");
-        productAdapter.addProduct("Tablet");
-        productAdapter.addProduct("Screens");
-        productAdapter.addProduct("Chargers");
-
-        addTypes();
+                addTypes();
 
     }
 

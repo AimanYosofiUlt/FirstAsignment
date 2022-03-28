@@ -1,40 +1,9 @@
-package com.example.firstdayjava.pojo.dbs.database;
+package com.example.firstdayjava.pojo.local.database;
 
-import android.content.Context;
-
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.firstdayjava.pojo.dbs.models.Users;
-
-@Database(entities = {Users.class}, version = 4, exportSchema = false)
-@TypeConverters({AppDBConvertor.class})
-public abstract class AppDatabase extends RoomDatabase {
-
-    public abstract AppDao appDao();
-
-    public static AppDatabase INSTENC = null;
-
-    public static AppDatabase getDatabase(Context context) {
-        AppDatabase temp = INSTENC;
-
-        if (temp != null) {
-            return temp;
-        }
-        return Room.databaseBuilder(
-                context,
-                AppDatabase.class,
-                "firstDayDB"
-        ).addMigrations(MIGRATION_1_2).
-                addMigrations(MIGRATION_2_3).
-                addMigrations(MIGRATION_3_4).
-                allowMainThreadQueries().build();
-    }
-
+public class Migrations {
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
@@ -80,6 +49,17 @@ public abstract class AppDatabase extends RoomDatabase {
 
             database.execSQL("DROP TABLE Users");
             database.execSQL("ALTER TABLE UsersTemp RENAME TO Users");
+        }
+    };
+
+    static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE Users RENAME TO User");
+
+            database.execSQL("CREATE TABLE Category (categoryName TEXT," +
+                    "    imageUrl TEXT," +
+                    "    categoryCode TEXT PRIMARY KEY NOT NULL)");
         }
     };
 }

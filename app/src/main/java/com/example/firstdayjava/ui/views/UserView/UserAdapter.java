@@ -7,19 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstdayjava.R;
-import com.example.firstdayjava.pojo.dbs.models.Users;
+import com.example.firstdayjava.pojo.local.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
-    List<Users> list = new ArrayList<>();
+    List<User> list = new ArrayList<>();
 
-    public List<Users> getList() {
+    public List<User> getList() {
         return list;
     }
 
-    public void setList(List<Users> list) {
+    public void setList(List<User> list) {
         this.list = list;
     }
 

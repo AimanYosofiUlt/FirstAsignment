@@ -7,15 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstdayjava.R;
+import com.example.firstdayjava.pojo.remote.models.category.AdsSlider;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdsPagerAdapter extends RecyclerView.Adapter<AddsPagerViewHolder> {
-    List<Integer> list = new ArrayList<>();
+    List<AdsSlider> list = new ArrayList<>();
 
-    public List<Integer> getList() {
-        return list;
+    public void setList(List<AdsSlider> list) {
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull

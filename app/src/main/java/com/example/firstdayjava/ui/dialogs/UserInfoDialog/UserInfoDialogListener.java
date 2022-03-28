@@ -1,7 +1,7 @@
 package com.example.firstdayjava.ui.dialogs.UserInfoDialog;
 
-import com.example.firstdayjava.pojo.dbs.models.Users;
+import com.example.firstdayjava.pojo.local.entities.User;
 
 public interface UserInfoDialogListener {
-    public void onUpdateReq(Users user);
+    public void onUpdateReq(User user);
 }

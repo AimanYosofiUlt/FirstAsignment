@@ -7,14 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.firstdayjava.databinding.DialogUserinfoBinding;
-import com.example.firstdayjava.pojo.dbs.models.Users;
+import com.example.firstdayjava.pojo.local.entities.User;
 
 public class UserInfoDialog {
     DialogUserinfoBinding bd;
     UserInfoDialogListener listener;
-    Users user;
+    User user;
 
-    public UserInfoDialog(Context context, Users user, UserInfoDialogListener listener) {
+    public UserInfoDialog(Context context, User user, UserInfoDialogListener listener) {
         bd = DialogUserinfoBinding.inflate(LayoutInflater.from(context));
         this.listener = listener;
         this.user = user;
@@ -125,7 +125,7 @@ public class UserInfoDialog {
 
     }
 
-    private void init(Users user) {
+    private void init(User user) {
         bd.firstNameEd.setText(user.getFirstName());
         bd.lastNameED.setText(user.getLastName());
         bd.emailED.setText(user.getEmail());

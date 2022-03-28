@@ -1,22 +1,16 @@
 package com.example.firstdayjava.ui.views.CategoryView;
 
-import android.app.AlertDialog;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.ViewCategoryBinding;
-import com.example.firstdayjava.databinding.ViewUserBinding;
-import com.example.firstdayjava.pojo.dbs.models.Category;
-import com.example.firstdayjava.pojo.dbs.models.Users;
-import com.example.firstdayjava.ui.dialogs.UserInfoDialog.UserInfoDialog;
-import com.example.firstdayjava.ui.dialogs.UserInfoDialog.UserInfoDialogListener;
+import com.example.firstdayjava.pojo.local.entities.Category;
+import com.example.firstdayjava.pojo.remote.models.category.CategoryData;
 
 public class CategoryViewHolder extends RecyclerView.ViewHolder {
     ViewCategoryBinding bd;
@@ -30,7 +24,6 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void initEvent() {
-
         init();
     }
 
@@ -38,8 +31,6 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
         bd.circleCL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 startAnime();
             }
 
@@ -53,8 +44,11 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Category category) {
-        bd.categoryNameTV.setText(category.getName());
-//        bd.constraintLayout.setFilterTouchesWhenObscured();
+        bd.categoryNameTV.setText(category.getCategoryName());
+        Glide.with(itemView.getContext())
+                .load(category.getImageUrl())
+                .circleCrop()
+                .into(bd.image);
     }
 
 }

@@ -1,8 +1,8 @@
-package com.example.firstdayjava.pojo.dbs.models;
+package com.example.firstdayjava.pojo.remote.models.category;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SubCategory {
+public class SubCategoryData {
     String imagedef;
     String imageName;
     @SerializedName("subcategoryName")
@@ -15,10 +15,10 @@ public class SubCategory {
     String inactive;
     String imageUrl;
 
-    public SubCategory() {
+    public SubCategoryData() {
     }
 
-    public SubCategory(String imagedef, String imageName, String name, String fName, String code, String inactive, String imageUrl) {
+    public SubCategoryData(String imagedef, String imageName, String name, String fName, String code, String inactive, String imageUrl) {
         this.imagedef = imagedef;
         this.imageName = imageName;
         this.name = name;

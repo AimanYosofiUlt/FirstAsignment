@@ -7,10 +7,10 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.firstdayjava.R;
-import com.example.firstdayjava.pojo.dbs.models.responses.callpack.ResponsesCallBack;
-import com.example.firstdayjava.pojo.dbs.models.responses.callpack.Result;
-import com.example.firstdayjava.pojo.dbs.models.Users;
-import com.example.firstdayjava.pojo.dbs.models.responses.SignUpResponse;
+import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
+import com.example.firstdayjava.pojo.remote.callpack.Result;
+import com.example.firstdayjava.pojo.local.entities.User;
+import com.example.firstdayjava.pojo.local.models.responses.SignUpResponse;
 import com.example.firstdayjava.pojo.repos.UserRepo;
 import com.example.firstdayjava.ui.fragments.ResponseState;
 
@@ -29,7 +29,7 @@ public class SignUpFragmentViewModel extends AndroidViewModel {
         signUpState = new MutableLiveData<>();
     }
 
-    public void signUp(Users user) {
+    public void signUp(User user) {
         userRepo.signUp(user, new ResponsesCallBack<SignUpResponse>() {
             @Override
             public void onSuccess(SignUpResponse response) {

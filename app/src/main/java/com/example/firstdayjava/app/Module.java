@@ -1,20 +1,15 @@
 package com.example.firstdayjava.app;
 
 import android.app.Application;
-
-import com.example.firstdayjava.app.injections.UltimateApiImpl;
-import com.example.firstdayjava.pojo.dbs.database.AppDao;
-import com.example.firstdayjava.pojo.dbs.database.AppDatabase;
+import com.example.firstdayjava.pojo.local.database.AppDao;
+import com.example.firstdayjava.pojo.local.database.AppDatabase;
 import com.example.firstdayjava.pojo.remote.api.UltimateApi;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import javax.inject.Inject;
 import javax.inject.Qualifier;
-import javax.inject.Singleton;
 
-import dagger.Binds;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ActivityComponent;

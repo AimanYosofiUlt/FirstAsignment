@@ -2,14 +2,15 @@ package com.example.firstdayjava.ui.fragments.category;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -17,11 +18,9 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.firstdayjava.databinding.FragmentCategoryBinding;
-import com.example.firstdayjava.pojo.dbs.models.Category;
+import com.example.firstdayjava.ui.fragments.ResponseState;
 import com.example.firstdayjava.ui.viewpagers.adsviewpager.AdsPagerAdapter;
 import com.example.firstdayjava.ui.views.CategoryView.CategoryAdapter;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -35,7 +34,7 @@ public class CategoryFragment extends Fragment {
 
     CategoryAdapter adapter;
 
-    AdsPagerAdapter pagerAdapter;
+    AdsPagerAdapter adsPagerAdapter;
     private final Handler sliderHandler = new Handler();
 
     @Override
@@ -46,20 +45,33 @@ public class CategoryFragment extends Fragment {
         initViewModel();
         initModelView();
         initEvent();
+        viewModel.getCategories();
         return bd.getRoot();
     }
 
     private void initViewModel() {
-        viewModel.categoriesMutableLiveData.observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
+        viewModel.categoriesMDL.observe(getViewLifecycleOwner(),
+                categories -> adapter.setList(categories));
+
+        viewModel.adsMDL.observe(getViewLifecycleOwner(),
+                adsSliders -> adsPagerAdapter.setList(adsSliders));
+
+        viewModel.responseStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
-            public void onChanged(List<Category> categories) {
-                adapter.setList(categories);
+            public void onChanged(ResponseState responseState) {
+                bd.waitPB.setVisibility(View.GONE);
+                Toast.makeText(requireActivity(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
+                if (responseState.isSuccssful()) {
+                    bd.offlineImg.setVisibility(View.GONE);
+                } else {
+                    bd.offlineImg.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
 
     private void initModelView() {
-        viewModel.getCategory();
+        viewModel.getCategories();
 
         initViewPager();
     }
@@ -71,8 +83,8 @@ public class CategoryFragment extends Fragment {
                 requireActivity(), 3
         ));
 
-        pagerAdapter = new AdsPagerAdapter();
-        bd.adsVP.setAdapter(pagerAdapter);
+        adsPagerAdapter = new AdsPagerAdapter();
+        bd.adsVP.setAdapter(adsPagerAdapter);
 
         bd.adsVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_ALWAYS);
 
@@ -97,19 +109,23 @@ public class CategoryFragment extends Fragment {
 
 
     private void initEvent() {
-
+        bd.textView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bd.waitPB.setVisibility(View.GONE);
+                Toast.makeText(requireContext(), "HI", Toast.LENGTH_SHORT).show();
+                Log.d("CategoryFragment", "onChanged 5555: "+bd.waitPB.getVisibility());
+                Log.d("CategoryFragment", "onChanged 6666: "+View.GONE);
+                Log.d("CategoryFragment", "onChanged 7777: "+View.VISIBLE);
+            }
+        });
     }
-
-    private void init() {
-
-    }
-
 
     int d = 1;
     private final Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
-            if (bd.adsVP.getCurrentItem() == pagerAdapter.getList().size() - 1) {
+            if (bd.adsVP.getCurrentItem() == adsPagerAdapter.getItemCount() - 1) {
                 d = -1;
             } else if (bd.adsVP.getCurrentItem() == 0) {
                 d = 1;

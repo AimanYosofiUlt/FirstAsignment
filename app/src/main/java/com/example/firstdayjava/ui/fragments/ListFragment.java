@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentListBinding;
-import com.example.firstdayjava.pojo.dbs.models.Users;
+import com.example.firstdayjava.pojo.local.entities.User;
 import com.example.firstdayjava.ui.views.UserView.UserAdapter;
 import com.example.firstdayjava.ui.views.UserView.UserViewListener;
 import com.example.firstdayjava.ui.fragments.main.MainFragmentViewModel;
@@ -70,12 +70,12 @@ public class ListFragment extends Fragment implements UserViewListener {
 
 
     @Override
-    public void onDeleteReq(Users user) {
+    public void onDeleteReq(User user) {
 //        viewModel.deleteUser(user);
     }
 
     @Override
-    public void onUpdateReq(Users user) {
+    public void onUpdateReq(User user) {
 //        viewModel.updateUser(user);
     }
 }

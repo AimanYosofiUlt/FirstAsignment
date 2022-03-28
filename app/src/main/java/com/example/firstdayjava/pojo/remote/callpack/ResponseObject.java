@@ -1,4 +1,4 @@
-package com.example.firstdayjava.pojo.dbs.models.responses.callpack;
+package com.example.firstdayjava.pojo.remote.callpack;
 
 import com.google.gson.annotations.SerializedName;
 

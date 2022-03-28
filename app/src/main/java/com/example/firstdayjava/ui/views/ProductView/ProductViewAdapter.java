@@ -7,12 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstdayjava.R;
+import com.example.firstdayjava.pojo.local.entities.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewHolder> {
-    List<ProductCardData> list = new ArrayList<>();
+    List<Category> list = new ArrayList<>();
+
+    public void setList(List<Category> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,11 +36,5 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewHolder> 
     @Override
     public int getItemCount() {
         return list.size();
-    }
-
-    public void addProduct(String name){
-        list.add(new ProductCardData(
-                name,150
-        ));
     }
 }

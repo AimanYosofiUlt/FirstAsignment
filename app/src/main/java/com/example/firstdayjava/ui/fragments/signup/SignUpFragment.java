@@ -3,10 +3,8 @@ package com.example.firstdayjava.ui.fragments.signup;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +20,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentEditBinding;
-import com.example.firstdayjava.pojo.dbs.models.Users;
+import com.example.firstdayjava.pojo.local.entities.User;
 import com.example.firstdayjava.ui.activities.MapActivity;
 import com.example.firstdayjava.ui.fragments.ResponseState;
 
@@ -78,7 +75,7 @@ public class SignUpFragment extends Fragment {
         viewModel.signUpState.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState state) {
-                if (state.isLoginDone())
+                if (state.isSuccssful())
                     finishSignUp();
                 else
                     showDialog(state.getMessage());
@@ -124,7 +121,7 @@ public class SignUpFragment extends Fragment {
             }
 
             private void signUp() {
-                Users user = new Users(
+                User user = new User(
                         bd.firstNameEd.getText().toString(),
                         bd.lastNameED.getText().toString(),
                         bd.emailED.getText().toString(),

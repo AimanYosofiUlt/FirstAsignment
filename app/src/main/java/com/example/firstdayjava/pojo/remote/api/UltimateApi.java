@@ -1,11 +1,11 @@
 package com.example.firstdayjava.pojo.remote.api;
 
-import com.example.firstdayjava.pojo.dbs.models.responses.CategoryResponse;
-import com.example.firstdayjava.pojo.dbs.models.responses.datas.LoginPostBody;
-import com.example.firstdayjava.pojo.dbs.models.responses.LoginResponse;
-import com.example.firstdayjava.pojo.dbs.models.responses.SignUpResponse;
-import com.example.firstdayjava.pojo.dbs.models.Users;
-import com.example.firstdayjava.pojo.dbs.models.responses.datas.PostBody;
+import com.example.firstdayjava.pojo.remote.models.category.MainPageResponse;
+import com.example.firstdayjava.pojo.remote.models.login.LoginPostBody;
+import com.example.firstdayjava.pojo.remote.models.login.LoginResponse;
+import com.example.firstdayjava.pojo.local.models.responses.SignUpResponse;
+import com.example.firstdayjava.pojo.local.entities.User;
+import com.example.firstdayjava.pojo.remote.models.category.MainPagePostBody;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,8 +17,8 @@ public interface UltimateApi {
     Call<LoginResponse> login(@Body LoginPostBody loginPost);
 
     @POST("user/signup")
-    Call<SignUpResponse> signup(@Body Users user);
+    Call<SignUpResponse> signup(@Body User user);
 
     @POST("item/category")
-    Call<CategoryResponse> getCategories(@Body PostBody postBody);
+    Call<MainPageResponse> getCategories(@Body MainPagePostBody postBody);
 }

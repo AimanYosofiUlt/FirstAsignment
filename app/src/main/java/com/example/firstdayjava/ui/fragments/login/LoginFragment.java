@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.firstdayjava.R;
@@ -27,10 +25,7 @@ import com.github.razir.progressbutton.ProgressButtonHolderKt;
 
 import javax.inject.Inject;
 
-import dagger.hilt.EntryPoint;
-import dagger.hilt.InstallIn;
 import dagger.hilt.android.AndroidEntryPoint;
-import dagger.hilt.android.components.FragmentComponent;
 import kotlin.Unit;
 
 @AndroidEntryPoint
@@ -56,7 +51,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(ResponseState loginState) {
                 hideProgressCustom();
-                if (loginState.isLoginDone()) {
+                if (loginState.isSuccssful()) {
                     NavHostFragment
                             .findNavController(LoginFragment.this)
                             .navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment());

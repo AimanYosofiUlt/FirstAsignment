@@ -1,4 +1,4 @@
-package com.example.firstdayjava.pojo.dbs.database;
+package com.example.firstdayjava.pojo.local.database;
 
 import androidx.room.TypeConverter;
 

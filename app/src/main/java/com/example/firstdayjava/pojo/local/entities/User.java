@@ -1,29 +1,34 @@
-package com.example.firstdayjava.pojo.dbs.models.responses.datas;
+package com.example.firstdayjava.pojo.local.entities;
 
-public class LoginData {
-    String userName;
-    String firstName;
-    String lastName;
-    String email;
-    String phone;
-    String userCode;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
-    public LoginData(String userName, String firstName, String lastName, String email, String phone, String userCode) {
-        this.userName = userName;
+@Entity
+public class User {
+    private String firstName;
+    private String lastName;
+
+    @NonNull
+    @PrimaryKey()
+    private String email = "";
+    private String phone;
+    private String password;
+
+    public User() {
+
+    }
+
+    @Ignore
+    public User(String firstName, String lastName, @NonNull String email, String phone, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.userCode = userCode;
+        this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -57,11 +62,11 @@ public class LoginData {
         this.phone = phone;
     }
 
-    public String getUserCode() {
-        return userCode;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
