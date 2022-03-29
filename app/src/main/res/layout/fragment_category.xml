@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/fragment_category_scene">
@@ -31,13 +30,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:drawableTint="@color/black"
+        android:importantForAutofill="no"
         android:drawableLeft="@drawable/ic_search"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/search"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:drawableTint="@color/black"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -69,7 +69,7 @@
         android:id="@+id/offlineImg"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:tint="@color/backColor"
+        app:tint="@color/backColor"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
         app:layout_constraintEnd_toEndOf="@+id/adsVP"

@@ -9,7 +9,9 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.firstdayjava.pojo.local.entities.Category;
+import com.example.firstdayjava.pojo.local.entities.Product;
 import com.example.firstdayjava.pojo.local.entities.User;
+import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 
 import java.util.List;
 
@@ -36,4 +38,28 @@ public interface AppDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCategory(Category category);
+
+    @Query("SELECT * FROM Product WHERE categoryCode = :catCode order by name")
+    List<Product> getProductsOrderByName(String catCode);
+
+    @Query("SELECT * FROM Product WHERE categoryCode = :catCode order by price ASC")
+    List<Product> getProductsOrderByPriceLower(String catCode);
+
+    @Query("SELECT * FROM Product WHERE categoryCode = :catCode order by price DESC")
+    List<Product> getProductsOrderByPriceHigher(String catCode);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertProduct(Product product);
+
+    @Query("UPDATE ProductPageFilter SET minRange = 0, maxRange = 1000")
+    void initProductFilter();
+
+    @Query("Select * FROM ProductPageFilter")
+    ProductPageFilter getProductFilter();
+
+    @Query("Select * FROM ProductPageFilter")
+    LiveData<ProductPageFilter> getProductFilterLive();
+
+    @Update
+    void updateProductFilter(ProductPageFilter filter);
 }

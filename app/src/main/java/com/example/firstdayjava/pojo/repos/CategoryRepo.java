@@ -1,5 +1,7 @@
 package com.example.firstdayjava.pojo.repos;
 
+import android.util.Log;
+
 import com.example.firstdayjava.pojo.local.database.AppDao;
 import com.example.firstdayjava.pojo.local.entities.Category;
 import com.example.firstdayjava.pojo.remote.api.UltimateApi;
@@ -31,6 +33,7 @@ public class CategoryRepo {
     }
 
     public List<Category> getOfflineCategories(){
+        Log.d("CategoryRepo", "getOfflineCategories: 98412 ");
         return appDao.getCategories();
     }
 

@@ -52,5 +52,6 @@
     <string name="confirm_password_error">The Confirm is not like the password</string>
     <string name="search">Search</string>
     <string name="save">Save</string>
+    <string name="item_name">Item Name</string>
 
 </resources>

@@ -6,13 +6,13 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
-import androidx.room.migration.Migration;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.firstdayjava.pojo.local.entities.Category;
+import com.example.firstdayjava.pojo.local.entities.Product;
 import com.example.firstdayjava.pojo.local.entities.User;
+import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 
-@Database(entities = {User.class, Category.class}, version = 5, exportSchema = false)
+@Database(entities = {User.class, Category.class, Product.class, ProductPageFilter.class}, version = 8, exportSchema = false)
 @TypeConverters({AppDBConvertor.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -34,6 +34,9 @@ public abstract class AppDatabase extends RoomDatabase {
                 addMigrations(Migrations.MIGRATION_2_3).
                 addMigrations(Migrations.MIGRATION_3_4).
                 addMigrations(Migrations.MIGRATION_4_5).
+                addMigrations(Migrations.MIGRATION_5_6).
+                addMigrations(Migrations.MIGRATION_6_7).
+                addMigrations(Migrations.MIGRATION_7_8).
                 allowMainThreadQueries().build();
     }
 

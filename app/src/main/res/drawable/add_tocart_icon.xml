@@ -4,6 +4,7 @@
     <item
         android:drawable="@drawable/ic_add_tocart"
         android:width="15dp"
+        android:end="10dp"
         android:height="15dp"
         />
 

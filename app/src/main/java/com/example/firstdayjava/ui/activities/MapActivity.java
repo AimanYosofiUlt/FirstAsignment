@@ -139,7 +139,7 @@ public class MapActivity extends AppCompatActivity implements
         findViewById(R.id.myLocBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //   chackAndGetUserLocation();
+                   chackAndGetUserLocation();
             }
         });
 
@@ -195,12 +195,7 @@ public class MapActivity extends AppCompatActivity implements
                 this, R.raw.style_json3
         ));
 
-        googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(@NonNull LatLng latLng) {
-                addMarker(latLng);
-            }
-        });
+        googleMap.setOnMapLongClickListener(latLng -> addMarker(latLng));
 
         map.setLatLngBoundsForCameraTarget(
                 new LatLngBounds(
@@ -263,6 +258,7 @@ public class MapActivity extends AppCompatActivity implements
         }
     }
 
+
     @SuppressLint("MissingPermission")
     private void getUserLocation() {
         locationProviderClient.getLastLocation()
@@ -282,12 +278,10 @@ public class MapActivity extends AppCompatActivity implements
                         );
 
                         map.moveCamera(cameraUpdate);
-
                         map.getUiSettings().setAllGesturesEnabled(true);
                         map.getUiSettings().setZoomControlsEnabled(false);
                         map.getUiSettings().setCompassEnabled(false);
                         map.getUiSettings().setMapToolbarEnabled(false);
-
                         map.setBuildingsEnabled(true);
                         addMarker(latLng);
                     }

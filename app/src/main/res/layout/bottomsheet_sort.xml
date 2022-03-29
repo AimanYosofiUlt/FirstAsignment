@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/back_bottomsheet">
@@ -11,23 +10,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/applyBtn"
         app:layout_constraintStart_toStartOf="@+id/textView11">
 
 
         <RadioButton
+            android:id="@+id/itemNameRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/most_recent" />
+            android:text="@string/item_name" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/priceLowerRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/price_lower_to_higher" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/priceHigherRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/price_higher_to_lower" />
@@ -35,7 +35,7 @@
     </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button2"
+        android:id="@+id/applyBtn"
         style="@style/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.example.firstdayjava.ui.views.LinkTextView
-        android:id="@+id/textView12"
+        android:id="@+id/restartBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -120,25 +120,25 @@
 
 
     <com.example.firstdayjava.ui.views.BouncyImage
-        android:id="@+id/imageView10"
+        android:id="@+id/linearOptBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:src="@drawable/ic_row"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+        app:layout_constraintBottom_toBottomOf="@+id/gridOptBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView9" />
+        app:layout_constraintStart_toEndOf="@+id/gridOptBtn" />
 
     <com.example.firstdayjava.ui.views.BouncyImage
-        android:id="@+id/imageView9"
+        android:id="@+id/gridOptBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_grid"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
-        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        app:layout_constraintEnd_toStartOf="@+id/linearOptBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
@@ -152,7 +152,7 @@
         android:text="@string/sorting_option"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView9"
+        app:layout_constraintBottom_toTopOf="@+id/gridOptBtn"
         app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 

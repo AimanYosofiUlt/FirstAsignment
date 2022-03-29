@@ -7,11 +7,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.firstdayjava.pojo.local.entities.Category;
+import com.example.firstdayjava.ui.fragments.product_list.ProductListFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListViewPagerAdapter extends FragmentStateAdapter {
-    List<Fragment> fragments = new ArrayList<>();
+    List<Category> categories = new ArrayList<>();
+    List<ProductListFragment> fragments = new ArrayList<>();
 
     public ProductListViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -25,9 +29,16 @@ public class ProductListViewPagerAdapter extends FragmentStateAdapter {
         super(fragmentManager, lifecycle);
     }
 
-    public void addFragment(Fragment fragment){
-        fragments.add(fragment);
+    public void setFragmentsByCategories(List<Category> categories) {
+        this.categories = categories;
+        for (Category category : categories) {
+            fragments.add(new ProductListFragment(category));
+        }
         notifyDataSetChanged();
+    }
+
+    public List<Category> getCategories() {
+        return categories;
     }
 
     @NonNull

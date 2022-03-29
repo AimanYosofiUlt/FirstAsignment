@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <KeyFrameSet></KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/productImg"
+            android:layout_width="120dp"
+            android:layout_height="0dp"
+            android:layout_margin="12dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintDimensionRatio="1:1"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:srcCompat="@drawable/image11" />
+
+        <Constraint
+            android:id="@+id/priceTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:text="400 LE"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintStart_toEndOf="@+id/productImg"
+            motion:layout_constraintTop_toTopOf="@+id/productImg" />
+
+        <Constraint
+            android:id="@+id/nameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:text="Gear Geek Smart Watch Series 5"
+            android:textSize="12dp"
+            motion:layout_constraintEnd_toEndOf="@+id/priceTV"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintStart_toStartOf="@+id/priceTV"
+            motion:layout_constraintTop_toBottomOf="@+id/priceTV"
+            motion:layout_constraintVertical_bias="0.106" />
+
+        <Constraint
+            android:id="@+id/addBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/productImg"
+            motion:layout_constraintEnd_toEndOf="@+id/nameTV"
+            motion:layout_constraintHorizontal_bias="0.941"
+            motion:layout_constraintStart_toEndOf="@+id/productImg"
+            motion:layout_constraintTop_toBottomOf="@+id/nameTV"
+            motion:layout_constraintVertical_bias="0.935" />
+    </ConstraintSet>
+</MotionScene>
