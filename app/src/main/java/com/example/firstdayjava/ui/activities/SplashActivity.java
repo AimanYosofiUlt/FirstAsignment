@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.firstdayjava.R;
+import com.example.firstdayjava.ui.activities.main.MainActivity;
 
 import java.util.Objects;
 
@@ -41,7 +42,7 @@ public class SplashActivity extends AppCompatActivity
             @Override
             public void onFinish() {
                 SplashActivity.this.startActivity(new Intent(
-                        SplashActivity.this,MainActivity.class
+                        SplashActivity.this, MainActivity.class
                 ));
                 finish();
             }

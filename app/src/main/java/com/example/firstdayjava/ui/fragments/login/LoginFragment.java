@@ -3,12 +3,17 @@ package com.example.firstdayjava.ui.fragments.login;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,7 +22,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentLoginBinding;
-import com.example.firstdayjava.ui.activities.MainActivity;
+import com.example.firstdayjava.ui.activities.main.MainActivity;
 import com.example.firstdayjava.ui.fragments.ResponseState;
 import com.github.razir.progressbutton.ButtonTextAnimatorExtensionsKt;
 import com.github.razir.progressbutton.DrawableButtonExtensionsKt;
@@ -103,14 +108,42 @@ public class LoginFragment extends Fragment {
             NavHostFragment.findNavController(this).navigate(action);
         });
 
-        bd.languageOpt.setOnClickListener(view -> {
-            requireActivity().finish();
+        bd.languageOpt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLanguagePopup().setOnMenuItemClickListener(menuItem -> {
+                    setLanguageFromMenu(menuItem);
+                    restartActivity();
+                    return false;
+                });
+            }
 
-            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            private PopupMenu showLanguagePopup() {
+                PopupMenu popupMenu = new PopupMenu(requireContext(), bd.languageOpt, Gravity.LEFT|Gravity.CENTER);
+                MenuInflater inflater = popupMenu.getMenuInflater();
+                inflater.inflate(R.menu.language_menu, popupMenu.getMenu());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    popupMenu.setForceShowIcon(true);
+                }
+                popupMenu.show();
+                return popupMenu;
+            }
 
-            intent.putExtra(MainActivity.LANGUAGE, "ar");
+            private void setLanguageFromMenu(MenuItem menuItem) {
+                String languageCode;
+                if (menuItem.getItemId() == R.id.ar) {
+                    languageCode = "ar";
+                } else {
+                    languageCode = "eg";
+                }
+                LoginFragment.this.viewModel.updateLanguage(languageCode);
+            }
 
-            requireActivity().startActivity(intent);
+            private void restartActivity() {
+                requireActivity().finish();
+                Intent intent = new Intent(requireActivity(), MainActivity.class);
+                requireActivity().startActivity(intent);
+            }
         });
     }
 

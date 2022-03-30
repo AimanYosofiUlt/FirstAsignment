@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.firstdayjava.pojo.local.database.AppDao;
 import com.example.firstdayjava.pojo.local.entities.Category;
+import com.example.firstdayjava.pojo.local.entities.SubCategory;
 import com.example.firstdayjava.pojo.remote.api.UltimateApi;
 import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
@@ -33,11 +34,15 @@ public class CategoryRepo {
     }
 
     public List<Category> getOfflineCategories(){
-        Log.d("CategoryRepo", "getOfflineCategories: 98412 ");
+        Log.d("CategoryRepo", "getOfflineCategories: 57532 ");
         return appDao.getCategories();
     }
 
     public void addCategory(Category category){
         appDao.insertCategory(category);
+    }
+
+    public void addSubCategory(SubCategory subCategory){
+        appDao.insertSubCategory(subCategory);
     }
 }

@@ -45,12 +45,14 @@ public class ProductRepo {
     }
 
     public List<Product> getProductsOffline(String catCode, String subCatCode, String orderBy) {
-        if (orderBy.equals(ProductPageFilter.SORT_BY_NAME))
-            return appDao.getProductsOrderByName(catCode);
-        else if (orderBy.equals(ProductPageFilter.SORT_BY_PRICE_HIGHER))
-            return appDao.getProductsOrderByPriceHigher(catCode);
-        else
-            return appDao.getProductsOrderByPriceLower(catCode);
+//        if (orderBy.equals(ProductPageFilter.SORT_BY_NAME))
+//            return appDao.getProductsOrderByName(catCode);
+//        else if (orderBy.equals(ProductPageFilter.SORT_BY_PRICE_HIGHER))
+//            return appDao.getProductsOrderByPriceHigher(catCode);
+//        else
+//            return appDao.getProductsOrderByPriceLower(catCode);
+
+        return appDao.getProducts(catCode,subCatCode,orderBy);
     }
 
 }

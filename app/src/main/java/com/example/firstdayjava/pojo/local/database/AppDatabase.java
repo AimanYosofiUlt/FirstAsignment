@@ -9,10 +9,12 @@ import androidx.room.TypeConverters;
 
 import com.example.firstdayjava.pojo.local.entities.Category;
 import com.example.firstdayjava.pojo.local.entities.Product;
+import com.example.firstdayjava.pojo.local.entities.SubCategory;
 import com.example.firstdayjava.pojo.local.entities.User;
+import com.example.firstdayjava.pojo.local.entities.setting.AppSetting;
 import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 
-@Database(entities = {User.class, Category.class, Product.class, ProductPageFilter.class}, version = 8, exportSchema = false)
+@Database(entities = {User.class, Category.class, Product.class, ProductPageFilter.class, SubCategory.class, AppSetting.class}, version = 12, exportSchema = false)
 @TypeConverters({AppDBConvertor.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -37,6 +39,10 @@ public abstract class AppDatabase extends RoomDatabase {
                 addMigrations(Migrations.MIGRATION_5_6).
                 addMigrations(Migrations.MIGRATION_6_7).
                 addMigrations(Migrations.MIGRATION_7_8).
+                addMigrations(Migrations.MIGRATION_8_9).
+                addMigrations(Migrations.MIGRATION_9_10).
+                addMigrations(Migrations.MIGRATION_10_11).
+                addMigrations(Migrations.MIGRATION_11_12).
                 allowMainThreadQueries().build();
     }
 

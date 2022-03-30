@@ -17,7 +17,8 @@ public class ProductFilterBottomSheet extends BottomSheetDialogFragment {
     FilterBottomSheetListener listener;
     ProductPageFilter filter;
 
-    public ProductFilterBottomSheet(FilterBottomSheetListener listener) {
+    public ProductFilterBottomSheet(ProductPageFilter filter, FilterBottomSheetListener listener) {
+        this.filter = filter;
         this.listener = listener;
     }
 
@@ -33,33 +34,31 @@ public class ProductFilterBottomSheet extends BottomSheetDialogFragment {
     }
 
     private void init() {
-        if (filter != null) {
-            Integer maxRange = filter.getMaxRange();
-            Integer minRange = filter.getMinRange();
-            bd.rangeSeekbar.setRangeValues(maxRange, maxRange);
+        Integer maxRange = filter.getMaxRange();
+        Integer minRange = filter.getMinRange();
+        bd.rangeSeekbar.setRangeValues(maxRange, maxRange);
 
-            String maxStr = String.valueOf(maxRange);
-            String minStr = String.valueOf(minRange);
-            bd.maxTV.setText(maxStr);
-            bd.minTV.setText(minStr);
-        }
+        String maxStr = String.valueOf(maxRange);
+        String minStr = String.valueOf(minRange);
+        bd.maxTV.setText(maxStr);
+        bd.minTV.setText(minStr);
     }
+
 
     private void initEvent() {
         bd.rangeSeekbar.setOnRangeSeekBarChangeListener((bar, minValue, maxValue) -> {
-            bd.maxTV.setText(String.valueOf(minValue));
-            bd.minTV.setText(String.valueOf(maxValue));
+            bd.maxTV.setText(String.valueOf(maxValue));
+            bd.minTV.setText(String.valueOf(minValue));
         });
 
         bd.applyBtn.setOnClickListener(view -> {
-
+            Integer max = Integer.parseInt(bd.maxTV.getText().toString());
+            Integer min = Integer.parseInt(bd.minTV.getText().toString());
+            filter.setMaxRange(max);
+            filter.setMinRange(min);
+            listener.onSortOptionChange(filter);
         });
 
         bd.restartBtn.setOnClickListener(view -> bd.rangeSeekbar.setRangeValues(0, 1000));
-    }
-
-    public void setFilter(ProductPageFilter filter) {
-        this.filter = filter;
-        init();
     }
 }

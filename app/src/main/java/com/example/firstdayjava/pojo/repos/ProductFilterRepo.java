@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 public class ProductFilterRepo {
 
-  public   AppDao appDao;
+    public   AppDao appDao;
     public LiveData<ProductPageFilter> filterLiveData;
 
     @Inject

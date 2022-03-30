@@ -2,7 +2,6 @@ package com.example.firstdayjava.ui.views.BottomSheets;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,9 @@ public class ProductSortBottomSheet extends BottomSheetDialogFragment {
     FilterBottomSheetListener listener;
     ProductPageFilter filter;
 
-    public ProductSortBottomSheet(FilterBottomSheetListener listener) {
+    public ProductSortBottomSheet(ProductPageFilter filter, FilterBottomSheetListener listener) {
         this.listener = listener;
+        this.filter = filter;
     }
 
     @Nullable
@@ -32,17 +32,11 @@ public class ProductSortBottomSheet extends BottomSheetDialogFragment {
         return bd.getRoot();
     }
 
-    public void setFilter(ProductPageFilter filter) {
-        this.filter = filter;
-    }
-
 
 
     private void init() {
-        if (filter != null) {
-            setType();
-            setSortOrder();
-        }
+        setType();
+        setSortOrder();
     }
 
     private void initEvent() {

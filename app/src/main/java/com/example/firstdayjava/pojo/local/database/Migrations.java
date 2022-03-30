@@ -3,6 +3,7 @@ package com.example.firstdayjava.pojo.local.database;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.firstdayjava.pojo.local.entities.setting.AppSetting;
 import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 
 public class Migrations {
@@ -116,6 +117,46 @@ public class Migrations {
             database.execSQL(createTableStmt);
 
             database.execSQL("INSERT INTO ProductPageFilter(id) VALUES(0)");
+        }
+    };
+
+    static final Migration MIGRATION_8_9 = new Migration(8, 9) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE SubCategory (code TEXT PRIMARY KEY NOT NULL," +
+                    "    name TEXT ," +
+                    "    imageUrl TEXT )");
+
+        }
+    };
+
+    static final Migration MIGRATION_9_10 = new Migration(9, 10) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE SubCategory ADD COLUMN categoryCode TEXT NOT NULL DEFAULT '0o'");
+        }
+    };
+
+    static final Migration MIGRATION_10_11 = new Migration(10, 11) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE Cart (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "    itemCode TEXT," +
+                    "    userCode TEXT," +
+                    "    quantity INTEGER)");
+
+            database.execSQL("ALTER TABLE User ADD COLUMN userCode TEXT NOT NULL DEFAULT '0'");
+        }
+    };
+
+    static final Migration MIGRATION_11_12 = new Migration(11, 12) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE AppSetting (id INTEGER PRIMARY KEY DEFAULT 0," +
+                    "    currentUserCode TEXT DEFAULT '" + AppSetting.NO_USER + "'," +
+                    "    language TEXT NOT NULL DEFAULT '" + AppSetting.DEFAULT + "')");
+
+            database.execSQL("INSERT INTO AppSetting DEFAULT VALUES"); 
         }
     };
 }

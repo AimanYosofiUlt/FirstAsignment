@@ -30,8 +30,8 @@ public class ProductPageFilter {
     public static final String GRID_SHOW = "GRID_SHOW";
     public static final String LINEAR_SHOW = "LINEAR_SHOW";
     public static final String SORT_BY_NAME = "name";
-    public static final String SORT_BY_PRICE_HIGHER = " price ASC ";
-    public static final String SORT_BY_PRICE_LOWER = "  price DESC ";
+    public static final String SORT_BY_PRICE_HIGHER = "price DESC";
+    public static final String SORT_BY_PRICE_LOWER = "price ASC";
 
     public ProductPageFilter() {
     }

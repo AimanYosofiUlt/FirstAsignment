@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="@+id/rangeSeekbar"
         app:layout_constraintStart_toStartOf="@+id/rangeSeekbar">
 
-        <TextView
+        <EditText
             android:id="@+id/minTV"
             style="@style/filter_textview"
             android:layout_width="0dp"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="_" />
 
-        <TextView
+        <EditText
             android:id="@+id/maxTV"
             style="@style/filter_textview"
             android:layout_width="0dp"

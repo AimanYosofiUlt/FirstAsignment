@@ -11,6 +11,7 @@ import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
 import com.example.firstdayjava.pojo.remote.models.login.LoginPostBody;
 import com.example.firstdayjava.pojo.remote.models.login.LoginResponse;
+import com.example.firstdayjava.pojo.repos.AppSettingRepo;
 import com.example.firstdayjava.pojo.repos.UserRepo;
 import com.example.firstdayjava.ui.fragments.ResponseState;
 
@@ -20,6 +21,10 @@ public class LoginFragmentViewModel extends AndroidViewModel {
 
     @Inject
     UserRepo userRepo;
+
+    @Inject
+    AppSettingRepo settingRepo;
+
     public MutableLiveData<ResponseState> loginState;
 
     @Inject
@@ -27,7 +32,7 @@ public class LoginFragmentViewModel extends AndroidViewModel {
         super(application);
         loginState = new MutableLiveData<>();
     }
-    
+
     public void login(String phoneNo, String password) {
         LoginPostBody postBody = new LoginPostBody(phoneNo, password);
 
@@ -36,6 +41,9 @@ public class LoginFragmentViewModel extends AndroidViewModel {
             public void onSuccess(LoginResponse response) {
                 ResponseState state = new ResponseState(true, getApplication().getString(R.string.done));
                 loginState.postValue(state);
+
+                String userCode = response.getData().getUserCode();
+                settingRepo.updateCurrentUser(userCode);
             }
 
             @Override
@@ -54,6 +62,10 @@ public class LoginFragmentViewModel extends AndroidViewModel {
                 loginState.postValue(state);
             }
         });
+    }
+
+    public void updateLanguage(String language) {
+        settingRepo.updateLanguage(language);
     }
 }
 

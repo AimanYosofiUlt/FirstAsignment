@@ -10,6 +10,7 @@ import androidx.room.Update;
 
 import com.example.firstdayjava.pojo.local.entities.Category;
 import com.example.firstdayjava.pojo.local.entities.Product;
+import com.example.firstdayjava.pojo.local.entities.SubCategory;
 import com.example.firstdayjava.pojo.local.entities.User;
 import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 
@@ -36,22 +37,32 @@ public interface AppDao {
     @Query("Select * FROM Category")
     List<Category> getCategories();
 
+    @Query("Select * FROM SubCategory WHERE categoryCode = :categoryCode")
+    List<SubCategory> getSubCategories(String categoryCode);
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCategory(Category category);
 
-    @Query("SELECT * FROM Product WHERE categoryCode = :catCode order by name")
-    List<Product> getProductsOrderByName(String catCode);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertSubCategory(SubCategory subCategory);
 
-    @Query("SELECT * FROM Product WHERE categoryCode = :catCode order by price ASC")
-    List<Product> getProductsOrderByPriceLower(String catCode);
-
-    @Query("SELECT * FROM Product WHERE categoryCode = :catCode order by price DESC")
-    List<Product> getProductsOrderByPriceHigher(String catCode);
+    @Query("SELECT p.* FROM Product p, ProductPageFilter f " +
+            "   WHERE " +
+            "       Case :subCatCode " +
+            "           WHEN '' THEN categoryCode = :catCode" +
+            "           ELSE  categoryCode = :catCode AND subCategoryCode = :subCatCode END" +
+            "       AND price >= f.minRange AND price <= f.maxRange " +
+            "   ORDER BY " +
+            "       CASE :orderBy WHEN 'name' THEN p.name END," +
+            "       CASE :orderBy WHEN 'price ASC' THEN p.price END ASC," +
+            "       CASE :orderBy WHEN 'price DESC' THEN p.price END DESC")
+    List<Product> getProducts(String catCode, String subCatCode, String orderBy);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertProduct(Product product);
 
-    @Query("UPDATE ProductPageFilter SET minRange = 0, maxRange = 1000")
+    @Query("UPDATE ProductPageFilter SET minRange = 0, maxRange = 1000000")
     void initProductFilter();
 
     @Query("Select * FROM ProductPageFilter")
@@ -62,4 +73,10 @@ public interface AppDao {
 
     @Update
     void updateProductFilter(ProductPageFilter filter);
+
+    @Query("UPDATE AppSetting SET language = :language")
+    void updateLanguage(String language);
+
+    @Query("UPDATE AppSetting SET currentUserCode = :userCode")
+    void updateCurrentUser(String userCode);
 }

@@ -25,6 +25,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentEditBinding;
 import com.example.firstdayjava.pojo.local.entities.User;
+import com.example.firstdayjava.pojo.remote.models.signup.SignUpPostBody;
 import com.example.firstdayjava.ui.activities.MapActivity;
 import com.example.firstdayjava.ui.fragments.ResponseState;
 
@@ -121,14 +122,14 @@ public class SignUpFragment extends Fragment {
             }
 
             private void signUp() {
-                User user = new User(
+                SignUpPostBody userBody = new SignUpPostBody(
                         bd.firstNameEd.getText().toString(),
                         bd.lastNameED.getText().toString(),
                         bd.emailED.getText().toString(),
                         bd.phoneCCP.getFullNumberWithPlus(),
                         bd.passwordED.getText().toString()
                 );
-                viewModel.signUp(user);
+                viewModel.signUp(userBody);
             }
         });
 

@@ -1,45 +1,21 @@
-package com.example.firstdayjava.pojo.local.entities;
+package com.example.firstdayjava.pojo.remote.models.signup;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+public class SignUpPostBody {
+    String firstName;
+    String lastName;
+    String email;
+    String phone;
+    String password;
 
-@Entity
-public class User {
-    private String firstName;
-    private String lastName;
-
-    @NonNull
-    @PrimaryKey()
-    private String email = "";
-    private String phone;
-    private String password;
-
-    @NonNull
-    private String userCode = "0";
-
-    public User() {
-
+    public SignUpPostBody() {
     }
 
-    @Ignore
-    public User(String firstName, String lastName, @NonNull String email, String phone, String password, @NonNull String userCode) {
+    public SignUpPostBody(String firstName, String lastName, String email, String phone, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.userCode = userCode;
-    }
-
-    @NonNull
-    public String getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(@NonNull String userCode) {
-        this.userCode = userCode;
     }
 
     public String getFirstName() {

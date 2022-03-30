@@ -15,17 +15,12 @@ import java.util.List;
 
 public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     List<Product> list = new ArrayList<>();
-    String showType = ProductPageFilter.GRID_SHOW;
+    String showType;
 
     List<ProductViewHolder> viewList = new ArrayList<>();
 
-    public void setShowType(String showType) {
+    public ProductViewAdapter(String showType) {
         this.showType = showType;
-
-        for (ProductViewHolder productViewHolder : viewList) {
-            productViewHolder.changeLayout(showType);
-        }
-        notifyDataSetChanged();
     }
 
     public void setList(List<Product> list) {

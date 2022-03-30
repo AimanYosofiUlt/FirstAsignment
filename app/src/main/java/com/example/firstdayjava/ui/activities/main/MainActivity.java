@@ -1,4 +1,4 @@
-package com.example.firstdayjava.ui.activities;
+package com.example.firstdayjava.ui.activities.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;

@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData;
 
 import com.example.firstdayjava.pojo.local.database.AppDao;
 import com.example.firstdayjava.pojo.local.entities.User;
-import com.example.firstdayjava.pojo.remote.models.login.LoginResponse;
 import com.example.firstdayjava.pojo.local.models.responses.SignUpResponse;
+import com.example.firstdayjava.pojo.remote.api.UltimateApi;
 import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
 import com.example.firstdayjava.pojo.remote.models.login.LoginData;
 import com.example.firstdayjava.pojo.remote.models.login.LoginPostBody;
-import com.example.firstdayjava.pojo.remote.api.UltimateApi;
+import com.example.firstdayjava.pojo.remote.models.login.LoginResponse;
+import com.example.firstdayjava.pojo.remote.models.signup.SignUpPostBody;
 
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class UserRepo {
 
     void addUserFromLogin(LoginData data, String password) {
         User user = new User();
+        user.setUserCode(data.getUserCode());
         user.setFirstName(data.getFirstName());
         user.setLastName(data.getLastName());
         user.setPhone(data.getPhone());
@@ -68,18 +70,7 @@ public class UserRepo {
         appDao.insertUserFromLogin(user);
     }
 
-    public void signUp(User user, ResponsesCallBack<SignUpResponse> callBack) {
-        api.signup(user).enqueue(new ResponsesCallBack<SignUpResponse>() {
-            @Override
-            public void onSuccess(SignUpResponse response) {
-                callBack.onSuccess(response);
-                addUser(user);
-            }
-
-            @Override
-            public void onFailure(Result result) {
-                callBack.onFailure(result);
-            }
-        });
+    public void signUp(SignUpPostBody postBody, ResponsesCallBack<SignUpResponse> callBack) {
+        api.signup(postBody).enqueue(callBack);
     }
 }

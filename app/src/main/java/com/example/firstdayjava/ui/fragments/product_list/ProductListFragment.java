@@ -1,11 +1,9 @@
 package com.example.firstdayjava.ui.fragments.product_list;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
@@ -18,7 +16,7 @@ import com.example.firstdayjava.pojo.local.entities.Category;
 import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 import com.example.firstdayjava.ui.fragments.base.BaseFragment;
 import com.example.firstdayjava.ui.views.ProductView.ProductViewAdapter;
-import com.example.firstdayjava.ui.views.TypeCardView.TypeCardViewAdapter;
+import com.example.firstdayjava.ui.views.SubCategoryCardView.SubCategoryAdapter;
 
 import javax.inject.Inject;
 
@@ -28,10 +26,12 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class ProductListFragment extends BaseFragment {
     FragmentPrudoctListBinding bd;
 
-    TypeCardViewAdapter typeAdapter;
+    SubCategoryAdapter typeAdapter;
     ProductViewAdapter productAdapter;
 
     Category category;
+    String selectedSubCatCode = "";
+    String orderBy = ProductPageFilter.SORT_BY_NAME;
 
     @Inject
     ProductListFragmentViewModel viewModel;
@@ -51,28 +51,30 @@ public class ProductListFragment extends BaseFragment {
         return bd.getRoot();
     }
 
-
-    private void addTypes() {
-        typeAdapter.addTypeCard(category.getCategoryName());
+    @Override
+    public void onStart() {
+        super.onStart();
+        viewModel.getSubCategory(category.getCategoryCode());
     }
 
     @Override
     protected void initViewModel() {
-        viewModel.productMDL.observe(getViewLifecycleOwner(), products -> {
-            productAdapter.setList(products);
-            Log.d("ProductListFragment", "initViewModel: 6548 :" + products.size());
-        });
+        viewModel.productMDL.observe(getViewLifecycleOwner(),
+                products -> productAdapter.setList(products));
+
+        viewModel.subCategoryMDL.observe(getViewLifecycleOwner(),
+                subCategories -> typeAdapter.setList(subCategories));
 
         viewModel.filterLiveData.observe(getViewLifecycleOwner(), new Observer<ProductPageFilter>() {
             @Override
             public void onChanged(ProductPageFilter filter) {
-//                changeSortingType(filter.getSortingType());
+                changeSortingType(filter.getSortingType());
                 changeSortingOrder(filter.getOrderBy());
             }
 
             private void changeSortingOrder(String orderBy) {
-                Toast.makeText(requireContext(), "changeSortingOrder:" + orderBy, Toast.LENGTH_SHORT).show();
-                viewModel.getProducts(category.getCategoryCode(), "MC002", orderBy);
+                ProductListFragment.this.orderBy = orderBy;
+                getProducts();
             }
 
             private void changeSortingType(String sortingType) {
@@ -82,25 +84,35 @@ public class ProductListFragment extends BaseFragment {
                 } else {
                     layout = new LinearLayoutManager(requireContext());
                 }
-
+                bd.prudoctRV.setAdapter(null);
+                productAdapter = new ProductViewAdapter(sortingType);
+                bd.prudoctRV.setAdapter(productAdapter);
                 bd.prudoctRV.setLayoutManager(layout);
-                productAdapter.setShowType(sortingType);
             }
         });
     }
 
     @Override
     protected void initModelView() {
-        typeAdapter = new TypeCardViewAdapter();
+        typeAdapter = new SubCategoryAdapter(subCategory -> {
+            selectedSubCatCode = subCategory;
+            getProducts();
+        });
+
         bd.typeRV.setAdapter(typeAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         bd.typeRV.setLayoutManager(linearLayoutManager);
 
-        productAdapter = new ProductViewAdapter();
+        productAdapter = new ProductViewAdapter(ProductPageFilter.GRID_SHOW);
         bd.prudoctRV.setAdapter(productAdapter);
         bd.prudoctRV.setLayoutManager(new GridLayoutManager(requireContext(), 2));
-        addTypes();
+    }
+
+    private void getProducts() {
+        viewModel.getProducts(category.getCategoryCode(),
+                selectedSubCatCode,
+                orderBy);
     }
 
     @Override

@@ -72,7 +72,13 @@ public class ProductsPageFragment extends BaseFragment {
         });
 
         viewModel.filterLiveData.observe(getViewLifecycleOwner(), filter -> {
-            sortBottomSheet.setFilter(filter);
+
+            filterBottomSheet = new ProductFilterBottomSheet(filter,
+                    fromSheetFilter -> viewModel.updateProductFilter(fromSheetFilter));
+
+
+            sortBottomSheet = new ProductSortBottomSheet(filter,
+                    fromSheetFilter -> viewModel.updateProductFilter(fromSheetFilter));
             Log.d("ProductsPageFragment", "initViewModel: 75621 :" + filter.getOrderBy());
         });
     }
@@ -80,8 +86,6 @@ public class ProductsPageFragment extends BaseFragment {
     @Override
     protected void initModelView() {
         initPagerView();
-        filterBottomSheet = new ProductFilterBottomSheet(filter -> viewModel.updateProductFilter(filter));
-        sortBottomSheet = new ProductSortBottomSheet(filter -> viewModel.updateProductFilter(filter));
     }
 
 

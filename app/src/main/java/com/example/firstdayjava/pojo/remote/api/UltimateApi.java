@@ -8,6 +8,7 @@ import com.example.firstdayjava.pojo.remote.models.login.LoginPostBody;
 import com.example.firstdayjava.pojo.remote.models.login.LoginResponse;
 import com.example.firstdayjava.pojo.remote.models.product.ProductPostBody;
 import com.example.firstdayjava.pojo.remote.models.product.ProductResponse;
+import com.example.firstdayjava.pojo.remote.models.signup.SignUpPostBody;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -19,7 +20,7 @@ public interface UltimateApi {
     Call<LoginResponse> login(@Body LoginPostBody loginPost);
 
     @POST("user/signup")
-    Call<SignUpResponse> signup(@Body User user);
+    Call<SignUpResponse> signup(@Body SignUpPostBody postBody);
 
     @POST("item/category")
     Call<MainPageResponse> getCategories(@Body MainPagePostBody postBody);

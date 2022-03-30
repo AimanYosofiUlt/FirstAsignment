@@ -7,12 +7,14 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.firstdayjava.pojo.local.entities.Category;
+import com.example.firstdayjava.pojo.local.entities.SubCategory;
 import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
 import com.example.firstdayjava.pojo.remote.models.category.AdsSlider;
 import com.example.firstdayjava.pojo.remote.models.category.CategoryData;
 import com.example.firstdayjava.pojo.remote.models.category.MainPagePostBody;
 import com.example.firstdayjava.pojo.remote.models.category.MainPageResponse;
+import com.example.firstdayjava.pojo.remote.models.category.SubCategoryData;
 import com.example.firstdayjava.pojo.repos.CategoryRepo;
 import com.example.firstdayjava.ui.fragments.ResponseState;
 
@@ -42,10 +44,23 @@ public class CategoryFragmentViewModel extends AndroidViewModel {
             @Override
             public void onSuccess(MainPageResponse response) {
                 List<CategoryData> categoriesData = response.getData().getCategories();
+                addCategoriesToDB(categoriesData);
 
                 List<AdsSlider> adsSliders = response.getData().getAdsSliders();
                 adsMDL.postValue(adsSliders);
 
+                responseStateMDL.postValue(new ResponseState(true, "DONE"));
+            }
+
+            @Override
+            public void onFailure(Result result) {
+                responseStateMDL.postValue(new ResponseState(false, result.getErrMsg()));
+
+                List<Category> categories = categoryRepo.getOfflineCategories();
+                categoriesMDL.postValue(categories);
+            }
+
+            private void addCategoriesToDB(List<CategoryData> categoriesData) {
                 List<Category> categories = new ArrayList<>();
                 for (CategoryData data : categoriesData) {
                     Category category = new Category(
@@ -56,17 +71,22 @@ public class CategoryFragmentViewModel extends AndroidViewModel {
 
                     categories.add(category);
                     categoryRepo.addCategory(category);
+                    addSubCategoriesToDB(category, data.getSubCategories());
                 }
 
                 categoriesMDL.postValue(categories);
-                responseStateMDL.postValue(new ResponseState(true, "DONE"));
             }
 
-            @Override
-            public void onFailure(Result result) {
-                List<Category> categories = categoryRepo.getOfflineCategories();
-                categoriesMDL.postValue(categories);
-                responseStateMDL.postValue(new ResponseState(false, result.getErrMsg()));
+            private void addSubCategoriesToDB(Category category, List<SubCategoryData> subCategoriesData) {
+                for (SubCategoryData subData : subCategoriesData) {
+                    SubCategory subCategory = new SubCategory(
+                            subData.getCode(),
+                            subData.getName(),
+                            subData.getImageUrl(),
+                            category.getCategoryCode()
+                    );
+                    categoryRepo.addSubCategory(subCategory);
+                }
             }
         });
     }
