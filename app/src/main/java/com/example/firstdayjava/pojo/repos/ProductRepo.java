@@ -8,6 +8,7 @@ import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
 import com.example.firstdayjava.pojo.remote.models.product.ProductPostBody;
 import com.example.firstdayjava.pojo.remote.models.product.ProductResponse;
+import com.example.firstdayjava.ui.views.ProductView.ProductViewData;
 
 import java.util.List;
 
@@ -44,15 +45,8 @@ public class ProductRepo {
         appDao.insertProduct(product);
     }
 
-    public List<Product> getProductsOffline(String catCode, String subCatCode, String orderBy) {
-//        if (orderBy.equals(ProductPageFilter.SORT_BY_NAME))
-//            return appDao.getProductsOrderByName(catCode);
-//        else if (orderBy.equals(ProductPageFilter.SORT_BY_PRICE_HIGHER))
-//            return appDao.getProductsOrderByPriceHigher(catCode);
-//        else
-//            return appDao.getProductsOrderByPriceLower(catCode);
-
-        return appDao.getProducts(catCode,subCatCode,orderBy);
+    public List<ProductViewData> getProductsOffline(String catCode, String subCatCode, String orderBy) {
+        return appDao.getProductData(catCode,subCatCode,orderBy);
     }
 
 }

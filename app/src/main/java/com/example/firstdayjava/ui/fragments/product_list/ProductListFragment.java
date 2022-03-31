@@ -13,9 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstdayjava.databinding.FragmentPrudoctListBinding;
 import com.example.firstdayjava.pojo.local.entities.Category;
+import com.example.firstdayjava.pojo.local.entities.Product;
 import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 import com.example.firstdayjava.ui.fragments.base.BaseFragment;
 import com.example.firstdayjava.ui.views.ProductView.ProductViewAdapter;
+import com.example.firstdayjava.ui.views.ProductView.ProductViewData;
+import com.example.firstdayjava.ui.views.ProductView.ProductViewListener;
 import com.example.firstdayjava.ui.views.SubCategoryCardView.SubCategoryAdapter;
 
 import javax.inject.Inject;
@@ -23,7 +26,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class ProductListFragment extends BaseFragment {
+public class ProductListFragment extends BaseFragment implements ProductViewListener {
     FragmentPrudoctListBinding bd;
 
     SubCategoryAdapter typeAdapter;
@@ -59,7 +62,7 @@ public class ProductListFragment extends BaseFragment {
 
     @Override
     protected void initViewModel() {
-        viewModel.productMDL.observe(getViewLifecycleOwner(),
+        viewModel.productDataMDL.observe(getViewLifecycleOwner(),
                 products -> productAdapter.setList(products));
 
         viewModel.subCategoryMDL.observe(getViewLifecycleOwner(),
@@ -85,11 +88,13 @@ public class ProductListFragment extends BaseFragment {
                     layout = new LinearLayoutManager(requireContext());
                 }
                 bd.prudoctRV.setAdapter(null);
-                productAdapter = new ProductViewAdapter(sortingType);
+                productAdapter = new ProductViewAdapter(sortingType, ProductListFragment.this);
                 bd.prudoctRV.setAdapter(productAdapter);
                 bd.prudoctRV.setLayoutManager(layout);
             }
         });
+
+
     }
 
     @Override
@@ -104,7 +109,7 @@ public class ProductListFragment extends BaseFragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         bd.typeRV.setLayoutManager(linearLayoutManager);
 
-        productAdapter = new ProductViewAdapter(ProductPageFilter.GRID_SHOW);
+        productAdapter = new ProductViewAdapter(ProductPageFilter.GRID_SHOW, this);
         bd.prudoctRV.setAdapter(productAdapter);
         bd.prudoctRV.setLayoutManager(new GridLayoutManager(requireContext(), 2));
     }
@@ -118,5 +123,15 @@ public class ProductListFragment extends BaseFragment {
     @Override
     protected void initEvent() {
 
+    }
+
+    @Override
+    public void onAmountChange(ProductViewData data) {
+        viewModel.addToCart(data.amount,data.getProduct());
+    }
+
+    @Override
+    public void onAmountEmpty(Product product) {
+        viewModel.deleteFromCart(product);
     }
 }

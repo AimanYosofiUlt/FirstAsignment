@@ -1,14 +1,20 @@
 package com.example.firstdayjava.pojo.local.entities.setting;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class AppSetting {
+    @ColumnInfo(defaultValue = "0")
     @PrimaryKey
     Integer id;
+
+    @ColumnInfo(defaultValue = NO_USER)
     String currentUserCode;
+
+    @ColumnInfo(defaultValue = DEFAULT)
     String language;
 
     public static final String DEFAULT = "default";

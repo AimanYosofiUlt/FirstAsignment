@@ -112,8 +112,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 showLanguagePopup().setOnMenuItemClickListener(menuItem -> {
-                    setLanguageFromMenu(menuItem);
-                    restartActivity();
+                    String language = getLanguageFromMenu(menuItem);
+                    restartActivity(language);
                     return false;
                 });
             }
@@ -129,7 +129,7 @@ public class LoginFragment extends Fragment {
                 return popupMenu;
             }
 
-            private void setLanguageFromMenu(MenuItem menuItem) {
+            private String getLanguageFromMenu(MenuItem menuItem) {
                 String languageCode;
                 if (menuItem.getItemId() == R.id.ar) {
                     languageCode = "ar";
@@ -137,12 +137,22 @@ public class LoginFragment extends Fragment {
                     languageCode = "eg";
                 }
                 LoginFragment.this.viewModel.updateLanguage(languageCode);
+
+                return languageCode;
             }
 
-            private void restartActivity() {
+            private void restartActivity(String language) {
                 requireActivity().finish();
                 Intent intent = new Intent(requireActivity(), MainActivity.class);
+                intent.putExtra(MainActivity.LANGUAGE, language);
                 requireActivity().startActivity(intent);
+            }
+        });
+
+        bd.browseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_browse_to_mainFragment);
             }
         });
     }
@@ -180,7 +190,7 @@ public class LoginFragment extends Fragment {
         bd.passwordED.setEnabled(enabled);
         bd.phoneCCP.setEnabled(enabled);
         bd.signUpBtn.setEnabled(enabled);
-        bd.brawseBtn.setEnabled(enabled);
+        bd.browseBtn.setEnabled(enabled);
     }
 
     private void hideProgressCustom() {

@@ -19,6 +19,7 @@ public class ProductFilterRepo {
 
     public ProductPageFilter initProductFilter() {
         appDao.initProductFilter();
+        appDao.initProductFilterRanges();
         return appDao.getProductFilter();
     }
 

@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.firstdayjava.pojo.local.entities.Cart;
 import com.example.firstdayjava.pojo.local.entities.Category;
 import com.example.firstdayjava.pojo.local.entities.Product;
 import com.example.firstdayjava.pojo.local.entities.SubCategory;
@@ -14,7 +15,7 @@ import com.example.firstdayjava.pojo.local.entities.User;
 import com.example.firstdayjava.pojo.local.entities.setting.AppSetting;
 import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 
-@Database(entities = {User.class, Category.class, Product.class, ProductPageFilter.class, SubCategory.class, AppSetting.class}, version = 12, exportSchema = false)
+@Database(entities = {User.class, Category.class, Product.class, ProductPageFilter.class, SubCategory.class, Cart.class, AppSetting.class}, version = 13, exportSchema = false)
 @TypeConverters({AppDBConvertor.class})
 public abstract class AppDatabase extends RoomDatabase {
 

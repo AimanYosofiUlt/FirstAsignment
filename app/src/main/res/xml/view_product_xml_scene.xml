@@ -10,7 +10,27 @@
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/addBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="25dp"
+            android:paddingEnd="15dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:visibilityMode="ignore" />
 
+        <Constraint
+            android:id="@+id/counterCL"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="5dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/addBtn"
+            motion:layout_constraintEnd_toEndOf="@+id/addBtn"
+            motion:layout_constraintStart_toStartOf="@+id/addBtn"
+            motion:layout_constraintTop_toTopOf="@+id/addBtn"
+            motion:visibilityMode="ignore" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -52,20 +72,33 @@
             motion:layout_constraintHorizontal_bias="0.0"
             motion:layout_constraintStart_toStartOf="@+id/priceTV"
             motion:layout_constraintTop_toBottomOf="@+id/priceTV"
-            motion:layout_constraintVertical_bias="0.106" />
+            motion:layout_constraintVertical_bias="0" />
 
         <Constraint
             android:id="@+id/addBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
+            motion:visibilityMode="ignore"
             motion:layout_constraintBottom_toBottomOf="@+id/productImg"
             motion:layout_constraintEnd_toEndOf="@+id/nameTV"
-            motion:layout_constraintHorizontal_bias="0.941"
+            motion:layout_constraintHorizontal_bias="1"
             motion:layout_constraintStart_toEndOf="@+id/productImg"
             motion:layout_constraintTop_toBottomOf="@+id/nameTV"
             motion:layout_constraintVertical_bias="0.935" />
+
+        <Constraint
+            android:id="@+id/counterCL"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="5dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/addBtn"
+            motion:layout_constraintEnd_toEndOf="@+id/addBtn"
+            motion:layout_constraintStart_toStartOf="@+id/addBtn"
+            motion:layout_constraintTop_toTopOf="@+id/addBtn"
+            motion:visibilityMode="ignore" />
     </ConstraintSet>
 </MotionScene>

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.firstdayjava.pojo.local.entities.Category;
@@ -15,6 +16,7 @@ import com.example.firstdayjava.pojo.remote.callpack.Result;
 import com.example.firstdayjava.pojo.remote.models.product.Item;
 import com.example.firstdayjava.pojo.remote.models.product.ItemImage;
 import com.example.firstdayjava.pojo.remote.models.product.ProductResponse;
+import com.example.firstdayjava.pojo.repos.CartRepo;
 import com.example.firstdayjava.pojo.repos.CategoryRepo;
 import com.example.firstdayjava.pojo.repos.ProductFilterRepo;
 import com.example.firstdayjava.pojo.repos.ProductRepo;
@@ -35,16 +37,21 @@ public class ProductsPageFragmentViewModel extends AndroidViewModel {
     @Inject
     ProductFilterRepo filterRepo;
 
+    CartRepo cartRepo;
+
     MutableLiveData<List<Category>> categoryMDL;
     MutableLiveData<ResponseState> responseStateMDL;
     MutableLiveData<ProductPageFilter> filterLiveData;
-
+    LiveData<Integer> amountLiveData;
     @Inject
-    public ProductsPageFragmentViewModel(@NonNull Application application) {
+    public ProductsPageFragmentViewModel(@NonNull Application application, CartRepo cartRepo) {
         super(application);
         categoryMDL = new MutableLiveData<>();
         responseStateMDL = new MutableLiveData<>();
         filterLiveData = new MutableLiveData<>();
+
+        this.cartRepo = cartRepo;
+        amountLiveData = cartRepo.getAmount();
     }
 
     public void initFilter() {

@@ -1,8 +1,5 @@
 package com.example.firstdayjava.ui.activities.main;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -11,10 +8,11 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.firstdayjava.R;
-import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -22,25 +20,37 @@ import java.util.Objects;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import dagger.hilt.android.scopes.ActivityScoped;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
-    public static final String LANGUAGE = "language";
+
+    public static final String LANGUAGE = "LANGUAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initActionBar();
         initConfiguration();
+        initActionBar();
     }
 
     private void initConfiguration() {
-        if (getIntent().getStringExtra(LANGUAGE) != null) {
-            changeLang(getIntent().getStringExtra(LANGUAGE));
+        String languageExtra = getIntent().getStringExtra(LANGUAGE);
+        if (languageExtra != null) {
+            changeLang(languageExtra);
         }
+    }
+
+    void changeLang(String langCode) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String lang = preferences.getString("lang", langCode);
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
     }
 
     private void initActionBar() {
@@ -54,14 +64,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void changeLang(String langCode) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String lang = preferences.getString("lang", langCode);
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
-    }
+
 }

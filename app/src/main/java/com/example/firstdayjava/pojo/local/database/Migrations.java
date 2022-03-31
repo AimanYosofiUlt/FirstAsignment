@@ -140,8 +140,7 @@ public class Migrations {
     static final Migration MIGRATION_10_11 = new Migration(10, 11) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
-            database.execSQL("CREATE TABLE Cart (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "    itemCode TEXT," +
+            database.execSQL("CREATE TABLE Cart (itemCode TEXT PRIMARY KEY NOT NULL," +
                     "    userCode TEXT," +
                     "    quantity INTEGER)");
 

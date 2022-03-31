@@ -72,7 +72,6 @@ public class ProductsPageFragment extends BaseFragment {
         });
 
         viewModel.filterLiveData.observe(getViewLifecycleOwner(), filter -> {
-
             filterBottomSheet = new ProductFilterBottomSheet(filter,
                     fromSheetFilter -> viewModel.updateProductFilter(fromSheetFilter));
 
@@ -81,6 +80,9 @@ public class ProductsPageFragment extends BaseFragment {
                     fromSheetFilter -> viewModel.updateProductFilter(fromSheetFilter));
             Log.d("ProductsPageFragment", "initViewModel: 75621 :" + filter.getOrderBy());
         });
+
+        viewModel.amountLiveData.observe(getViewLifecycleOwner(),
+                count -> bd.productCount.setText(String.valueOf(count)));
     }
 
     @Override

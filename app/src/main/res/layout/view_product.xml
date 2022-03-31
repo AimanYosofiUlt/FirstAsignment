@@ -57,6 +57,65 @@
             app:layout_constraintStart_toStartOf="@+id/priceTV"
             app:layout_constraintTop_toBottomOf="@+id/priceTV" />
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/counterCL"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/back_product_bottom_solid"
+            android:padding="5dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/addBtn"
+            app:layout_constraintEnd_toEndOf="@+id/addBtn"
+            app:layout_constraintStart_toStartOf="@+id/addBtn"
+            app:layout_constraintTop_toTopOf="@+id/addBtn">
+
+
+            <com.example.firstdayjava.ui.views.BouncyImage
+                android:id="@+id/minusBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_minus"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/amoutTV"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.firstdayjava.ui.views.BouncyImage
+                android:id="@+id/plusBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_plus"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/amoutTV"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/amoutTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/plusBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/minusBtn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addBtn"
             android:layout_width="0dp"
@@ -71,9 +130,12 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+
     </androidx.constraintlayout.motion.widget.MotionLayout>
 
 </androidx.cardview.widget.CardView>

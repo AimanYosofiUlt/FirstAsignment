@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/productPageFragment">
 
     <fragment
         android:id="@+id/editFragment"
@@ -48,6 +48,10 @@
             app:destination="@id/mainFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"/>
+
+        <action
+            android:id="@+id/action_browse_to_mainFragment"
+            app:destination="@id/mainFragment"/>
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -61,10 +65,10 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_prudoctListFragment"
-            app:destination="@id/prudoctPageFragment" />
+            app:destination="@id/productPageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/prudoctPageFragment"
+        android:id="@+id/productPageFragment"
         android:name="com.example.firstdayjava.ui.fragments.product_page.ProductsPageFragment"
         android:label="fragment_prudoct_page"
         tools:layout="@layout/fragment_prudoct_page" />

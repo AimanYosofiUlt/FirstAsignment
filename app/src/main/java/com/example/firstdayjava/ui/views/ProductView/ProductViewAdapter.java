@@ -1,6 +1,7 @@
 package com.example.firstdayjava.ui.views.ProductView;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,22 +9,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.pojo.local.entities.Product;
-import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewHolder> {
-    List<Product> list = new ArrayList<>();
+    List<ProductViewData> list = new ArrayList<>();
     String showType;
 
-    List<ProductViewHolder> viewList = new ArrayList<>();
+    ProductViewListener listener;
 
-    public ProductViewAdapter(String showType) {
+
+    public ProductViewAdapter(String showType, ProductViewListener listener) {
         this.showType = showType;
+        this.listener = listener;
     }
 
-    public void setList(List<Product> list) {
+    public void setList(List<ProductViewData> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -31,10 +33,8 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewHolder> 
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ProductViewHolder productViewHolder = new ProductViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.view_product, parent, false)
-        );
-        viewList.add(productViewHolder);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_product, parent, false);
+        ProductViewHolder productViewHolder = new ProductViewHolder(itemView, listener);
         return productViewHolder;
     }
 

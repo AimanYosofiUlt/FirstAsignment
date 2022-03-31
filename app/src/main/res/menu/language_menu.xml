@@ -9,7 +9,7 @@
     <item
         android:id="@+id/ar"
         app:showAsAction="always|withText"
-        android:icon="@drawable/flag_egypt"
+        android:icon="@drawable/flag_saudi_arabia"
         android:title="@string/arabic" />
 
 </menu>
