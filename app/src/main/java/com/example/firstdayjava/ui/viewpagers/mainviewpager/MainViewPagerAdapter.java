@@ -35,7 +35,7 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return new CategoryFragment();
+        return fragments.get(position);
     }
 
     @Override

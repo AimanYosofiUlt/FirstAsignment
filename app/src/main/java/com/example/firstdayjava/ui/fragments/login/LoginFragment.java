@@ -23,7 +23,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentLoginBinding;
 import com.example.firstdayjava.ui.activities.main.MainActivity;
-import com.example.firstdayjava.ui.fragments.ResponseState;
+import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 import com.github.razir.progressbutton.ButtonTextAnimatorExtensionsKt;
 import com.github.razir.progressbutton.DrawableButtonExtensionsKt;
 import com.github.razir.progressbutton.ProgressButtonHolderKt;
@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(ResponseState loginState) {
                 hideProgressCustom();
-                if (loginState.isSuccssful()) {
+                if (loginState.isSuccessful()) {
                     NavHostFragment
                             .findNavController(LoginFragment.this)
                             .navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment());

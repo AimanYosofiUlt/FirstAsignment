@@ -20,7 +20,7 @@ import com.example.firstdayjava.pojo.repos.CartRepo;
 import com.example.firstdayjava.pojo.repos.CategoryRepo;
 import com.example.firstdayjava.pojo.repos.ProductFilterRepo;
 import com.example.firstdayjava.pojo.repos.ProductRepo;
-import com.example.firstdayjava.ui.fragments.ResponseState;
+import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 
 import java.util.List;
 

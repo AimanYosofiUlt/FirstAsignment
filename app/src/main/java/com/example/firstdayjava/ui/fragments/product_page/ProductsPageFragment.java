@@ -57,18 +57,15 @@ public class ProductsPageFragment extends BaseFragment {
         viewModel.categoryMDL.observe(getViewLifecycleOwner(),
                 categories -> {
                     pagerAdapter.setFragmentsByCategories(categories);
-                    Log.d("ProductsPageFragment", "initViewModel: 98896 " + categories.size());
                 });
 
         viewModel.responseStateMDL.observe(getViewLifecycleOwner(), responseState -> {
-            if (!responseState.isSuccssful()) {
+            if (!responseState.isSuccessful()) {
                 // TODO: 3/28/22 show offline image
                 Toast.makeText(requireContext(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(requireContext(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
             }
-
-            Log.d("ProductListFragment", "onChanged: 98455 " + responseState.getMessage());
         });
 
         viewModel.filterLiveData.observe(getViewLifecycleOwner(), filter -> {
@@ -78,7 +75,6 @@ public class ProductsPageFragment extends BaseFragment {
 
             sortBottomSheet = new ProductSortBottomSheet(filter,
                     fromSheetFilter -> viewModel.updateProductFilter(fromSheetFilter));
-            Log.d("ProductsPageFragment", "initViewModel: 75621 :" + filter.getOrderBy());
         });
 
         viewModel.amountLiveData.observe(getViewLifecycleOwner(),

@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData;
 
 import com.example.firstdayjava.pojo.local.database.AppDao;
 import com.example.firstdayjava.pojo.local.entities.Cart;
+import com.example.firstdayjava.ui.views.ProductView.ProductViewData;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,5 +28,14 @@ public class CartRepo {
 
     public LiveData<Integer> getAmount() {
         return appDao.getAmount();
+    }
+
+    public LiveData<List<ProductViewData>> getCartData() {
+        return appDao.getCartData();
+    }
+
+
+    public LiveData<List<Integer>> getCartTotal() {
+        return appDao.getCartTotal();
     }
 }

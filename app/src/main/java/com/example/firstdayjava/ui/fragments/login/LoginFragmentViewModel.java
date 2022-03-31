@@ -13,7 +13,7 @@ import com.example.firstdayjava.pojo.remote.models.login.LoginPostBody;
 import com.example.firstdayjava.pojo.remote.models.login.LoginResponse;
 import com.example.firstdayjava.pojo.repos.AppSettingRepo;
 import com.example.firstdayjava.pojo.repos.UserRepo;
-import com.example.firstdayjava.ui.fragments.ResponseState;
+import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 
 import javax.inject.Inject;
 

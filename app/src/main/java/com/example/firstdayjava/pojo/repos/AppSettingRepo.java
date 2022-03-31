@@ -1,8 +1,7 @@
 package com.example.firstdayjava.pojo.repos;
 
-import androidx.lifecycle.LiveData;
-
 import com.example.firstdayjava.pojo.local.database.AppDao;
+import com.example.firstdayjava.pojo.local.entities.User;
 import com.example.firstdayjava.pojo.local.entities.setting.AppSetting;
 
 import javax.inject.Inject;
@@ -34,5 +33,17 @@ public class AppSettingRepo {
 
     public String getUserCode(){
         return appDao.getUserCode();
+    }
+
+    public void logOut() {
+        appDao.setToNoUser(AppSetting.NO_USER);
+    }
+
+    public User getAppUser() {
+        return appDao.getAppUser();
+    }
+
+    public void setUserProfile(String firstName, String lastName, String email) {
+        appDao.setUserProfile(firstName,lastName,email);
     }
 }

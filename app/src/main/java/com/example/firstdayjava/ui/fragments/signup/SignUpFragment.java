@@ -24,10 +24,9 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentEditBinding;
-import com.example.firstdayjava.pojo.local.entities.User;
 import com.example.firstdayjava.pojo.remote.models.signup.SignUpPostBody;
 import com.example.firstdayjava.ui.activities.MapActivity;
-import com.example.firstdayjava.ui.fragments.ResponseState;
+import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 
 import javax.inject.Inject;
 
@@ -76,7 +75,7 @@ public class SignUpFragment extends Fragment {
         viewModel.signUpState.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState state) {
-                if (state.isSuccssful())
+                if (state.isSuccessful())
                     finishSignUp();
                 else
                     showDialog(state.getMessage());

@@ -55,5 +55,34 @@
     <string name="item_name">Item Name</string>
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
+    <string name="proceed_to_checkout">Proceed to checkout</string>
+    <string name="sub_total">Sub total</string>
+    <string name="cart">Cart</string>
+    <string name="deleteTitle">Delete</string>
+    <string name="deleteMsg">You Going now to delete this item, are you sure?</string>
+    <string name="yes">Yes</string>
+    <string name="cancle">Cancle</string>
+    <string name="my_account">My Account</string>
+    <string name="others">Others</string>
+    <string name="settings">settings</string>
+    <string name="change_password">Change Password</string>
+    <string name="favorites">Favorites</string>
+    <string name="addresses">Addresses</string>
+    <string name="profile">Profile</string>
+    <string name="language_options">Language options</string>
+    <string name="log_out">Log out</string>
+    <string name="terms_and_conditions">terms and conditions</string>
+    <string name="about_us">about us</string>
+    <string name="contact_us">contact us</string>
+    <string name="more">More</string>
+    <string name="changeLang">Language Change</string>
+    <string name="logout_msg">Are you sure you want to log out this account?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="personal_information">personal information</string>
+    <string name="edit">edit</string>
+    <string name="full_name">full name</string>
+    <string name="enter_you_name">Enter You Name</string>
+    <string name="enter_you_email">Enter you email</string>
 
 </resources>

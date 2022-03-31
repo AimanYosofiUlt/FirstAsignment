@@ -16,7 +16,7 @@ import com.example.firstdayjava.pojo.remote.models.category.MainPagePostBody;
 import com.example.firstdayjava.pojo.remote.models.category.MainPageResponse;
 import com.example.firstdayjava.pojo.remote.models.category.SubCategoryData;
 import com.example.firstdayjava.pojo.repos.CategoryRepo;
-import com.example.firstdayjava.ui.fragments.ResponseState;
+import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 
 import java.util.ArrayList;
 import java.util.List;

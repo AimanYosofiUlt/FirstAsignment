@@ -18,7 +18,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.firstdayjava.databinding.FragmentCategoryBinding;
-import com.example.firstdayjava.ui.fragments.ResponseState;
+import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 import com.example.firstdayjava.ui.viewpagers.adsviewpager.AdsPagerAdapter;
 import com.example.firstdayjava.ui.views.CategoryView.CategoryAdapter;
 
@@ -61,7 +61,7 @@ public class CategoryFragment extends Fragment {
             public void onChanged(ResponseState responseState) {
                 bd.waitPB.setVisibility(View.GONE);
                 Toast.makeText(requireActivity(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
-                if (responseState.isSuccssful()) {
+                if (responseState.isSuccessful()) {
                     bd.offlineImg.setVisibility(View.GONE);
                 } else {
                     bd.offlineImg.setVisibility(View.VISIBLE);

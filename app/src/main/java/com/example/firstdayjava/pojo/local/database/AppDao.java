@@ -109,4 +109,23 @@ public interface AppDao {
 
     @Query("SELECT COUNT(itemCode) FROM cart")
     LiveData<Integer> getAmount();
+
+    @Query("SELECT p.*, c.quantity  AS amount  " +
+            " FROM Product p, Cart c " +
+            " WHERE p.itemCode  = c.itemCode " +
+            " ORDER BY name  ")
+    LiveData<List<ProductViewData>> getCartData();
+
+    @Query("SELECT SUM(p.price * c.quantity) FROM CART c, Product p where c.itemCode = p.itemCode")
+    LiveData<List<Integer>> getCartTotal();
+
+    @Query("Update AppSetting set currentUserCode = :noUser")
+    void setToNoUser(String noUser);
+
+    @Query("SELECT u.* FROM User u, AppSetting s WHERE s.currentUserCode = u.userCode")
+    User getAppUser();
+
+    @Query("Update User SET firstName = :firstName, lastName = :lastName, email = :email " +
+            " WHERE userCode = (SELECT currentUserCode FROM AppSetting)")
+    void setUserProfile(String firstName, String lastName, String email);
 }
