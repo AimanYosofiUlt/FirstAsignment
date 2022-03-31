@@ -34,7 +34,7 @@ public interface AppDao {
     @Update
     void updateUser(User user);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertUserFromLogin(User user);
 
     @Query("Select * FROM Category")
@@ -44,10 +44,10 @@ public interface AppDao {
     List<SubCategory> getSubCategories(String categoryCode);
 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertCategory(Category category);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertSubCategory(SubCategory subCategory);
 
     @Query("SELECT p.*, " +
@@ -66,7 +66,17 @@ public interface AppDao {
             "       CASE :orderBy WHEN 'price DESC' THEN p.price END DESC")
     List<ProductViewData> getProductData(String catCode, String subCatCode, String orderBy);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+
+    @Query("SELECT p.*, " +
+            "       (CASE WHEN (SELECT quantity FROM cart  c WHERE p.itemCode = c.itemCode)  IS NOT NULL " +
+            "           THEN (SELECT quantity FROM cart  c WHERE p.itemCode = c.itemCode) " +
+            "           ELSE 0 END) AS amount  " +
+            "FROM Product p, ProductPageFilter f " +
+            "   WHERE itemCode != :itemCode and categoryCode = :categoryCode " +
+            "   ORDER BY name ")
+    List<ProductViewData> getOtherProduct(String itemCode, String categoryCode);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertProduct(Product product);
 
     @Query("INSERT INTO ProductPageFilter " +
@@ -98,10 +108,10 @@ public interface AppDao {
     @Query("INSERT INTO appsetting SELECT 0,'no_user','default' WHERE NOT EXISTS (SELECT 1 FROM AppSetting WHERE id = 0 )")
     void initSetting();
 
-    @Query("SELECT userCode FROM USER")
+    @Query("SELECT currentUserCode FROM AppSetting")
     String getUserCode();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertCart(Cart cart);
 
     @Delete
@@ -116,6 +126,12 @@ public interface AppDao {
             " ORDER BY name  ")
     LiveData<List<ProductViewData>> getCartData();
 
+    @Query("SELECT p.*, c.quantity  AS amount  " +
+            " FROM Product p, Cart c " +
+            " WHERE p.itemCode  = c.itemCode and favState = 1 " +
+            " ORDER BY name  ")
+    LiveData<List<ProductViewData>> getFavoriteData();
+
     @Query("SELECT SUM(p.price * c.quantity) FROM CART c, Product p where c.itemCode = p.itemCode")
     LiveData<List<Integer>> getCartTotal();
 
@@ -128,4 +144,10 @@ public interface AppDao {
     @Query("Update User SET firstName = :firstName, lastName = :lastName, email = :email " +
             " WHERE userCode = (SELECT currentUserCode FROM AppSetting)")
     void setUserProfile(String firstName, String lastName, String email);
+
+    @Query("Update Product SET favState = :favState WHERE itemCode = :itemCode")
+    void updateProductFavState(String itemCode, Integer favState);
+
+    @Query("SELECT favState FROM Product WHERE itemCode = :itemCode")
+    Integer getFavState(String itemCode);
 }

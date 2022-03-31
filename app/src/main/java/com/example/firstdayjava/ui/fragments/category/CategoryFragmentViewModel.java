@@ -49,12 +49,12 @@ public class CategoryFragmentViewModel extends AndroidViewModel {
                 List<AdsSlider> adsSliders = response.getData().getAdsSliders();
                 adsMDL.postValue(adsSliders);
 
-                responseStateMDL.postValue(new ResponseState(true, "DONE"));
+                responseStateMDL.postValue(new ResponseState());
             }
 
             @Override
             public void onFailure(Result result) {
-                responseStateMDL.postValue(new ResponseState(false, result.getErrMsg()));
+                responseStateMDL.postValue(new ResponseState(result.getErrMsg()));
 
                 List<Category> categories = categoryRepo.getOfflineCategories();
                 categoriesMDL.postValue(categories);

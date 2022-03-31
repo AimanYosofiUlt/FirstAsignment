@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData;
 
 import com.example.firstdayjava.pojo.local.database.AppDao;
 import com.example.firstdayjava.pojo.local.entities.User;
-import com.example.firstdayjava.pojo.local.models.responses.SignUpResponse;
 import com.example.firstdayjava.pojo.remote.api.UltimateApi;
+import com.example.firstdayjava.pojo.remote.callpack.BaseResponse;
 import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
 import com.example.firstdayjava.pojo.remote.models.login.LoginData;
@@ -70,7 +70,7 @@ public class UserRepo {
         appDao.insertUserFromLogin(user);
     }
 
-    public void signUp(SignUpPostBody postBody, ResponsesCallBack<SignUpResponse> callBack) {
+    public void signUp(SignUpPostBody postBody, ResponsesCallBack<BaseResponse> callBack) {
         api.signup(postBody).enqueue(callBack);
     }
 }

@@ -155,7 +155,14 @@ public class Migrations {
                     "    currentUserCode TEXT DEFAULT '" + AppSetting.NO_USER + "'," +
                     "    language TEXT NOT NULL DEFAULT '" + AppSetting.DEFAULT + "')");
 
-            database.execSQL("INSERT INTO AppSetting DEFAULT VALUES"); 
+            database.execSQL("INSERT INTO AppSetting DEFAULT VALUES");
+        }
+    };
+
+    static final Migration MIGRATION_12_13 = new Migration(12, 13) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE Product ADD COLUMN favState INTEGER DEFAULT 0");
         }
     };
 }

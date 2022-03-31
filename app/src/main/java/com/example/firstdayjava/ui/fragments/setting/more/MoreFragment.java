@@ -108,6 +108,26 @@ public class MoreFragment extends BaseFragment {
         });
 
         bd.profileBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_moreFragment_to_profileFragment));
+
+        bd.addressBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
+                .navigate(R.id.action_moreFragment_to_addressFragment));
+
+        bd.termsBtn.setOnClickListener(view -> new AlertDialog.Builder(requireContext())
+                .setView(LayoutInflater.from(requireContext()).inflate(R.layout.about, null, false))
+                .create()
+                .show());
+
+        bd.aboutUsBtn.setOnClickListener(view -> new AlertDialog.Builder(requireContext())
+                .setView(LayoutInflater.from(requireContext()).inflate(R.layout.about, null, false))
+                .create()
+                .show());
+
+        bd.contactUsBtn.setOnClickListener(view -> new AlertDialog.Builder(requireContext())
+                .setView(LayoutInflater.from(requireContext()).inflate(R.layout.about, null, false))
+                .create()
+                .show());
+
+
     }
 
 }

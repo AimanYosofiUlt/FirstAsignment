@@ -9,6 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.firstdayjava.pojo.local.entities.Category;
 import com.example.firstdayjava.ui.fragments.product_list.ProductListFragment;
+import com.example.firstdayjava.ui.fragments.product_list.ProductListListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +30,11 @@ public class ProductListViewPagerAdapter extends FragmentStateAdapter {
         super(fragmentManager, lifecycle);
     }
 
-    public void setFragmentsByCategories(List<Category> categories) {
+    public void setFragmentsByCategories(List<Category> categories, ProductListListener productListListener) {
+        fragments.clear();
         this.categories = categories;
         for (Category category : categories) {
-            fragments.add(new ProductListFragment(category));
+            fragments.add(new ProductListFragment(category,productListListener));
         }
         notifyDataSetChanged();
     }

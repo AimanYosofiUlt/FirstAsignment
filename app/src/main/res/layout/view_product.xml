@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
+    android:id="@+id/mainCard"
     app:cardElevation="7dp"
     app:cardCornerRadius="25dp"
     app:contentPadding="0dp"

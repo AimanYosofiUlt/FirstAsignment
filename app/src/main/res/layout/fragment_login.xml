@@ -88,6 +88,7 @@
     <com.example.firstdayjava.ui.views.BouncyImage
         android:id="@+id/languageOpt"
         android:layout_width="28dp"
+        android:tint="@color/white"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"

@@ -49,4 +49,15 @@ public class ProductRepo {
         return appDao.getProductData(catCode,subCatCode,orderBy);
     }
 
+    public List<ProductViewData> getOtherProduct(String itemCode, String categoryCode) {
+        return appDao.getOtherProduct(itemCode,categoryCode);
+    }
+
+    public void setProductFavState(Product product) {
+        appDao.updateProductFavState(product.getItemCode(),product.getFavState());
+    }
+
+    public Integer getFavState(String itemCode) {
+        return appDao.getFavState(itemCode);
+    }
 }

@@ -6,4 +6,6 @@ public interface ProductViewListener {
     void onAmountChange(ProductViewData data);
 
     void onAmountEmpty(Product product);
+
+    void onProductShowReq(ProductViewData data);
 }

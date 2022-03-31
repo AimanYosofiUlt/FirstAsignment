@@ -1,7 +1,6 @@
 package com.example.firstdayjava.ui.fragments.product_page;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -11,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.firstdayjava.pojo.local.entities.Category;
 import com.example.firstdayjava.pojo.local.entities.Product;
 import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
+import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
 import com.example.firstdayjava.pojo.remote.models.product.Item;
@@ -20,7 +20,6 @@ import com.example.firstdayjava.pojo.repos.CartRepo;
 import com.example.firstdayjava.pojo.repos.CategoryRepo;
 import com.example.firstdayjava.pojo.repos.ProductFilterRepo;
 import com.example.firstdayjava.pojo.repos.ProductRepo;
-import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 
 import java.util.List;
 
@@ -69,20 +68,18 @@ public class ProductsPageFragmentViewModel extends AndroidViewModel {
                     productRepo.addProduct(product);
                 }
 
-                sendState(true, response.getResult());
+                ResponseState state = new ResponseState();
+                responseStateMDL.postValue(state);
+                getOfflineCategory();
             }
 
-            private void sendState(Boolean isSuccessful, Result result) {
-                ResponseState state = new ResponseState(isSuccessful, result.getErrMsg());
-                responseStateMDL.postValue(state);
+            private void getOfflineCategory() {
                 List<Category> offlineCategories = categoryRepo.getOfflineCategories();
-                Log.d("ProductsPageFVM", "sendState: 98456: " + offlineCategories.size());
                 categoryMDL.postValue(offlineCategories);
             }
 
             private Product convertItemToProduct(Item item) {
                 Product product = new Product();
-                Log.d("ProductsPageFVM", "convertItemToProduct: 857 " + item.getItemCode());
                 product.setItemCode(item.getItemCode());
                 product.setName(item.getItemName());
                 product.setPrice(item.getPrice());
@@ -92,6 +89,7 @@ public class ProductsPageFragmentViewModel extends AndroidViewModel {
                 product.setCurrencyCode(item.getCurrencyCode());
                 product.setCategoryCode(item.getCategoryCode());
                 product.setSubCategoryCode(item.getSubCategoryCode());
+                product.setFavState(Product.NOT_IN_FAV_STATE);
 
                 List<ItemImage> images = item.getImages();
                 if (images.size() > 0) {
@@ -104,7 +102,9 @@ public class ProductsPageFragmentViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Result result) {
-                sendState(false, result);
+                ResponseState state = new ResponseState(result.getErrMsg());
+                responseStateMDL.postValue(state);
+                getOfflineCategory();
             }
         });
     }

@@ -4,15 +4,17 @@ import androidx.room.Ignore;
 
 import com.example.firstdayjava.pojo.local.entities.Product;
 
-public class ProductViewData extends Product {
+import java.io.Serializable;
+
+public class ProductViewData extends Product implements Serializable {
     public int amount;
 
     public ProductViewData() {
     }
 
     @Ignore
-    public ProductViewData(String itemCode, String name, Integer price, String description, String currencyCode, String descriptionF, String itemNameF, String categoryCode, String subCategoryCode, String imageUrl, int amount) {
-        super(itemCode, name, price, description, currencyCode, descriptionF, itemNameF, categoryCode, subCategoryCode, imageUrl);
+    public ProductViewData(String itemCode, String name, Integer price, String description, String currencyCode, String descriptionF, String itemNameF, String categoryCode, String subCategoryCode, String imageUrl,int favState, int amount) {
+        super(itemCode, name, price, description, currencyCode, descriptionF, itemNameF, categoryCode, subCategoryCode, imageUrl,favState);
         this.amount = amount;
     }
 
@@ -21,7 +23,7 @@ public class ProductViewData extends Product {
         super(product.getItemCode(), product.getName(), product.getPrice(),
                 product.getDescription(), product.getCurrencyCode(), product.getDescriptionF(),
                 product.getItemNameF(), product.getCategoryCode(), product.getSubCategoryCode(),
-                product.getImageUrl());
+                product.getImageUrl(), product.getFavState());
 
         this.amount = amount;
     }
@@ -30,7 +32,7 @@ public class ProductViewData extends Product {
         return new Product(
                 getItemCode(),getName(),getPrice(),getDescription(),
                 getCurrencyCode(),getDescriptionF(),getItemNameF(),getCategoryCode(),
-                getSubCategoryCode(),getImageUrl()
+                getSubCategoryCode(),getImageUrl(),getFavState()
         );
     }
 

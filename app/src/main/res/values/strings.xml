@@ -84,5 +84,24 @@
     <string name="full_name">full name</string>
     <string name="enter_you_name">Enter You Name</string>
     <string name="enter_you_email">Enter you email</string>
+    <string name="visit_us">Visit Us</string>
+    <string name="about_us_info">Ultimate Solutions is an IT company specialized in developing ERP solutions and specialized systems. \nUltimate Solutions was found in 1993, and since then we have been keen on providing the market with optimal IT solutions in accordance with global standards and advanced technology.</string>
+    <string name="description">Description</string>
+    <string name="show_more">Show more</string>
+    <string name="address_details">Address Details</string>
+    <string name="street">Street</string>
+    <string name="building">Building</string>
+    <string name="apartment">Apartment</string>
+    <string name="floor">Floor</string>
+    <string name="nearst_landmark">Nearst Landmark</string>
+    <string name="optional">(Optional)</string>
+    <string name="location_details">Location Details</string>
+    <string name="latitude_longitude">Latitude - Longitude</string>
+    <string name="location_type">Location Type</string>
+    <string name="contact_details">Contact Details</string>
+    <string name="landline_number">Landline number</string>
+    <string name="save_address">Save Address</string>
+    <string name="add_new_address">+Add New Address</string>
+    <string name="map_location">Map Location</string>
 
 </resources>

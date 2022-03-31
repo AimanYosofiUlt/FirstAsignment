@@ -7,9 +7,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.firstdayjava.R;
+import com.example.firstdayjava.pojo.remote.callpack.BaseResponse;
 import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
-import com.example.firstdayjava.pojo.local.models.responses.SignUpResponse;
 import com.example.firstdayjava.pojo.remote.models.signup.SignUpPostBody;
 import com.example.firstdayjava.pojo.repos.UserRepo;
 import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
@@ -30,16 +30,16 @@ public class SignUpFragmentViewModel extends AndroidViewModel {
     }
 
     public void signUp(SignUpPostBody postBody) {
-        userRepo.signUp(postBody, new ResponsesCallBack<SignUpResponse>() {
+        userRepo.signUp(postBody, new ResponsesCallBack<BaseResponse>() {
             @Override
-            public void onSuccess(SignUpResponse response) {
-                ResponseState state = new ResponseState(true, getApplication().getString(R.string.done));
+            public void onSuccess(BaseResponse response) {
+                ResponseState state = new ResponseState();
                 signUpState.postValue(state);
             }
 
             @Override
             public void onFailure(Result result) {
-                ResponseState state = new ResponseState(false);
+                ResponseState state = new ResponseState(result.getErrMsg());
                 int errorNo = result.getErrNo();
                 switch (errorNo) {
                     case 602:

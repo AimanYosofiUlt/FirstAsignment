@@ -1,6 +1,7 @@
 package com.example.firstdayjava.pojo.local.entities;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -23,11 +24,17 @@ public class Product {
     String subCategoryCode;
     String imageUrl;
 
+    @ColumnInfo(defaultValue = "0")
+    Integer favState;
+
+    public static final int IN_FAV_STATE = 1;
+    public static final int NOT_IN_FAV_STATE = 0;
+
     public Product() {
     }
 
     @Ignore
-    public Product(String itemCode, String name, Integer price, String description, String currencyCode, String descriptionF, String itemNameF, String categoryCode, String subCategoryCode, String imageUrl) {
+    public Product(@NonNull String itemCode, String name, Integer price, String description, String currencyCode, String descriptionF, String itemNameF, String categoryCode, String subCategoryCode, String imageUrl, Integer favState) {
         this.itemCode = itemCode;
         this.name = name;
         this.price = price;
@@ -38,7 +45,9 @@ public class Product {
         this.categoryCode = categoryCode;
         this.subCategoryCode = subCategoryCode;
         this.imageUrl = imageUrl;
+        this.favState = favState;
     }
+
 
     public String getItemCode() {
         return itemCode;
@@ -118,5 +127,13 @@ public class Product {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Integer getFavState() {
+        return favState;
+    }
+
+    public void setFavState(Integer favState) {
+        this.favState = favState;
     }
 }

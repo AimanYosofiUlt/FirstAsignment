@@ -15,7 +15,8 @@ import com.example.firstdayjava.pojo.local.entities.User;
 import com.example.firstdayjava.pojo.local.entities.setting.AppSetting;
 import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 
-@Database(entities = {User.class, Category.class, Product.class, ProductPageFilter.class, SubCategory.class, Cart.class, AppSetting.class}, version = 13, exportSchema = false)
+@Database(entities = {User.class, Category.class, Product.class, ProductPageFilter.class, SubCategory.class, Cart.class, AppSetting.class},
+        version = 13, exportSchema = false)
 @TypeConverters({AppDBConvertor.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -44,6 +45,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 addMigrations(Migrations.MIGRATION_9_10).
                 addMigrations(Migrations.MIGRATION_10_11).
                 addMigrations(Migrations.MIGRATION_11_12).
+                addMigrations(Migrations.MIGRATION_12_13).
                 allowMainThreadQueries().build();
     }
 

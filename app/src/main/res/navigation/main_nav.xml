@@ -62,7 +62,7 @@
         android:id="@+id/mainFragment"
         android:name="com.example.firstdayjava.ui.fragments.main.MainFragment"
         android:label="fragment_main2"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_prudoctListFragment"
             app:destination="@id/productPageFragment" />
@@ -71,5 +71,27 @@
         android:id="@+id/productPageFragment"
         android:name="com.example.firstdayjava.ui.fragments.product_page.ProductsPageFragment"
         android:label="fragment_prudoct_page"
-        tools:layout="@layout/fragment_prudoct_page" />
+        tools:layout="@layout/fragment_prudoct_page">
+        <action
+            android:id="@+id/action_productPageFragment_to_productInfoFragment"
+            app:destination="@id/productInfoFragment" />
+        <action
+            android:id="@+id/action_productPageFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productInfoFragment"
+        android:name="com.example.firstdayjava.ui.fragments.product_info.ProductInfoFragment"
+        android:label="fragment_product_info"
+        tools:layout="@layout/fragment_product_info">
+        <argument
+            android:name="productData"
+            app:argType="com.example.firstdayjava.ui.views.ProductView.ProductViewData"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        tools:layout="@layout/fragment_favorite"
+        android:name="com.example.firstdayjava.ui.fragments.favoraite.FavoriteFragment"
+        android:label="FavoriteFragment" />
 </navigation>

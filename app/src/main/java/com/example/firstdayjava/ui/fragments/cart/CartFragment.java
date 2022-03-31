@@ -62,6 +62,11 @@ public class CartFragment extends Fragment {
                 });
             }
 
+            @Override
+            public void onProductShowReq(ProductViewData data) {
+
+            }
+
             private void showAlertDialog(DialogInterface.OnClickListener onClickListener) {
                 new AlertDialog.Builder(requireContext())
                         .setTitle(getString(R.string.deleteTitle))

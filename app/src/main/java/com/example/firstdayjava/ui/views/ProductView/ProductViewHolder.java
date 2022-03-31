@@ -1,6 +1,8 @@
 package com.example.firstdayjava.ui.views.ProductView;
 
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -25,6 +27,15 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void initEvent() {
+        bd.mainCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onProductShowReq(data);
+
+                Animation animation = AnimationUtils.loadAnimation(itemView.getContext(), com.example.firstdayjava.R.anim.bounce);
+                bd.mainCard.startAnimation(animation);
+            }
+        });
         bd.addBtn.setOnClickListener(view -> {
             data.amount++;
             bd.amoutTV.setText(String.valueOf(data.amount));

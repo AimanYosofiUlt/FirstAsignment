@@ -29,6 +29,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class ProductListFragment extends BaseFragment implements ProductViewListener {
     FragmentPrudoctListBinding bd;
 
+    ProductListListener listener;
+
     SubCategoryAdapter typeAdapter;
     ProductViewAdapter productAdapter;
 
@@ -39,8 +41,9 @@ public class ProductListFragment extends BaseFragment implements ProductViewList
     @Inject
     ProductListFragmentViewModel viewModel;
 
-    public ProductListFragment(Category category) {
+    public ProductListFragment(Category category,ProductListListener listener) {
         this.category = category;
+        this.listener = listener;
     }
 
     @Override
@@ -133,5 +136,10 @@ public class ProductListFragment extends BaseFragment implements ProductViewList
     @Override
     public void onAmountEmpty(Product product) {
         viewModel.deleteFromCart(product);
+    }
+
+    @Override
+    public void onProductShowReq(ProductViewData data) {
+        listener.onProductShowReq(data);
     }
 }

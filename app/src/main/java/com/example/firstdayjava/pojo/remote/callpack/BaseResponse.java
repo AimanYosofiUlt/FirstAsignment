@@ -1,10 +1,10 @@
-package com.example.firstdayjava.pojo.local.models.responses;
+package com.example.firstdayjava.pojo.remote.callpack;
 
 import com.example.firstdayjava.pojo.remote.callpack.ResponseObject;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
 
-public class SignUpResponse extends ResponseObject {
-    public SignUpResponse(Result result) {
+public class BaseResponse extends ResponseObject {
+    public BaseResponse(Result result) {
         super(result);
     }
 }

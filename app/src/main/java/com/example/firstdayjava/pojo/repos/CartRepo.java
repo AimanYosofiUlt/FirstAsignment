@@ -34,8 +34,11 @@ public class CartRepo {
         return appDao.getCartData();
     }
 
-
     public LiveData<List<Integer>> getCartTotal() {
         return appDao.getCartTotal();
+    }
+
+    public LiveData<List<ProductViewData>> getFavoriteData() {
+        return appDao.getFavoriteData();
     }
 }

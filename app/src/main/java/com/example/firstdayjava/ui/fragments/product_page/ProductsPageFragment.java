@@ -1,8 +1,6 @@
 package com.example.firstdayjava.ui.fragments.product_page;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +8,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentPrudoctPageBinding;
+import com.example.firstdayjava.pojo.local.entities.Category;
 import com.example.firstdayjava.ui.fragments.base.BaseFragment;
+import com.example.firstdayjava.ui.fragments.product_list.ProductListListener;
 import com.example.firstdayjava.ui.viewpagers.prudoctlist.ProductListViewPagerAdapter;
 import com.example.firstdayjava.ui.views.BottomSheets.ProductFilterBottomSheet;
 import com.example.firstdayjava.ui.views.BottomSheets.ProductSortBottomSheet;
+import com.example.firstdayjava.ui.views.ProductView.ProductViewData;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -54,10 +59,22 @@ public class ProductsPageFragment extends BaseFragment {
 
     @Override
     protected void initViewModel() {
-        viewModel.categoryMDL.observe(getViewLifecycleOwner(),
-                categories -> {
-                    pagerAdapter.setFragmentsByCategories(categories);
+        viewModel.categoryMDL.observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
+            @Override
+            public void onChanged(List<Category> categories) {
+                pagerAdapter.setFragmentsByCategories(categories, new ProductListListener() {
+                    @Override
+                    public void onProductShowReq(ProductViewData data) {
+                        NavHostFragment
+                                .findNavController(requireParentFragment())
+                                .navigate(
+                                        ProductsPageFragmentDirections
+                                                .actionProductPageFragmentToProductInfoFragment(data)
+                                );
+                    }
                 });
+            }
+        });
 
         viewModel.responseStateMDL.observe(getViewLifecycleOwner(), responseState -> {
             if (!responseState.isSuccessful()) {
@@ -94,6 +111,14 @@ public class ProductsPageFragment extends BaseFragment {
 
         bd.showSortBtn.setOnClickListener(view ->
                 sortBottomSheet.show(getParentFragmentManager(), "Sort"));
+
+        bd.openFavBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(requireParentFragment())
+                        .navigate(R.id.action_productPageFragment_to_favoriteFragment);
+            }
+        });
     }
 
     private void initPagerView() {
@@ -102,10 +127,14 @@ public class ProductsPageFragment extends BaseFragment {
         bd.viewPager.setUserInputEnabled(false);
 
         TabLayoutMediator layoutMediator = new TabLayoutMediator(bd.categoryTabL, bd.viewPager, (tab, position) -> {
-            @SuppressLint("InflateParams") View view = LayoutInflater.from(bd.getRoot().getContext()).inflate(R.layout.view_categoryfortab, null);
-            String name = pagerAdapter.getCategories().get(position).getCategoryName();
-            ((TextView) view.findViewById(R.id.categoryNameTV)).setText(name);
-            tab.setCustomView(view);
+            View view = LayoutInflater.from(bd.getRoot().getContext()).inflate(R.layout.view_categoryfortab, null, false);
+            try {
+                String name = pagerAdapter.getCategories().get(position).getCategoryName();
+                ((TextView) view.findViewById(R.id.categoryNameTV)).setText(name);
+                tab.setCustomView(view);
+            } catch (Exception exception) {
+
+            }
         });
         layoutMediator.attach();
     }

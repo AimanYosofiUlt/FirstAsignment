@@ -4,12 +4,13 @@ public class ResponseState {
     Boolean isSuccessful;
     String message;
 
-    public ResponseState(Boolean isSuccessful) {
-        this.isSuccessful = isSuccessful;
+    public ResponseState() {
+        this.isSuccessful = true;
+        this.message = "DONE";
     }
 
-    public ResponseState(Boolean isSuccessful, String message) {
-        this.isSuccessful = isSuccessful;
+    public ResponseState(String message) {
+        this.isSuccessful = false;
         this.message = message;
     }
 
