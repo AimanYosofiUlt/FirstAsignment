@@ -15,6 +15,11 @@ import java.util.List;
 
 public class AddressViewAdapter extends RecyclerView.Adapter<AddressViewHolder> {
     List<GetAddressData> list = new ArrayList<>();
+    AddressViewListener listener;
+
+    public AddressViewAdapter(AddressViewListener listener) {
+        this.listener = listener;
+    }
 
     public void setList(List<GetAddressData> list) {
         this.list = list;
@@ -25,7 +30,7 @@ public class AddressViewAdapter extends RecyclerView.Adapter<AddressViewHolder> 
     @Override
     public AddressViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_address, parent, false);
-        return new AddressViewHolder(itemView);
+        return new AddressViewHolder(itemView,listener);
     }
 
     @Override
@@ -36,5 +41,10 @@ public class AddressViewAdapter extends RecyclerView.Adapter<AddressViewHolder> 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void clearData() {
+        list.clear();
+        notifyDataSetChanged();
     }
 }

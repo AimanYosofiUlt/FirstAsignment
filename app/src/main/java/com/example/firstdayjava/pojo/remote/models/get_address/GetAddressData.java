@@ -1,8 +1,12 @@
 package com.example.firstdayjava.pojo.remote.models.get_address;
 
-public class GetAddressData {
-    String addressID;
-    String streetName;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class GetAddressData implements Serializable {
+    String addressID;//
+    String streetName;//
     String landmark;
     String addressDetails;
     String postalCode;
@@ -23,7 +27,6 @@ public class GetAddressData {
     String locationType;
     String landlineNumber;
     String userCode;
-
 
     public String getAddressID() {
         return addressID;

@@ -1,10 +1,12 @@
 package com.example.firstdayjava.ui.fragments.setting.profile;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -14,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentProfileBinding;
 import com.example.firstdayjava.pojo.local.entities.User;
+import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 import com.example.firstdayjava.ui.fragments.base.BaseFragment;
 
 import javax.inject.Inject;
@@ -26,6 +29,8 @@ public class ProfileFragment extends BaseFragment {
     ProfileFragmentViewModel viewModel;
 
     FragmentProfileBinding bd;
+
+    User currentUser;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -43,6 +48,8 @@ public class ProfileFragment extends BaseFragment {
         viewModel.appUserMDL.observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
+                currentUser = user;
+
                 String fullName = user.getFirstName() + " " + user.getLastName();
                 bd.userNameTV.setText(fullName);
                 bd.userPhoneTV.setText(user.getPhone());
@@ -64,8 +71,27 @@ public class ProfileFragment extends BaseFragment {
                 editText.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.back_white));
                 editText.setEnabled(false);
             }
+        });
 
+        viewModel.responseStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
+            @Override
+            public void onChanged(ResponseState responseState) {
+                if (!responseState.isSuccessful()) {
+                    showErrorDialog(responseState.getMessage());
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.saved), Toast.LENGTH_SHORT).show();
+                    bd.saveBtn.setVisibility(View.GONE);
+                    bd.editBtn.setVisibility(View.VISIBLE);
+                }
+            }
 
+            private void showErrorDialog(String message) {
+                new AlertDialog.Builder(requireContext())
+                        .setMessage(message)
+                        .setNegativeButton(getString(R.string.done), (dialogInterface, i) -> dialogInterface.cancel())
+                        .create()
+                        .show();
+            }
         });
     }
 
@@ -95,10 +121,10 @@ public class ProfileFragment extends BaseFragment {
         });
 
         bd.saveBtn.setOnClickListener(view -> {
-            String firstName = bd.firstNameED.getText().toString();
-            String lastName = bd.lastNameED.getText().toString();
-            String email = bd.userEmailED.getText().toString();
-            viewModel.setUserProfile(firstName, lastName, email);
+            currentUser.setFirstName(bd.firstNameED.getText().toString());
+            currentUser.setLastName(bd.lastNameED.getText().toString());
+            currentUser.setEmail(bd.userEmailED.getText().toString());
+            viewModel.updateUserProfile(currentUser);
         });
 
         bd.backBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment()).popBackStack());

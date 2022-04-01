@@ -1,4 +1,4 @@
-package com.example.firstdayjava.pojo.remote.models.add_adress;
+package com.example.firstdayjava.pojo.remote.models.edit_adress;
 
 public class AddAddressPostBody {
     String userCode;
@@ -10,19 +10,19 @@ public class AddAddressPostBody {
     String floor;
     String apartment;
     String mobile;
+    String landlinenumber;
+    String landmark;
 
     //Auto Values
-    String landmark = null;
+    String locationtype = "null";
     String cityCode = "Blr";
     String countryCode = "+91";
     String postalCode = "";
     String provinceCode = "ka";
     String regionCode = "jayanaagr";
-    String locationtype = null;
-    String landlinenumber = null;
 
 
-    public AddAddressPostBody(String userCode, String streetName, String addressDetails, String latitude, String longitude, String building, String floor, String apartment, String mobile) {
+    public AddAddressPostBody(String userCode, String streetName, String addressDetails, String latitude, String longitude, String building, String floor, String apartment, String mobile, String landlinenumber, String landmark) {
         this.userCode = userCode;
         this.streetName = streetName;
         this.addressDetails = addressDetails;
@@ -32,6 +32,9 @@ public class AddAddressPostBody {
         this.floor = floor;
         this.apartment = apartment;
         this.mobile = mobile;
+        this.landlinenumber = landlinenumber;
+        this.landmark = landmark;
+        this.locationtype = locationtype;
     }
 
     public AddAddressPostBody() {

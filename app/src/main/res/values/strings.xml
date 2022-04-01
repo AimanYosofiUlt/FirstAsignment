@@ -103,5 +103,16 @@
     <string name="save_address">Save Address</string>
     <string name="add_new_address">+Add New Address</string>
     <string name="map_location">Map Location</string>
+    <string name="edited">Edited Done</string>
+    <string name="saved" >Save Done</string>
+    <string name="update_address">Update Address</string>
+    <string name="status">Status</string>
+    <string name="total_price">Total price</string>
+    <string name="date">Date</string>
+    <string name="delivered">Delivered</string>
+    <string name="order_ndetails_n"><![CDATA[Order\nDetails\n>]]></string>
+    <string name="orders">Orders</string>
+    <string name="processed">Processed</string>
+    <string name="shipped">Shipped</string>
 
 </resources>

@@ -8,6 +8,7 @@ import com.example.firstdayjava.pojo.remote.api.UltimateApi;
 import com.example.firstdayjava.pojo.remote.callpack.BaseResponse;
 import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
+import com.example.firstdayjava.pojo.remote.models.edit_profile.EditProfilePostBody;
 import com.example.firstdayjava.pojo.remote.models.login.LoginData;
 import com.example.firstdayjava.pojo.remote.models.login.LoginPostBody;
 import com.example.firstdayjava.pojo.remote.models.login.LoginResponse;
@@ -72,5 +73,9 @@ public class UserRepo {
 
     public void signUp(SignUpPostBody postBody, ResponsesCallBack<BaseResponse> callBack) {
         api.signup(postBody).enqueue(callBack);
+    }
+
+    public void updateProfile(EditProfilePostBody postBody, ResponsesCallBack<BaseResponse> callBack) {
+        api.editProfile(postBody).enqueue(callBack);
     }
 }

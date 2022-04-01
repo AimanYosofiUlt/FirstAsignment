@@ -66,14 +66,13 @@ public interface AppDao {
             "       CASE :orderBy WHEN 'price DESC' THEN p.price END DESC")
     List<ProductViewData> getProductData(String catCode, String subCatCode, String orderBy);
 
-
     @Query("SELECT p.*, " +
             "       (CASE WHEN (SELECT quantity FROM cart  c WHERE p.itemCode = c.itemCode)  IS NOT NULL " +
             "           THEN (SELECT quantity FROM cart  c WHERE p.itemCode = c.itemCode) " +
             "           ELSE 0 END) AS amount  " +
             "FROM Product p, ProductPageFilter f " +
             "   WHERE itemCode != :itemCode and categoryCode = :categoryCode " +
-            "   ORDER BY name ")
+            "   ORDER BY name")
     List<ProductViewData> getOtherProduct(String itemCode, String categoryCode);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

@@ -12,9 +12,19 @@ public class AddressViewHolder extends RecyclerView.ViewHolder {
     GetAddressData data;
     ViewAddressBinding bd;
 
-    public AddressViewHolder(@NonNull View itemView) {
+    AddressViewListener listener;
+
+    public AddressViewHolder(@NonNull View itemView, AddressViewListener listener) {
         super(itemView);
         bd = ViewAddressBinding.bind(itemView);
+        this.listener = listener;
+        initEvent();
+    }
+
+    private void initEvent() {
+        bd.editBtn.setOnClickListener(view -> listener.onEditReqListener(data));
+
+        bd.deleteAddressBtn.setOnClickListener(view -> listener.onDeleteReqListener(data));
     }
 
     void bind(GetAddressData data) {

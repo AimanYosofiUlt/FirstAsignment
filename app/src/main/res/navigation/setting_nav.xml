@@ -29,12 +29,22 @@
         android:label="AddressFragment" >
         <action
             android:id="@+id/action_addressFragment_to_addAddressFragment"
-            app:destination="@id/addAddressFragment" />
+            app:destination="@id/editAddressFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addAddressFragment"
+        android:id="@+id/editAddressFragment"
         tools:layout="@layout/fragment_add_adress"
-        android:name="com.example.firstdayjava.ui.fragments.add_address.AddAddressFragment"
-        android:label="AddAddressFragment" />
+        android:name="com.example.firstdayjava.ui.fragments.edit_address.EditAddressFragment"
+        android:label="AddAddressFragment" >
+        <argument
+            android:name="isInEditMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="addressData"
+            app:argType="com.example.firstdayjava.pojo.remote.models.get_address.GetAddressData"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 
 </navigation>

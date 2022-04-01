@@ -13,6 +13,8 @@ import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentMainBinding;
 import com.example.firstdayjava.ui.fragments.cart.CartFragment;
 import com.example.firstdayjava.ui.fragments.category.CategoryFragment;
+import com.example.firstdayjava.ui.fragments.order.OrderFragment;
+import com.example.firstdayjava.ui.fragments.product_page.ProductsPageFragment;
 import com.example.firstdayjava.ui.fragments.setting.SettingFragment;
 import com.example.firstdayjava.ui.fragments.setting.more.MoreFragment;
 import com.example.firstdayjava.ui.viewpagers.mainviewpager.MainViewPagerAdapter;
@@ -45,6 +47,7 @@ public class MainFragment extends Fragment {
         bd.mainVP.setUserInputEnabled(false);
 
         adapter.addFragment(new CategoryFragment());
+        adapter.addFragment(new OrderFragment());
         adapter.addFragment(new CartFragment());
         adapter.addFragment(new SettingFragment());
     }

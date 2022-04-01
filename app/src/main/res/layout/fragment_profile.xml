@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4F4F4"
-    android:paddingBottom="80dp"
     tools:context=".ui.fragments.setting.profile.ProfileFragment">
 
     <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -308,12 +307,18 @@
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/ic_illustration_profile"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/space"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/saveBtn"
         app:layout_constraintVertical_bias="0.0" />
-
+    <androidx.legacy.widget.Space
+        android:id="@+id/space"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

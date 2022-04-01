@@ -17,6 +17,7 @@ import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 import com.example.firstdayjava.pojo.remote.models.get_address.GetAddressData;
 import com.example.firstdayjava.ui.fragments.base.BaseFragment;
 import com.example.firstdayjava.ui.views.address.AddressViewAdapter;
+import com.example.firstdayjava.ui.views.address.AddressViewListener;
 
 import java.util.List;
 
@@ -69,12 +70,35 @@ public class AddressFragment extends BaseFragment {
                         .show();
             }
         });
+
+        viewModel.clearDataMDL.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                adapter.clearData();
+            }
+        });
     }
 
     @Override
     protected void initModelView() {
         viewModel.getAddress();
-        adapter = new AddressViewAdapter();
+        adapter = new AddressViewAdapter(new AddressViewListener() {
+            @Override
+            public void onEditReqListener(GetAddressData data) {
+                NavHostFragment.findNavController(requireParentFragment())
+                        .navigate(
+                                AddressFragmentDirections
+                                        .actionAddressFragmentToAddAddressFragment()
+                                        .setIsInEditMode(true)
+                                        .setAddressData(data)
+                        );
+            }
+
+            @Override
+            public void onDeleteReqListener(GetAddressData data) {
+                viewModel.deleteAddress(data.getAddressID());
+            }
+        });
         bd.addressRV.setAdapter(adapter);
         bd.addressRV.setLayoutManager(new LinearLayoutManager(requireContext()));
     }

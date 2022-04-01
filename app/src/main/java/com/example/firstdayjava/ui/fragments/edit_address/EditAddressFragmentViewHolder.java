@@ -1,4 +1,4 @@
-package com.example.firstdayjava.ui.fragments.add_address;
+package com.example.firstdayjava.ui.fragments.edit_address;
 
 import android.app.Application;
 
@@ -10,13 +10,14 @@ import com.example.firstdayjava.pojo.remote.callpack.BaseResponse;
 import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
-import com.example.firstdayjava.pojo.remote.models.add_adress.AddAddressPostBody;
+import com.example.firstdayjava.pojo.remote.models.edit_adress.AddAddressPostBody;
+import com.example.firstdayjava.pojo.remote.models.edit_adress.UpdateAddressPostBody;
 import com.example.firstdayjava.pojo.repos.AddressRepo;
 import com.example.firstdayjava.pojo.repos.AppSettingRepo;
 
 import javax.inject.Inject;
 
-public class AddAddressFragmentViewHolder extends AndroidViewModel {
+public class EditAddressFragmentViewHolder extends AndroidViewModel {
 
     @Inject
     AddressRepo addressRepo;
@@ -24,11 +25,12 @@ public class AddAddressFragmentViewHolder extends AndroidViewModel {
     @Inject
     AppSettingRepo settingRepo;
 
+
     public MutableLiveData<ResponseState> responseStateMDL;
     public MutableLiveData<String> userCodeMDL;
 
     @Inject
-    public AddAddressFragmentViewHolder(@NonNull Application application) {
+    public EditAddressFragmentViewHolder(@NonNull Application application) {
         super(application);
         responseStateMDL = new MutableLiveData<>();
         userCodeMDL = new MutableLiveData<>();
@@ -49,7 +51,20 @@ public class AddAddressFragmentViewHolder extends AndroidViewModel {
     }
 
     public void getCurrentUserCode() {
-        userCodeMDL.postValue( settingRepo.getUserCode());
+        userCodeMDL.postValue(settingRepo.getUserCode());
     }
 
+    public void updateAddress(UpdateAddressPostBody updatePostBody) {
+        addressRepo.updateAddress(updatePostBody, new ResponsesCallBack<BaseResponse>() {
+            @Override
+            public void onSuccess(BaseResponse response) {
+                responseStateMDL.postValue(new ResponseState());
+            }
+
+            @Override
+            public void onFailure(Result result) {
+                responseStateMDL.postValue(new ResponseState(result.getErrMsg()));
+            }
+        });
+    }
 }
