@@ -57,6 +57,9 @@ public class ProductSortBottomSheet extends BottomSheetDialogFragment {
         bd.priceLowerRB.setOnClickListener(view -> filter.setOrderBy(ProductPageFilter.SORT_BY_PRICE_LOWER));
 
         bd.applyBtn.setOnClickListener(view -> listener.onSortOptionChange(filter));
+
+        bd.cancelBtn.setOnClickListener(view -> ProductSortBottomSheet.this.dismiss());
+
     }
 
     private void setSortOrder() {

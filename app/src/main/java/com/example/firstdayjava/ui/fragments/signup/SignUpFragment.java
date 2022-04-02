@@ -41,23 +41,8 @@ public class SignUpFragment extends Fragment {
 
     boolean isFromLogin = false;
 
-    public static String LOCATION_STR_GEOTITLE = "locationTitle";
-    public static String LOCATION_STR = "location";
 
     private final String TAG = "EditFragment";
-
-    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-                        assert data != null;
-                        bd.locationED.setText(data.getStringExtra(LOCATION_STR_GEOTITLE));
-                    }
-                }
-            });
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -130,11 +115,6 @@ public class SignUpFragment extends Fragment {
                 );
                 viewModel.signUp(userBody);
             }
-        });
-
-        bd.getLocationBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(requireActivity(), MapActivity.class);
-            someActivityResultLauncher.launch(intent);
         });
 
         bd.datePikerBtn.setOnClickListener(new View.OnClickListener() {

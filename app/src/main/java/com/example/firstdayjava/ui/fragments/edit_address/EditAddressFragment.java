@@ -1,6 +1,8 @@
 package com.example.firstdayjava.ui.fragments.edit_address;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
@@ -18,6 +22,7 @@ import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 import com.example.firstdayjava.pojo.remote.models.edit_adress.AddAddressPostBody;
 import com.example.firstdayjava.pojo.remote.models.edit_adress.UpdateAddressPostBody;
 import com.example.firstdayjava.pojo.remote.models.get_address.GetAddressData;
+import com.example.firstdayjava.ui.activities.MapActivity;
 import com.example.firstdayjava.ui.fragments.base.BaseFragment;
 
 import javax.inject.Inject;
@@ -28,15 +33,34 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class EditAddressFragment extends BaseFragment {
     FragmentAddAdressBinding bd;
 
-    String longitude = "31.139660";
-    String latitude = "29.997840";
-    String addressDetails = "addressDetails";
+    public static String LOCATION_STR_DETAILS = "LOCATION_STR_GEOTITLE";
+    public static String LOCATION_LATITUDE = "LOCATION_LATITUDE";
+    public static String LOCATION_LONGITUDE = "LOCATION_LONGITUDE";
+
+    String longitude = "";
+    String latitude = "";
+    String addressDetails = "";
     String userCode;
     AddAddressPostBody postBody;
     Boolean isInEditMode = false;
     GetAddressData editData;
     @Inject
     EditAddressFragmentViewHolder viewModel;
+
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    assert data != null;
+                    addressDetails = data.getStringExtra(LOCATION_STR_DETAILS);
+                    bd.addressDetailED.setText(addressDetails);
+                    latitude = data.getStringExtra(LOCATION_LATITUDE);
+                    longitude = data.getStringExtra(LOCATION_LONGITUDE);
+                    bd.latlongTV.setText(getLatLongFormat());
+                    bd.latlongTV.setVisibility(View.VISIBLE);
+                }
+            });
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -92,7 +116,7 @@ public class EditAddressFragment extends BaseFragment {
             bd.floorED.setText(editData.getFloor());
             bd.apartmentED.setText(editData.getApartment());
             bd.landmarkED.setText(editData.getNearestlandmark());
-            bd.addressDetile.setText(editData.getAddressDetails());
+            bd.addressDetailED.setText(editData.getAddressDetails());
             bd.mobileED.setText(editData.getMobile());
             bd.landlineED.setText(editData.getLandlineNumber());
 
@@ -139,12 +163,17 @@ public class EditAddressFragment extends BaseFragment {
                 }
             }
         });
+
+        bd.locationBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(requireActivity(), MapActivity.class);
+            someActivityResultLauncher.launch(intent);
+        });
     }
 
     private boolean isSaveAble() {
         if (hasEmptyFieldHandel(bd.streetED)) return false;
 
-        if (hasEmptyFieldHandel(bd.addressDetile)) return false;
+        if (hasEmptyFieldHandel(bd.addressDetailED)) return false;
 
         return !hasEmptyFieldHandel(bd.mobileED);
     }

@@ -25,7 +25,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.ActivityMapBinding;
-import com.example.firstdayjava.ui.fragments.signup.SignUpFragment;
+import com.example.firstdayjava.ui.fragments.edit_address.EditAddressFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -47,6 +47,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MapActivity extends AppCompatActivity implements
         OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener,
@@ -56,10 +59,6 @@ public class MapActivity extends AppCompatActivity implements
     GoogleMap map;
 
     final int START_CODE = 101;
-
-    String[] styles = {"Standard", "Waite", "Red"};
-    ArrayAdapter adapter;
-
     FusedLocationProviderClient locationProviderClient;
 
     @Override
@@ -78,24 +77,23 @@ public class MapActivity extends AppCompatActivity implements
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
 
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mainMap);
+        mapFragment.getMapAsync(this);
+
         init();
+        checkReqPermission();
+        initEvent();
     }
 
     private void init() {
-        adapter = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, styles);
+        String[] styles = {"Standard", "Waite", "Red"};
+        ArrayAdapter adapter = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, styles);
         bd.spinner.setAdapter(adapter);
-
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-
-        assert mapFragment != null;
-        mapFragment.getMapAsync(this);
 
 
         locationProviderClient = new FusedLocationProviderClient(this);
 
-        initEvent();
     }
 
     private boolean checkReqPermission() {
@@ -119,9 +117,10 @@ public class MapActivity extends AppCompatActivity implements
         boolean hasPermission = ACCESS_COARSE_LOCATION == PackageManager.PERMISSION_GRANTED &&
                 ACCESS_FINE_LOCATION == PackageManager.PERMISSION_GRANTED;
 
-        if (!hasPermission) {
-
+        if (hasPermission) {
+            // getUserLocation();
         } else {
+            Toast.makeText(MapActivity.this, "1", Toast.LENGTH_SHORT).show();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{
                         Manifest.permission.ACCESS_FINE_LOCATION,
@@ -136,12 +135,7 @@ public class MapActivity extends AppCompatActivity implements
     }
 
     private void initEvent() {
-        findViewById(R.id.myLocBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                   chackAndGetUserLocation();
-            }
-        });
+        findViewById(R.id.myLocBtn).setOnClickListener(view -> chackAndGetUserLocation());
 
         bd.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -172,16 +166,13 @@ public class MapActivity extends AppCompatActivity implements
             }
         });
 
-        bd.saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                String locationStr = marker.getPosition().latitude + "," + marker.getPosition().longitude;
-                intent.putExtra(SignUpFragment.LOCATION_STR, locationStr);
-                intent.putExtra(SignUpFragment.LOCATION_STR_GEOTITLE, bd.locTitle.getText().toString());
-                MapActivity.this.setResult(RESULT_OK, intent);
-                finish();
-            }
+        bd.saveBtn.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            intent.putExtra(EditAddressFragment.LOCATION_STR_DETAILS, bd.locTitle.getText().toString());
+            intent.putExtra(EditAddressFragment.LOCATION_LATITUDE, String.valueOf(marker.getPosition().latitude));
+            intent.putExtra(EditAddressFragment.LOCATION_LONGITUDE, String.valueOf(marker.getPosition().longitude));
+            MapActivity.this.setResult(RESULT_OK, intent);
+            finish();
         });
     }
 
@@ -195,7 +186,7 @@ public class MapActivity extends AppCompatActivity implements
                 this, R.raw.style_json3
         ));
 
-        googleMap.setOnMapLongClickListener(latLng -> addMarker(latLng));
+        googleMap.setOnMapLongClickListener(this::addMarker);
 
         map.setLatLngBoundsForCameraTarget(
                 new LatLngBounds(
@@ -203,7 +194,6 @@ public class MapActivity extends AppCompatActivity implements
                         new LatLng(30, 34)  // NE bounds
                 )
         );
-
 
 
 //        map.setInfoWindowAdapter(this);
@@ -291,10 +281,6 @@ public class MapActivity extends AppCompatActivity implements
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == START_CODE) {
-            getUserLocation();
-        }
     }
 
 

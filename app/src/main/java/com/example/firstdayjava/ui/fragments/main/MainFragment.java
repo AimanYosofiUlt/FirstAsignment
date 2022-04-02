@@ -4,19 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.FragmentMainBinding;
 import com.example.firstdayjava.ui.fragments.cart.CartFragment;
 import com.example.firstdayjava.ui.fragments.category.CategoryFragment;
-import com.example.firstdayjava.ui.fragments.order.OrderFragment;
-import com.example.firstdayjava.ui.fragments.product_page.ProductsPageFragment;
+import com.example.firstdayjava.ui.fragments.order.OrderPageFragment;
 import com.example.firstdayjava.ui.fragments.setting.SettingFragment;
-import com.example.firstdayjava.ui.fragments.setting.more.MoreFragment;
 import com.example.firstdayjava.ui.viewpagers.mainviewpager.MainViewPagerAdapter;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -46,8 +46,19 @@ public class MainFragment extends Fragment {
         bd.mainVP.setAdapter(adapter);
         bd.mainVP.setUserInputEnabled(false);
 
-        adapter.addFragment(new CategoryFragment());
-        adapter.addFragment(new OrderFragment());
+        CategoryFragment categoryFragment = new CategoryFragment(category -> {
+            Toast.makeText(requireContext(), "Hi:" + category.getCategoryName(), Toast.LENGTH_SHORT).show();
+            NavHostFragment
+                    .findNavController(requireParentFragment())
+                    .navigate(
+                            MainFragmentDirections
+                                    .actionMainFragmentToPrudoctListFragment()
+                                    .setCategoryCode(category.getCategoryCode())
+                    );
+        });
+
+        adapter.addFragment(categoryFragment);
+        adapter.addFragment(new OrderPageFragment());
         adapter.addFragment(new CartFragment());
         adapter.addFragment(new SettingFragment());
     }

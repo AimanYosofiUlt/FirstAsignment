@@ -114,5 +114,23 @@
     <string name="orders">Orders</string>
     <string name="processed">Processed</string>
     <string name="shipped">Shipped</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="taxes">Taxes</string>
+    <string name="delivery">Delivery</string>
+    <string name="discount">Discount</string>
+    <string name="total">Total</string>
+    <string name="order_summary">Order Summary -</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="item_s">Item(s)</string>
+    <string name="quantity">Quantity</string>
+    <string name="price">Price</string>
+    <string name="cancled">Cancel Done</string>
+    <string name="cancel_order_msg">Are you sure you want to cancel this order?</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="update_password">Update Password</string>
+    <string name="not_match">Didn\'t match</string>
+    <string name="incorrect_pass_msg">The Passwrod is incorrect</string>
 
 </resources>

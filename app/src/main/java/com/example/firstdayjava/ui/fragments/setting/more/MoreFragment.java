@@ -127,6 +127,11 @@ public class MoreFragment extends BaseFragment {
                 .create()
                 .show());
 
+        bd.favoraiteBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
+                .navigate(R.id.action_moreFragment_to_favoriteFragment2));
+
+        bd.changePasswordBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
+                .navigate(R.id.action_moreFragment_to_changePasswordFragment));
 
     }
 

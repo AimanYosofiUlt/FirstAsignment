@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
- private    List<Category> list = new ArrayList<>();
+
+    private List<Category> list = new ArrayList<>();
 
     public void setList(List<Category> list) {
         this.list = list;

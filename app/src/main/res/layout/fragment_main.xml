@@ -18,6 +18,8 @@
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/meowBNav"
         android:layout_width="match_parent"
+        app:mbn_circleColor="@color/primeryColor"
+        app:mbn_selectedIconColor="@color/white"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

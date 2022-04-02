@@ -44,6 +44,15 @@ public class AppSettingRepo {
     }
 
     public void setUserProfile(String firstName, String lastName, String email) {
-        appDao.setUserProfile(firstName,lastName,email);
+        appDao.setUserProfile(firstName, lastName, email);
+    }
+
+    public boolean isPasswordCorrect(String currentPass) {
+        return appDao.getPassword().equals(currentPass);
+    }
+
+
+    public void changePassword(String newPassword) {
+        appDao.changePassword(newPassword);
     }
 }

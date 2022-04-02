@@ -15,6 +15,11 @@ import java.util.List;
 
 public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     List<OrderMaster> list = new ArrayList<>();
+    OrderViewListener listener;
+
+    public OrderViewAdapter(OrderViewListener listener) {
+        this.listener = listener;
+    }
 
     public void setList(List<OrderMaster> list) {
         this.list = list;
@@ -25,7 +30,7 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_order, parent, false);
-        return new OrderViewHolder(itemView);
+        return new OrderViewHolder(itemView, listener);
     }
 
     @Override

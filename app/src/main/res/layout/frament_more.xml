@@ -182,6 +182,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:id="@+id/favoraiteBtn"
                 android:layout_height="wrap_content"
                 android:background="@drawable/click_more_options"
                 android:clickable="true"
@@ -239,6 +240,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/changePasswordBtn"
                 android:background="@drawable/click_more_options"
                 android:clickable="true"
                 android:focusable="true"

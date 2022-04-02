@@ -21,6 +21,12 @@
         <action
             android:id="@+id/action_moreFragment_to_addressFragment"
             app:destination="@id/addressFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_favoriteFragment2"
+            app:destination="@id/favoriteFragment2" />
+        <action
+            android:id="@+id/action_moreFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/addressFragment"
@@ -46,5 +52,15 @@
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment2"
+        tools:layout="@layout/fragment_favorite"
+        android:name="com.example.firstdayjava.ui.fragments.favoraite.FavoriteFragment"
+        android:label="FavoriteFragment" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        tools:layout="@layout/fragment_change_password"
+        android:name="com.example.firstdayjava.ui.fragments.setting.changepassword.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
 
 </navigation>

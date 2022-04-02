@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import com.example.firstdayjava.databinding.BottomsheetFilterBinding;
 import com.example.firstdayjava.pojo.local.entities.setting.ProductPageFilter;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.mohammedalaa.seekbar.DoubleValueSeekBarView;
+import com.mohammedalaa.seekbar.OnDoubleValueSeekBarChangeListener;
 
 public class ProductFilterBottomSheet extends BottomSheetDialogFragment {
     BottomsheetFilterBinding bd;
@@ -36,7 +38,8 @@ public class ProductFilterBottomSheet extends BottomSheetDialogFragment {
     private void init() {
         Integer maxRange = filter.getMaxRange();
         Integer minRange = filter.getMinRange();
-        bd.rangeSeekbar.setRangeValues(maxRange, maxRange);
+        bd.rangeSeekbar.setCurrentMaxValue(1000);
+        bd.rangeSeekbar.setCurrentMinValue(0);
 
         String maxStr = String.valueOf(maxRange);
         String minStr = String.valueOf(minRange);
@@ -46,9 +49,22 @@ public class ProductFilterBottomSheet extends BottomSheetDialogFragment {
 
 
     private void initEvent() {
-        bd.rangeSeekbar.setOnRangeSeekBarChangeListener((bar, minValue, maxValue) -> {
-            bd.maxTV.setText(String.valueOf(maxValue));
-            bd.minTV.setText(String.valueOf(minValue));
+        bd.rangeSeekbar.setOnRangeSeekBarViewChangeListener(new OnDoubleValueSeekBarChangeListener() {
+            @Override
+            public void onValueChanged(@Nullable DoubleValueSeekBarView doubleValueSeekBarView, int i, int i1, boolean b) {
+                bd.maxTV.setText(String.valueOf(bd.rangeSeekbar.getCurrentMaxValue()));
+                bd.minTV.setText(String.valueOf(bd.rangeSeekbar.getCurrentMinValue()));
+            }
+
+            @Override
+            public void onStartTrackingTouch(@Nullable DoubleValueSeekBarView doubleValueSeekBarView, int i, int i1) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(@Nullable DoubleValueSeekBarView doubleValueSeekBarView, int i, int i1) {
+
+            }
         });
 
         bd.applyBtn.setOnClickListener(view -> {
@@ -59,6 +75,13 @@ public class ProductFilterBottomSheet extends BottomSheetDialogFragment {
             listener.onSortOptionChange(filter);
         });
 
-        bd.restartBtn.setOnClickListener(view -> bd.rangeSeekbar.setRangeValues(0, 1000));
+        bd.restartBtn.setOnClickListener(view -> {
+            bd.rangeSeekbar.setCurrentMaxValue(1000);
+            bd.rangeSeekbar.setCurrentMinValue(0);
+            bd.maxTV.setText(String.valueOf(1000));
+            bd.minTV.setText(String.valueOf(0));
+        });
+
+        bd.cancelBtn.setOnClickListener(view -> ProductFilterBottomSheet.this.dismiss());
     }
 }

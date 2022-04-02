@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.firstdayjava.databinding.ViewCartInfoBinding;
 import com.example.firstdayjava.ui.views.ProductView.ProductViewData;
 import com.example.firstdayjava.ui.views.ProductView.ProductViewListener;
@@ -28,6 +29,10 @@ public class CartInfoViewHolder extends RecyclerView.ViewHolder {
         bd.nameTV.setText(productData.getName());
         String priceStr = String.valueOf(productData.getPrice());
         bd.priceTV.setText(priceStr);
+
+        Glide.with(itemView)
+                .load(data.getImageUrl())
+                .into(bd.productImg);
     }
 
     private void initEvent() {

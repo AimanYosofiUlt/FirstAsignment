@@ -21,6 +21,7 @@ import com.example.firstdayjava.databinding.FragmentCategoryBinding;
 import com.example.firstdayjava.pojo.remote.callpack.ResponseState;
 import com.example.firstdayjava.ui.viewpagers.adsviewpager.AdsPagerAdapter;
 import com.example.firstdayjava.ui.views.CategoryView.CategoryAdapter;
+import com.example.firstdayjava.ui.views.CategoryView.CategoryViewListener;
 
 import javax.inject.Inject;
 
@@ -36,6 +37,12 @@ public class CategoryFragment extends Fragment {
 
     AdsPagerAdapter adsPagerAdapter;
     private final Handler sliderHandler = new Handler();
+
+    CategoryViewListener listener;
+
+    public CategoryFragment(CategoryViewListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -77,7 +84,8 @@ public class CategoryFragment extends Fragment {
     }
 
     private void initViewPager() {
-        adapter = new CategoryAdapter(null);
+        adapter = new CategoryAdapter(listener);
+
         bd.recyclerView.setAdapter(adapter);
         bd.recyclerView.setLayoutManager(new GridLayoutManager(
                 requireActivity(), 3
@@ -109,16 +117,7 @@ public class CategoryFragment extends Fragment {
 
 
     private void initEvent() {
-        bd.textView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bd.waitPB.setVisibility(View.GONE);
-                Toast.makeText(requireContext(), "HI", Toast.LENGTH_SHORT).show();
-                Log.d("CategoryFragment", "onChanged 5555: "+bd.waitPB.getVisibility());
-                Log.d("CategoryFragment", "onChanged 6666: "+View.GONE);
-                Log.d("CategoryFragment", "onChanged 7777: "+View.VISIBLE);
-            }
-        });
+
     }
 
     int d = 1;

@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.firstdayjava.R;
@@ -49,6 +51,7 @@ public class OrderFragment extends BaseFragment {
         viewModel.orderMastersMDL.observe(getViewLifecycleOwner(), new Observer<List<OrderMaster>>() {
             @Override
             public void onChanged(List<OrderMaster> orderMasters) {
+                Toast.makeText(requireContext(), "8523", Toast.LENGTH_SHORT).show();
                 adapter.setList(orderMasters);
             }
         });
@@ -80,7 +83,12 @@ public class OrderFragment extends BaseFragment {
 
     @Override
     protected void initModelView() {
-        adapter = new OrderViewAdapter();
+        adapter = new OrderViewAdapter(orderId -> NavHostFragment.findNavController(requireParentFragment())
+                .navigate(
+                        OrderFragmentDirections
+                        .actionOrderFragmentToOrderDetailedFragment()
+                        .setOrderID(orderId)
+                ));
         bd.ordersRV.setLayoutManager(new LinearLayoutManager(requireContext()));
         bd.ordersRV.setAdapter(adapter);
 

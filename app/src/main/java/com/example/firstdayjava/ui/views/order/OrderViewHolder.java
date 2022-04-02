@@ -12,10 +12,22 @@ import com.example.firstdayjava.pojo.remote.models.getOrder.OrderMaster;
 public class OrderViewHolder extends RecyclerView.ViewHolder {
     ViewOrderBinding bd;
     OrderMaster master;
+    OrderViewListener listener;
 
-    public OrderViewHolder(@NonNull View itemView) {
+    public OrderViewHolder(@NonNull View itemView, OrderViewListener listener) {
         super(itemView);
         bd = ViewOrderBinding.bind(itemView);
+        this.listener = listener;
+        initEvent();
+    }
+
+    private void initEvent() {
+        bd.showBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onShowReq(master.getOrderID());
+            }
+        });
     }
 
     void bind(OrderMaster master) {

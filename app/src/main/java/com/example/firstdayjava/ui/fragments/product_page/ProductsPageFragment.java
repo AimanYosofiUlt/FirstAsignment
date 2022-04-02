@@ -19,7 +19,6 @@ import com.example.firstdayjava.ui.fragments.product_list.ProductListListener;
 import com.example.firstdayjava.ui.viewpagers.prudoctlist.ProductListViewPagerAdapter;
 import com.example.firstdayjava.ui.views.BottomSheets.ProductFilterBottomSheet;
 import com.example.firstdayjava.ui.views.BottomSheets.ProductSortBottomSheet;
-import com.example.firstdayjava.ui.views.ProductView.ProductViewData;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.List;
@@ -39,11 +38,14 @@ public class ProductsPageFragment extends BaseFragment {
     @Inject
     ProductsPageFragmentViewModel viewModel;
 
+    Boolean itJustStart = true;
+    String categoryCodeFromMainPage = "";
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         bd = FragmentPrudoctPageBinding.inflate(inflater, container, false);
-
+        categoryCodeFromMainPage = ProductsPageFragmentArgs.fromBundle(getArguments()).getCategoryCode();
         initViewModel();
         initModelView();
         initEvent();
@@ -62,17 +64,29 @@ public class ProductsPageFragment extends BaseFragment {
         viewModel.categoryMDL.observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
-                pagerAdapter.setFragmentsByCategories(categories, new ProductListListener() {
-                    @Override
-                    public void onProductShowReq(ProductViewData data) {
-                        NavHostFragment
-                                .findNavController(requireParentFragment())
-                                .navigate(
-                                        ProductsPageFragmentDirections
-                                                .actionProductPageFragmentToProductInfoFragment(data)
-                                );
+                ProductListListener productListListener = data -> NavHostFragment
+                        .findNavController(requireParentFragment())
+                        .navigate(
+                                ProductsPageFragmentDirections
+                                        .actionProductPageFragmentToProductInfoFragment(data)
+                        );
+
+                pagerAdapter.setFragmentsByCategories(categories, productListListener);
+
+                if (itJustStart) {
+                    setStartupTab(categories);
+                }
+            }
+
+            private void setStartupTab(List<Category> categories) {
+                int currentIndex = 0;
+                for (int i = 0; i < categories.size(); i++) {
+                    if (categories.get(i).getCategoryCode().equals(categoryCodeFromMainPage)) {
+                        currentIndex = i;
+                        break;
                     }
-                });
+                }
+                bd.viewPager.setCurrentItem(currentIndex);
             }
         });
 
@@ -112,13 +126,11 @@ public class ProductsPageFragment extends BaseFragment {
         bd.showSortBtn.setOnClickListener(view ->
                 sortBottomSheet.show(getParentFragmentManager(), "Sort"));
 
-        bd.openFavBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        bd.openFavBtn.setOnClickListener(view ->
                 NavHostFragment.findNavController(requireParentFragment())
-                        .navigate(R.id.action_productPageFragment_to_favoriteFragment);
-            }
-        });
+                        .navigate(R.id.action_productPageFragment_to_favoriteFragment));
+
+        bd.backBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment()).popBackStack());
     }
 
     private void initPagerView() {
@@ -136,6 +148,7 @@ public class ProductsPageFragment extends BaseFragment {
 
             }
         });
+
         layoutMediator.attach();
     }
 }

@@ -8,6 +8,7 @@ import com.example.firstdayjava.pojo.remote.api.UltimateApi;
 import com.example.firstdayjava.pojo.remote.callpack.BaseResponse;
 import com.example.firstdayjava.pojo.remote.callpack.ResponsesCallBack;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
+import com.example.firstdayjava.pojo.remote.models.cahnge_password.ChangePasswordPostBody;
 import com.example.firstdayjava.pojo.remote.models.edit_profile.EditProfilePostBody;
 import com.example.firstdayjava.pojo.remote.models.login.LoginData;
 import com.example.firstdayjava.pojo.remote.models.login.LoginPostBody;
@@ -77,5 +78,19 @@ public class UserRepo {
 
     public void updateProfile(EditProfilePostBody postBody, ResponsesCallBack<BaseResponse> callBack) {
         api.editProfile(postBody).enqueue(callBack);
+    }
+
+    public void changePassword(ChangePasswordPostBody postBody, ResponsesCallBack<BaseResponse> callBack) {
+        api.changePassword(postBody).enqueue(new ResponsesCallBack<BaseResponse>() {
+            @Override
+            public void onSuccess(BaseResponse response) {
+                callBack.onSuccess(response);
+            }
+
+            @Override
+            public void onFailure(Result result) {
+                callBack.onFailure(result);
+            }
+        });
     }
 }

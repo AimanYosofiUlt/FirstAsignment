@@ -10,24 +10,20 @@ import com.bumptech.glide.Glide;
 import com.example.firstdayjava.R;
 import com.example.firstdayjava.databinding.ViewCategoryBinding;
 import com.example.firstdayjava.pojo.local.entities.Category;
-import com.example.firstdayjava.pojo.remote.models.category.CategoryData;
 
 public class CategoryViewHolder extends RecyclerView.ViewHolder {
     ViewCategoryBinding bd;
-//    CategoryViewListener listener;
+    CategoryViewListener listener;
+    Category category;
 
     public CategoryViewHolder(@NonNull View itemView, CategoryViewListener listener) {
         super(itemView);
         bd = ViewCategoryBinding.bind(itemView);
-//        this.listener = listener;
+        this.listener = listener;
         initEvent();
     }
 
     private void initEvent() {
-        init();
-    }
-
-    private void init() {
         bd.circleCL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,6 +31,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
             }
 
             private void startAnime() {
+                listener.onClick(category);
                 bd.circleCL.startAnimation(AnimationUtils.loadAnimation(
                         bd.getRoot().getContext(),
                         R.anim.bounce
@@ -44,6 +41,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Category category) {
+        this.category = category;
         bd.categoryNameTV.setText(category.getCategoryName());
         Glide.with(itemView.getContext())
                 .load(category.getImageUrl())

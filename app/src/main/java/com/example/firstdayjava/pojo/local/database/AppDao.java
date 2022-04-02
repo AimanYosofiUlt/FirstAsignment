@@ -110,6 +110,13 @@ public interface AppDao {
     @Query("SELECT currentUserCode FROM AppSetting")
     String getUserCode();
 
+    @Query("SELECT u.password FROM User u,AppSetting s where u.userCode = s.currentUserCode")
+    String getPassword();
+
+    @Query("UPDATE User SET password = :newPassword WHERE userCode = (SELECT currentUserCode FROM AppSetting)")
+    void changePassword(String newPassword);
+
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertCart(Cart cart);
 
@@ -149,4 +156,5 @@ public interface AppDao {
 
     @Query("SELECT favState FROM Product WHERE itemCode = :itemCode")
     Integer getFavState(String itemCode);
+
 }

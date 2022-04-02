@@ -5,27 +5,37 @@
     android:layout_height="wrap_content"
     android:background="@drawable/back_bottomsheet">
 
-    <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
+
+    <com.mohammedalaa.seekbar.DoubleValueSeekBarView
         android:id="@+id/rangeSeekbar"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="20dp"
-        app:absoluteMaxValue="1000"
-        app:absoluteMinValue="0"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/applyBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
+        app:r2CurrentMaxValue="500"
+        app:r2CurrentMinValue="100"
+        app:r2barHeight="8dp"
+        app:r2baseColor="@color/gray"
+        app:r2circleFillColor="@color/blue"
+        app:r2circleRadius="16dp"
+        app:r2circleTextColor="@color/white"
+        app:r2circleTextSize="@dimen/value_bar_circleTextSize"
+        app:r2fillColor="@color/blue"
+        app:r2maxValue="1000"
+        app:r2maxValueStep="10"
+        app:r2minValue="0"
+        app:r2minValueStep="5" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16sp"
+        android:layout_marginBottom="24sp"
         app:layout_constraintBottom_toTopOf="@+id/rangeSeekbar"
         app:layout_constraintEnd_toEndOf="@+id/rangeSeekbar"
         app:layout_constraintStart_toStartOf="@+id/rangeSeekbar">
@@ -82,10 +92,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/cancelBtn" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cancelBtn"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
@@ -113,9 +123,9 @@
         android:textColor="@color/blue"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView" />
+        app:layout_constraintTop_toTopOf="@+id/cancelBtn" />
 
     <TextView
         android:id="@+id/textView13"
@@ -124,10 +134,10 @@
         android:text="@string/filter"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView" />
+        app:layout_constraintTop_toTopOf="@+id/cancelBtn" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"

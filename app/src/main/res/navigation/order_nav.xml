@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/order_nav"
+    app:startDestination="@id/orderFragment">
+
+    <fragment
+        android:id="@+id/orderFragment"
+        tools:layout="@layout/fragment_order"
+        android:name="com.example.firstdayjava.ui.fragments.order.OrderFragment"
+        android:label="OrderFragment" >
+        <action
+            android:id="@+id/action_orderFragment_to_orderDetailedFragment"
+            app:destination="@id/orderDetailedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailedFragment"
+        tools:layout="@layout/fragment_order_detail"
+        android:name="com.example.firstdayjava.ui.fragments.order_detail.OrderDetailedFragment"
+        android:label="OrderDetailedFragment" >
+        <argument
+            android:name="orderID"
+            app:argType="string"
+            android:defaultValue="119" />
+    </fragment>
+</navigation>

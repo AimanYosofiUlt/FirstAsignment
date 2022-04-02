@@ -3,13 +3,13 @@ package com.example.firstdayjava.pojo.remote.models.orde_detile;
 import com.example.firstdayjava.pojo.remote.callpack.ResponseObject;
 import com.example.firstdayjava.pojo.remote.callpack.Result;
 
-public class OrderDetailPostBody {
+public class OrderPostBody {
     String orderID;
 
-    public OrderDetailPostBody() {
+    public OrderPostBody() {
     }
 
-    public OrderDetailPostBody(String orderID) {
+    public OrderPostBody(String orderID) {
         this.orderID = orderID;
     }
 
